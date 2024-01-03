@@ -34,6 +34,9 @@ export class SurveyQuestionEditorDefinition {
         { name: "requiredIf", tab: "logic" },
         { name: "bindings", tab: "logic" },
         { name: "defaultValueExpression", tab: "logic" },
+        { name: "resetValueIf", tab: "logic" },
+        { name: "setValueIf", tab: "logic" },
+        { name: "setValueExpression", tab: "logic" },
         { name: "page", tab: "layout" },
         { name: "startWithNewLine", tab: "layout" },
         { name: "hideNumber", tab: "layout" },
@@ -74,16 +77,30 @@ export class SurveyQuestionEditorDefinition {
     file: {
       properties: [
         "sourceType",
+        "visible",
+        "isRequired",
+        "readOnly",
+        "showCommentArea",
         "allowMultiple",
-        "allowImagesPreview",
-        "acceptedTypes",
         { name: "showPreview" },
+        "allowImagesPreview",
+        "waitForUpload",
+        "needConfirmRemoveFile",
         { name: "storeDataAsText" },
+        "allowCameraAccess",
+        "acceptedTypes",
         "maxSize",
         "imageHeight",
         "imageWidth",
+        "filePlaceholder",
+        "photoPlaceholder",
+        "fileOrPhotoPlaceholder"
+      ]
+    },
+    signaturepad: {
+      properties: [
         "waitForUpload",
-        "needConfirmRemoveFile"
+        { name: "storeDataAsText" },
       ]
     },
     html: {
@@ -347,6 +364,9 @@ export class SurveyQuestionEditorDefinition {
         { name: "enableIf", tab: "logic" },
         { name: "requiredIf", tab: "logic" },
         { name: "defaultValueExpression", tab: "logic" },
+        { name: "resetValueIf", tab: "logic" },
+        { name: "setValueIf", tab: "logic" },
+        { name: "setValueExpression", tab: "logic" },
         { name: "totalType", tab: "totals" },
         { name: "totalDisplayStyle", tab: "totals" },
         { name: "totalCurrency", tab: "totals" },
@@ -480,7 +500,10 @@ export class SurveyQuestionEditorDefinition {
         "size",
         "placeholder",
         "requiredErrorText",
-        "validators"
+        "validators",
+        { name: "defaultValueExpression", tab: "logic" },
+        { name: "minValueExpression", tab: "logic" },
+        { name: "maxValueExpression", tab: "logic" },
       ]
     },
     "multipletext@items": {

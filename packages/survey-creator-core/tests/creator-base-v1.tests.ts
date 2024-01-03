@@ -306,6 +306,7 @@ test("Delete object and selectedElement property", () => {
     pages: [
       {
         name: "page1",
+        title: "Page 1",
         elements: [
           { type: "text", name: "q1" },
           { type: "text", name: "q2" },
@@ -341,6 +342,11 @@ test("Delete object and selectedElement property", () => {
   expect(creator.selectedElementName).toEqual("q1");
   creator.deleteCurrentObject();
   expect(creator.selectedElementName).toEqual("page1");
+  const newQuestion = creator.survey.pages[0].addNewQuestion("text");
+  creator.survey.pages[0].title = "";
+  creator.selectElement(newQuestion);
+  creator.deleteCurrentObject();
+  expect(creator.selectedElementName).toEqual("survey");
 });
 
 test("fast copy tests, copy a question", () => {
@@ -704,10 +710,10 @@ test("creator collapseAllPropertyTabs expandAllPropertyTabs expandPropertyTab co
 test("generate element name based on another survey", () => {
   const creator = new CreatorTester();
   creator.onGenerateNewName.add(function (sender, options) {
-    if (options.name == "question3") {
-      options.isUnique = false;
+    if (options.name === "question3") {
+      options.name = "question4";
     }
-    if (options.name == "question5") {
+    if (options.name === "question5") {
       options.name = "question9";
     }
   });
@@ -942,7 +948,7 @@ test("creator.onSurveyInstanceCreated, can pass ConditionEditor as model", () =>
   };
   let model;
   creator.onSurveyInstanceCreated.add((sender, options) => {
-    if(options.reason === "condition-builder") {
+    if (options.reason === "condition-builder") {
       model = options.model;
     }
   });
@@ -1152,7 +1158,7 @@ test("creator getMenuItems should respect property readOnly - https://github.com
   });
   let questionAdorner = new QuestionAdornerViewModel(creator, question, undefined);
   expect(questionAdorner.getActionById("isrequired")).toBeTruthy();
-  expect(questionAdorner.getActionById("isrequired").visible).toBeTruthy();
+  expect(questionAdorner.getActionById("isrequired").visible).toBeFalsy();
 });
 
 test("addQuestion into the QuestionPanelDynamic into second page", () => {

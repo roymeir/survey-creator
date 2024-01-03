@@ -56,6 +56,8 @@ var frenchTranslation = {
     hidePanel: "Masquer le panneau",
     prevSelected: "Sélectionnez précédent",
     nextSelected: "Sélectionnez Suivant",
+    prevFocus: "Mise au point précédente",
+    nextFocus: "Focus suivant",
     surveyTypeName: "Sondage",
     pageTypeName: "Page",
     panelTypeName: "Panneau",
@@ -84,6 +86,8 @@ var frenchTranslation = {
     translation: "Traduction",
     saveSurvey: "Sauvegarder le sondage",
     saveSurveyTooltip: "Enregistrer le sondage",
+    saveTheme: "Enregistrer le thème",
+    saveThemeTooltip: "Enregistrer le thème",
     designer: "Éditeur de sondage",
     jsonEditor: "Éditeur JSON",
     jsonHideErrors: "Masquer les erreurs",
@@ -106,6 +110,7 @@ var frenchTranslation = {
     toolbox: "Boîte à outils",
     "property-grid": "Propriétés",
     propertyGridFilteredTextPlaceholder: "Tapez pour rechercher...",
+    propertyGridNoResultsFound: "Aucun résultat trouvé",
     toolboxGeneralCategory: "Général",
     toolboxChoiceCategory: "Quesitons à choix",
     toolboxTextCategory: "Questions de saisie libre",
@@ -136,17 +141,27 @@ var frenchTranslation = {
     translationNoStrings: "Aucun terme à traduire. Veuillez modifier le filtre.",
     translationExportToSCVButton: "Exporter en CSV",
     translationImportFromSCVButton: "Importer d'un CSV",
+    translateUsigAI: "Traduire automatiquement tout",
+    translationDialogTitle: "Chaînes non traduites",
     translationMergeLocaleWithDefault: "Fusionner {0} avec langue par défaut",
     translationPlaceHolder: "Traduction...",
     themeExportButton: "Exportation",
     themeImportButton: "Importation",
+    surveyJsonExportButton: "Exportation",
+    surveyJsonImportButton: "Importation",
+    surveyJsonCopyButton: "Copier dans le Presse-papiers",
     themeResetButton: "Réinitialiser les paramètres de thème par défaut",
+    themeResetConfirmation: "Voulez-vous vraiment réinitialiser le thème ? Toutes vos personnalisations seront perdues.",
+    themeResetConfirmationOk: "Oui, réinitialisez le thème",
     bold: "Gras",
     italic: "Italique",
     underline: "Souligné",
     addNewQuestion: "Ajouter Question",
     selectPage: "Sélectionner une page...",
     carryForwardChoicesCopied: "Les choix sont copiés à partir de",
+    choicesLoadedFromWebText: "Les choix sont chargés à partir d’un service Web.",
+    choicesLoadedFromWebLinkText: "Accédez aux paramètres",
+    choicesLoadedFromWebPreviewTitle: "Aperçu des options de choix chargées",
     htmlPlaceHolder: "Le contenu HTML se trouvera ici.",
     panelPlaceHolder: "Déposez une question de la boîte à outils ici.",
     surveyPlaceHolder: "Le sondage est vide. Faites glisser un élément de la boîte à outils ou cliquez sur le bouton ci-dessous.",
@@ -161,14 +176,20 @@ var frenchTranslation = {
       empty_tab: "Créez une règle pour personnaliser le déroulement du sondage.",
       page_visibilityName: "Afficher/masquer la page",
       page_enableName: "Activer (désactiver) la page",
+      page_requireName: "Rendre la page obligatoire",
       panel_visibilityName: "Afficher/masquer le panneau",
       panel_enableName: "Activer/désactiver le panneau",
+      panel_requireName: "Rendre la page obligatoire",
       question_visibilityName: "Afficher/masquer la question",
       question_enableName: "Activer/désactiver la question",
       question_requireName: "Rendre la question obligatoire",
+      question_resetValueName: "Réinitialiser la valeur de la question",
+      question_setValueName: "Définir la valeur de la question",
       column_visibilityName: "Afficher/masquer la colonne",
       column_enableName: "Activer/désactiver la colonne",
       column_requireName: "Rendre la colonne obligatoire",
+      column_resetValueName: "Réinitialiser la valeur de la colonne",
+      column_setValueName: "Définition de la valeur de colonne",
       trigger_completeName: "Terminer le sondage",
       trigger_setvalueName: "Définir la valeur de la question",
       trigger_copyvalueName: "Copier la valeur de la question",
@@ -195,9 +216,14 @@ var frenchTranslation = {
       question_visibilityText: "Rendre la question {0} visible", //{0} question name
       question_enableText: "Activer la question {0}", //{0} question name
       question_requireText: "Rendre la question {0} obligatoire", //{0} question name
+      question_resetValueText: "Réinitialisez la valeur pour la question : {0}",
+      question_setValueText: "Attribuer une valeur : {1} à la question : {0}",
       column_visibilityText: "Rendre visible les {0} de la colonne de questions {1}", //{0} column name, {1} question name
       column_enableText: "Activer la {0} de la colonne de questions {1}", //{0} column name, {1} question name
       column_requireText: "rendre obligatoire la colonne {0} de la question {1}", //{0} column name, {1} question name
+      column_resetValueText: "Réinitialiser la valeur de la cellule pour la colonne : {0}",
+      column_setValueText: "Affecter la valeur de la cellule : {1} à la colonne : {0}",
+      setValueExpressionPlaceholder: " Expression dont le résultat sera affecté à la question cible.",
       trigger_completeText: "Le sondage se termine.",
       trigger_setvalueText: "Définir dans la question: {0} valeur {1}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "Valeur de la question claire : {0}", //{0} question name
@@ -221,9 +247,7 @@ var frenchTranslation = {
       uncompletedRule_title: "Les règles logiques sont incomplètes",
       uncompletedRule_text: "Vous n’avez pas terminé certaines des règles logiques. Si vous quittez l’onglet maintenant, les modifications seront perdues. Voulez-vous toujours quitter sans sauvegarder ?",
       uncompletedRule_apply: "Oui",
-      uncompletedRule_cancel: "Non, je veux compléter les règles",
-      // expressionSetup: "",
-      // actionsSetup: ""
+      uncompletedRule_cancel: "Non, je veux compléter les règles"
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ var frenchTranslation = {
     fastEntry: "Ajout rapide",
     fastEntryNonUniqueError: "La valeur '{0}' n’est pas unique",
     fastEntryChoicesCountError: "Veuillez limiter le nombre d'éléments de {0} à {1}",
+    fastEntryChoicesMinCountError: "Veuillez saisir au moins {0} éléments",
     fastEntryPlaceholder: "Vous pouvez définir les données au format suivant :\nvaleur1|texte\nvaleur2",
     formEntry: "Ajout via formulaire",
     testService: "Tester le service",
@@ -327,6 +352,8 @@ var frenchTranslation = {
     choicesOrder: "Sélectionner l'ordre des choix",
     visible: "Est visible ?",
     isRequired: "Est obligatoire ?",
+    markRequired: "Marquer au besoin",
+    removeRequiredMark: "Supprimer la marque requise",
     isAllRowRequired: "Réponse obligatoire pour toutes les lignes",
     requiredErrorText: "Message d'erreur lorsque obligatoire",
     startWithNewLine: "Afficher la question sur une nouvelle ligne",
@@ -408,7 +435,12 @@ var frenchTranslation = {
       imageHeight: "Hauteur de l’image (en valeurs acceptées par CSS)",
       imageWidth: "Largeur de l’image (en valeurs acceptées par CSS)"
     },
+    // survey templates
+    survey: {
+      title: "Titre du questionnaire"
+    },
     page: {
+      title: "Titre",
       maxTimeToFinish: "Limite de temps pour terminer la page (en secondes)"
     },
     question: {
@@ -639,6 +671,18 @@ var frenchTranslation = {
     columnsVisibleIf: "Les colonnes sont visibles si",
     rowsVisibleIf: "Les lignes sont visibles si",
     otherPlaceholder: "Espace réservé pour la zone de commentaires",
+    signaturepad: {
+      showPlaceholder: "Afficher l’espace réservé",
+      placeholder: "Texte d’espace réservé",
+      signatureWidth: "Largeur de la zone de signature",
+      signatureHeight: "Hauteur de la zone de signature",
+      signatureAutoScaleEnabled: "Mise à l’échelle automatique de la zone de signature",
+      penMinWidth: "Largeur minimale du stylo",
+      penMaxWidth: "Largeur maximale du stylo"
+    },
+    filePlaceholder: "Texte de l’espace réservé au fichier",
+    photoPlaceholder: "Texte de l’espace réservé à la photo",
+    fileOrPhotoPlaceholder: "Texte de l’espace réservé au fichier ou à la photo",
     rateType: "Type de notation"
   },
   // Property values
@@ -681,6 +725,7 @@ var frenchTranslation = {
     both: "Les deux",
     left: "Gauche",
     right: "Droite",
+    leftRight: "Gauche et droite",
     color: "Couleur",
     date: "Date",
     datetime: "Date et heure",
@@ -876,7 +921,10 @@ var frenchTranslation = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "Si la colonne spécifiée contient des valeurs identiques, le sondage renvoie l’erreur « Valeur de clé non unique »."
+    keyName: "Si la colonne spécifiée contient des valeurs identiques, le sondage renvoie l’erreur « Valeur de clé non unique ».",
+    filePlaceholder: "S’applique lorsque le « Type de source » est « Fichiers locaux » ou lorsque l’appareil photo n’est pas disponible",
+    photoPlaceholder: "S’applique lorsque le « Type de source » est « Appareil photo ».",
+    fileOrPhotoPlaceholder: "S’applique lorsque le « Type de source » est « Fichiers locaux ou appareil photo »."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ var frenchTranslation = {
     showLabel: "Afficher les légendes des images",
     value: "Valeur",
     tabAlign: "Alignement des tabulations",
+    sourceType: "Type de source",
+    fitToContainer: "S’adapte au conteneur",
+    setValueExpression: "Définir l’expression de valeur",
     description: "Description",
     logoFit: "Ajustement du logo",
     pages: "Pages",
@@ -910,6 +961,8 @@ var frenchTranslation = {
     descriptionLocation: "Description de l’emplacement",
     defaultValueExpression: "Expression de valeur par défaut",
     requiredIf: "Obligatoire si",
+    resetValueIf: "Réinitialiser la valeur si",
+    setValueIf: "Définir la valeur si",
     validators: "Validateurs",
     bindings: "Liaisons",
     renderAs: "Rendre en tant que",
@@ -986,6 +1039,9 @@ var frenchTranslation = {
     "--base-unit": "Unité de base",
     groupGeneral: "Généralités",
     groupAdvanced: "Avancé",
+    groupHeader: "En-tête",
+    groupBackground: "Arrière-plan",
+    groupAppearance: "Apparence",
     themeName: "Thème",
     themeMode: "Apparence de la question",
     themeModePanels: "Par défaut",
@@ -996,11 +1052,16 @@ var frenchTranslation = {
     primaryDefaultColor: "Faire défaut",
     primaryDarkColor: "Au survol",
     primaryLightColor: "Sélectionné",
+    coverTitleForecolor: "Précouleur du titre",
+    coverDescriptionForecolor: "Description de la couleur avant",
+    coverOverlapEnabled: "Chevauchement",
     backgroundDimColor: "Couleur d’arrière-plan",
     backgroundImage: "Image d’arrière-plan",
     backgroundImageFitAuto: "Auto",
     backgroundImageFitCover: "Remplir",
     backgroundImageFitContain: "Ajuster",
+    backgroundImageFitFill: "Étirer",
+    backgroundImageFitTile: "Carreau",
     backgroundOpacity: "Opacité",
     backgroundImageAttachmentFixed: "Fixe",
     backgroundImageAttachmentScroll: "Défilable",
@@ -1033,6 +1094,7 @@ var frenchTranslation = {
     scale: "Échelle",
     cornerRadius: "Angle",
     surveyTitle: "Police du titre du sondage",
+    surveyDescription: "Police de description de l’enquête",
     pageTitle: "Police du titre de la page",
     pageDescription: "Police de la description de page",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ var frenchTranslation = {
     boxShadowInner: "Intérieur",
     questionShadow: "Effets d’ombre",
     editorShadow: "Effets d’ombre du champ de réponse",
+    headerView: "Vue",
+    headerViewBasic: "Basique",
+    headerViewAdvanced: "Avancé",
+    coverInheritWidthFrom: "Largeur de la zone de contenu",
+    coverInheritWidthFromSurvey: "Identique à l’enquête",
+    coverInheritWidthFromContainer: "S’adapte au conteneur",
+    coverTextAreaWidth: "Largeur du texte",
+    coverBackgroundColorSwitch: "Couleur d’arrière-plan",
+    coverBackgroundColorNone: "Aucun",
+    coverBackgroundColorAccentColor: "Couleur d’accentuation",
+    coverBackgroundColorCustom: "Coutume",
+    horizontalAlignmentLeft: "Gauche",
+    horizontalAlignmentCenter: "Centre",
+    horizontalAlignmentRight: "Droite",
+    verticalAlignmentTop: "Retour au début",
+    verticalAlignmentMiddle: "Milieu",
+    verticalAlignmentBottom: "Fond",
+    logoPosition: "Position du logo",
+    coverTitlePosition: "Position du titre",
+    coverDescriptionPosition: "Description du poste",
     names: {
       default: "Par défaut",
       sharp: "Tranchant",
@@ -1156,8 +1238,6 @@ editorLocalization.locales["fr"] = frenchTranslation;
 // lg.uncompletedRule_text: "You have not completed some of the logical rules. If you leave the tab now, the changes will be lost. Do you still want to leave the tab without completing the changes?" => "Vous n’avez pas terminé certaines des règles logiques. Si vous quittez l’onglet maintenant, les modifications seront perdues. Voulez-vous toujours quitter l’onglet sans terminer les modifications?"
 // lg.uncompletedRule_apply: "Yes" => "Oui"
 // lg.uncompletedRule_cancel: "No, I want to complete the rules" => "Non, je veux compléter les règles"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.clear: "Clear" => "Clair"
 // pe.saveTooltip: "Save" => "Sauvegarder"
 // pe.set: "Set" => "Poser"
@@ -1616,8 +1696,6 @@ editorLocalization.locales["fr"] = frenchTranslation;
 // colors.tulip: "Tulip" => "Tulipe"
 // colors.brown: "Brown" => "Marron"
 // colors.green: "Green" => "Vert"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // names.sharp: "Sharp" => "Tranchant"
 // names.borderless: "Borderless" => "Borderless"
 // names.flat: "Flat" => "Plat"
@@ -1628,14 +1706,93 @@ editorLocalization.locales["fr"] = frenchTranslation;
 
 // ed.translationDeleteLanguage: "Are you certain you wish to delete all strings for this language?" => "Êtes-vous certain de vouloir supprimer toutes les chaînes pour cette langue ?"
 // ed.themeResetButton: "Reset theme settings to default" => "Réinitialiser les paramètres de thème par défaut"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // theme.placeholderColor: "Placeholder color" => "Couleur de l’espace réservé"
 // ed.themeSettings: "Theme Settings" => "Paramètres du thème"
 // ed.themeSettingsTooltip: "Open theme settings" => "Ouvrir les paramètres du thème"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.resetToDefaultCaption: "Reset" => "Réinitialisation"
 // pv.file: "Local files" => "Fichiers locaux"
 // pv.camera: "Camera" => "Caméra"
 // pv.file-camera: "Local files or camera" => "Fichiers locaux ou caméra"
+// ed.translateUsigAI: "Auto-translate All" => "Traduire automatiquement tout"
+// ed.translationDialogTitle: "Untranslated strings" => "Chaînes non traduites"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "Veuillez saisir au moins {0} éléments"
+// lg.question_resetValueName: "Reset question value" => "Réinitialiser la valeur de la question"
+// lg.column_resetValue: "Reset column value" => "Réinitialiser la valeur de la colonne"
+// pe.markRequired: "Mark as required" => "Marquer au besoin"
+// pe.removeRequiredMark: "Remove the required mark" => "Supprimer la marque requise"
+// p.resetValueIf: "Reset value if" => "Réinitialiser la valeur si"
+// lg.question_setValueName: "Set question value" => "Définir la valeur de la question"
+// lg.column_resetValueName: "Reset column value" => "Réinitialiser la valeur de la colonne"
+// lg.column_setValueName: "Set column value" => "Définition de la valeur de colonne"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " Expression dont le résultat sera affecté à la question cible."
+// p.setValueIf: "Set value if" => "Définir la valeur si"
+// theme.groupHeader: "Header" => "En-tête"
+// theme.coverTitleForecolor: "Title forecolor" => "Précouleur du titre"
+// theme.coverOverlapEnabled: "Overlap" => "Chevauchement"
+// theme.backgroundImageFitFill: "Stretch" => "Étirer"
+// theme.backgroundImageFitTile: "Tile" => "Carreau"
+// theme.headerView: "View" => "Vue"
+// theme.headerViewBasic: "Basic" => "Basique"
+// theme.headerViewAdvanced: "Advanced" => "Avancé"
+// theme.coverInheritWidthFrom: "Content area width" => "Largeur de la zone de contenu"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "Identique à l’enquête"
+// theme.coverInheritWidthFromPage: "Fit to page" => "Ajuster à la page"
+// theme.coverTextAreaWidth: "Text width" => "Largeur du texte"
+// theme.coverBackgroundColorSwitch: "Background color" => "Couleur d’arrière-plan"
+// theme.coverBackgroundColorNone: "None" => "Aucun"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "Couleur d’accentuation"
+// theme.coverBackgroundColorCustom: "Custom" => "Coutume"
+// theme.horizontalAlignmentLeft: "Left" => "Gauche"
+// theme.horizontalAlignmentCenter: "Center" => "Centre"
+// theme.horizontalAlignmentRight: "Right" => "Droite"
+// theme.verticalAlignmentTop: "Top" => "Retour au début"
+// theme.verticalAlignmentMiddle: "Middle" => "Milieu"
+// theme.verticalAlignmentBottom: "Bottom" => "Fond"
+// theme.coverTitlePosition: "Title Position" => "Position du titre"
+// theme.coverDescriptionPosition: "Description Position" => "Description du poste"
+// lg.question_resetValueText: "reset value for question: {0}" => "Réinitialisez la valeur pour la question : {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "Attribuer une valeur : {1} à la question : {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "Réinitialiser la valeur de la cellule pour la colonne : {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "Affecter la valeur de la cellule : {1} à la colonne : {0}"
+// ed.surveyJsonExportButton: "Export" => "Exportation"
+// ed.surveyJsonImportButton: "Import" => "Importation"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "Copier dans le Presse-papiers"
+// pe.filePlaceholder: "File placeholder text" => "Texte de l’espace réservé au fichier"
+// pe.photoPlaceholder: "Photo placeholder text" => "Texte de l’espace réservé à la photo"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "Texte de l’espace réservé au fichier ou à la photo"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "S’applique lorsque le « Type de source » est « Fichiers locaux » ou lorsque l’appareil photo n’est pas disponible"
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "S’applique lorsque le «Type de source» est «Appareil photo»."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "S’applique lorsque le «Type de source» est «Fichiers locaux ou appareil photo»."
+// theme.groupBackground: "Background" => "Arrière-plan"
+// theme.groupAppearance: "Appearance" => "Apparence"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Description de la couleur avant"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "Voulez-vous vraiment réinitialiser le thème ? Toutes vos personnalisations seront perdues."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "Oui, réinitialisez le thème"
+// theme.groupBackground: "Background" => "Arrière-plan"
+// theme.groupAppearance: "Appearance" => "Apparence"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Description de la couleur avant"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "S’adapte au conteneur"
+// signaturepad.showPlaceholder: "Show the placeholder" => "Afficher l’espace réservé"
+// signaturepad.placeholder: "Placeholder text" => "Texte d’espace réservé"
+// theme.surveyDescription: "Survey description font" => "Police de description de l’enquête"
+
+// ed.prevFocus: "Focus previous" => "Mise au point précédente"
+// ed.nextFocus: "Focus next" => "Focus suivant"
+// ed.saveTheme: "Save Theme" => "Enregistrer le thème"
+// ed.saveThemeTooltip: "Save Theme" => "Enregistrer le thème"
+// lg.page_requireName: "Make page required" => "Rendre la page obligatoire"
+// lg.panel_requireName: "Make page required" => "Rendre la page obligatoire"
+// signaturepad.signatureWidth: "Signature area width" => "Largeur de la zone de signature"
+// signaturepad.signatureHeight: "Signature area height" => "Hauteur de la zone de signature"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "Mise à l’échelle automatique de la zone de signature"
+// signaturepad.penMinWidth: "Minimum pen width" => "Largeur minimale du stylo"
+// signaturepad.penMaxWidth: "Maximum pen width" => "Largeur maximale du stylo"
+// theme.logoPosition: "Logo position" => "Position du logo"
+// ed.propertyGridNoResultsFound: "No results found" => "Aucun résultat trouvé"
+// pv.leftRight: "Left and right" => "Gauche et droite"
+// p.sourceType: "Source type" => "Type de source"
+// p.fitToContainer: "Fit to container" => "S’adapte au conteneur"
+// p.setValueExpression: "Set value expression" => "Définir l’expression de valeur"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "Les choix sont chargés à partir d’un service Web."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "Accédez aux paramètres"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "Aperçu des options de choix chargées"

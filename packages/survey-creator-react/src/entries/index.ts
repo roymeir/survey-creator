@@ -9,7 +9,7 @@ export * from "../adorners/Row";
 export * from "../adorners/Question";
 export * from "../adorners/QuestionHeader";
 export * from "../adorners/QuestionFooter";
-export * from "../adorners/QuestionCarryForward";
+export * from "../adorners/QuestionBanner";
 export * from "../adorners/QuestionDropdown";
 export * from "../adorners/QuestionImage";
 export * from "../adorners/QuestionRating";
@@ -51,6 +51,7 @@ export * from "../tabs/SurveySimulator";
 export * from "../events";
 export * from "../ObjectSelector";
 export * from "../PropertyGrid";
+export * from "../Search";
 
 export * from "../tabs/JsonErrorItem";
 

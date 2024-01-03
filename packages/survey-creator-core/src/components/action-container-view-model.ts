@@ -11,17 +11,32 @@ import { CreatorBase } from "../creator-base";
 import { settings } from "../creator-settings";
 
 export class SurveyElementActionContainer extends AdaptiveActionContainer {
-  private setModeForActions(modes: any, defaultMode: actionModeType): void {
-    this.visibleActions.forEach((action) => {
-      action.mode = modes[action.id] || defaultMode;
+  private needToShrink(item: Action, shrinkStart: boolean, shrinkEnd: boolean) {
+    return (item.innerItem.location == "start" && shrinkStart || item.innerItem.location != "start" && shrinkEnd);
+  }
+  private setModeForActions(shrinkStart: boolean, shrinkEnd: boolean, exclude: string[] = []): void {
+    this.visibleActions.forEach((item) => {
+      if (exclude.indexOf(item.id) != -1) {
+        item.mode = "removed";
+        return;
+      }
+
+      if (this.needToShrink(item, shrinkStart, shrinkEnd)) {
+        item.mode = item.innerItem.iconName ? "small" : "removed";
+        return;
+      }
+      item.mode = "large";
     });
   }
-  private skipInputType(item: Action, dimension) {
-    return item.id != "convertInputType" ? dimension : 0;
+  private calcItemSize(item: Action, shrinkStart: boolean, shrinkEnd: boolean, exclude: string[] = []) {
+    if (exclude.indexOf(item.id) != -1) return 0;
+    if (this.needToShrink(item, shrinkStart, shrinkEnd)) {
+      if (!item.innerItem.iconName) return 0;
+      return item.minDimension;
+    }
+    return item.maxDimension;
   }
-  private skipQuestionType(item: Action, dimension) {
-    return item.id != "convertInputType" && item.id != "convertTo" ? dimension : 0;
-  }
+
   public fit(dimension: number, dotsItemSize: number) {
     if (dimension <= 0) return;
 
@@ -33,22 +48,37 @@ export class SurveyElementActionContainer extends AdaptiveActionContainer {
       return;
     }
 
-    if (dimension >= items.reduce((sum, i) => sum += this.skipInputType(i, i.maxDimension), 0)) {
-      this.setModeForActions({ "convertInputType": "removed" }, "large");
+    // if (dimension >= items.reduce((sum, i) => sum += this.skipInputType(i, i.maxDimension), 0)) {
+    //   this.setModeForActions({ "convertInputType": "removed" }, "large");
+    //   return;
+    // }
+
+    if (dimension >= items.reduce((sum, i) => sum += this.calcItemSize(i, false, true), 0)) {
+      this.setModeForActions(false, true);
       return;
     }
 
-    if (dimension >= items.reduce((sum, i) => sum += this.skipQuestionType(i, i.minDimension), this.getActionById("convertTo")?.maxDimension)) {
-      this.setModeForActions({ "convertInputType": "removed", "convertTo": "large" }, "small");
+    if (dimension >= items.reduce((sum, i) => sum += this.calcItemSize(i, false, true, ["convertInputType"]), 0)) {
+      this.setModeForActions(false, true, ["convertInputType"]);
       return;
     }
 
-    if (dimension >= items.reduce((sum, i) => sum += this.skipInputType(i, i.minDimension), 0)) {
-      this.setModeForActions({ "convertInputType": "removed", "convertTo": "small" }, "small");
+    if (dimension >= items.reduce((sum, i) => sum += this.calcItemSize(i, true, true), 0)) {
+      this.setModeForActions(true, true);
       return;
     }
 
-    this.setModeForActions({ "convertInputType": "removed", "convertTo": "small" }, "popup");
+    this.visibleActions.forEach((item) => {
+      if (item.id == "convertTo") {
+        item.mode = "small";
+        return;
+      }
+      if (item.id == "convertInputType") {
+        item.mode = "removed";
+        return;
+      }
+      item.mode = "popup";
+    });
     this.dotsItem.visible = true;
     this.hiddenItemsListModel.setItems(items.filter(i => i.mode == "popup").map(i => i.innerItem));
   }
@@ -81,30 +111,33 @@ export class SurveyElementAdornerBase<T extends SurveyElement = SurveyElement> e
     this.actionContainer.dotsItem.popupModel.horizontalPosition = "center";
     var actions: Array<Action> = [];
     this.buildActions(actions);
-    this.setSurveyElement(surveyElement);
-    if(this.surveyElement) {
+    this.setSurveyElement(surveyElement, false);
+    if (this.surveyElement) {
       this.creator.sidebar.onPropertyChanged.add(this.sidebarFlyoutModeChangedFunc);
       this.creator.onElementMenuItemsChanged(this.surveyElement, actions);
       this.actionContainer.setItems(actions);
+      this.updateActionsProperties();
     }
     this.setShowAddQuestionButton(true);
   }
 
   protected detachElement(surveyElement: T): void {
-    if(surveyElement) {
+    if (surveyElement) {
       surveyElement.onPropertyChanged.remove(this.selectedPropPageFunc);
     }
   }
   protected attachElement(surveyElement: T): void {
-    if(surveyElement) {
+    if (surveyElement) {
       surveyElement.onPropertyChanged.add(this.selectedPropPageFunc);
     }
   }
-  protected setSurveyElement(surveyElement: T): void {
+  protected setSurveyElement(surveyElement: T, updateActions: boolean = true): void {
     this.detachElement(this.surveyElement);
     this.surveyElement = surveyElement;
     this.attachElement(this.surveyElement);
-    this.updateActionsProperties();
+    if(updateActions) {
+      this.updateActionsProperties();
+    }
   }
 
   protected checkActionProperties(): void {
@@ -116,7 +149,7 @@ export class SurveyElementAdornerBase<T extends SurveyElement = SurveyElement> e
   public dispose(): void {
     super.dispose();
     this.detachElement(this.surveyElement);
-    if(!this.actionContainer.isDisposed) {
+    if (!this.actionContainer.isDisposed) {
       this.actionContainer.dispose();
     }
     this.creator.sidebar.onPropertyChanged.remove(this.sidebarFlyoutModeChangedFunc);
@@ -128,7 +161,7 @@ export class SurveyElementAdornerBase<T extends SurveyElement = SurveyElement> e
     this.updateActionsProperties();
   }
   protected updateActionsProperties(): void {
-    if(this.isDisposed) return;
+    if (this.isDisposed) return;
     this.updateElementAllowOptions(
       this.creator.getElementAllowOperations(this.surveyElement),
       this.isOperationsAllow()

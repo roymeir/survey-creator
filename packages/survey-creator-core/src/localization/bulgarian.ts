@@ -56,6 +56,8 @@ export var bgStrings = {
     hidePanel: "Скриване на панела",
     prevSelected: "Избиране на предишен",
     nextSelected: "Избиране на следващ",
+    prevFocus: "Фокус предишен",
+    nextFocus: "Фокусирай се върху следващия",
     surveyTypeName: "Анкета",
     pageTypeName: "Страница",
     panelTypeName: "Паниел",
@@ -84,6 +86,8 @@ export var bgStrings = {
     translation: "Превод",
     saveSurvey: "Запазване на анкетата",
     saveSurveyTooltip: "Запазване на анкетата",
+    saveTheme: "Запиши темата",
+    saveThemeTooltip: "Запиши темата",
     designer: "Дизайнер",
     jsonEditor: "JSON редактор",
     jsonHideErrors: "Скриване на грешки",
@@ -106,6 +110,7 @@ export var bgStrings = {
     toolbox: "Кутия с инструменти",
     "property-grid": "Свойства",
     propertyGridFilteredTextPlaceholder: "Въведи за търсене...",
+    propertyGridNoResultsFound: "Няма намерени резултати",
     toolboxGeneralCategory: "Общ",
     toolboxChoiceCategory: "Въпроси за избор",
     toolboxTextCategory: "Въпроси с въвеждане на текст",
@@ -136,17 +141,27 @@ export var bgStrings = {
     translationNoStrings: "Няма низове за превод. Моля, промени филтъра.",
     translationExportToSCVButton: "Експортиране в CSV",
     translationImportFromSCVButton: "Импортиране от CSV",
+    translateUsigAI: "Автоматичен превод на всички",
+    translationDialogTitle: "Непреведени низове",
     translationMergeLocaleWithDefault: "Обединение {0} с локалната стойност по подразбиране",
     translationPlaceHolder: "Превод...",
     themeExportButton: "Износ",
     themeImportButton: "Внос",
+    surveyJsonExportButton: "Износ",
+    surveyJsonImportButton: "Внос",
+    surveyJsonCopyButton: "Копиране в системния буфер",
     themeResetButton: "Връщане на настройките на тема в начално състояние по подразбиране",
+    themeResetConfirmation: "Наистина ли искате да нулирате темата? Всички ваши персонализации ще бъдат загубени.",
+    themeResetConfirmationOk: "Да, нулирайте темата",
     bold: "Удебелен",
     italic: "Курсив",
     underline: "Подчертан",
     addNewQuestion: "Добавяне на въпрос",
     selectPage: "Избиране на страница...",
     carryForwardChoicesCopied: "Възможностите за избор се копират от",
+    choicesLoadedFromWebText: "Възможностите за избор се зареждат от уеб услуга.",
+    choicesLoadedFromWebLinkText: "Отидете в настройките",
+    choicesLoadedFromWebPreviewTitle: "Визуализация на заредените опции за избор",
     htmlPlaceHolder: "HTML съдържанието ще бъде тук.",
     panelPlaceHolder: "Пусни въпроса от кутията с инструменти тук.",
     surveyPlaceHolder: "Анкетата е празна. Плъзни елемент от кутията с инструменти или щракни върху бутона по-долу.",
@@ -161,14 +176,20 @@ export var bgStrings = {
       empty_tab: "Създай правило за персонализиране на анкетата.",
       page_visibilityName: "Показване (скриване) на страница",
       page_enableName: "Активиране (деактивиране) на страница",
+      page_requireName: "Направи страницата задължителна",
       panel_visibilityName: "Показване (скриване) на панел",
       panel_enableName: "Активиране (деактивиране) на панел",
+      panel_requireName: "Направи страницата задължителна",
       question_visibilityName: "Показване (скриване) на въпрос",
       question_enableName: "Активиране (деактивиране) на въпрос",
       question_requireName: "Задай въпроса като задължителен.",
+      question_resetValueName: "Нулиране на стойността на въпроса",
+      question_setValueName: "Задаване на стойност на въпрос",
       column_visibilityName: "Показване (скриване) на колона",
       column_enableName: "Активиране (деактивиране) на колона",
       column_requireName: "Задай колоната като задължителна.",
+      column_resetValueName: "Нулиране на стойността на колона",
+      column_setValueName: "Задаване на стойност на колона",
       trigger_completeName: "Попълнена анкета",
       trigger_setvalueName: "Задаване на отговор",
       trigger_copyvalueName: "Копиране на отговор",
@@ -195,9 +216,14 @@ export var bgStrings = {
       question_visibilityText: "направи въпрос {0} видим", //{0} question name
       question_enableText: "направи въпрос {0} активен", //{0} question name
       question_requireText: "направи въпрос {0} задължителен", //{0} question name
+      question_resetValueText: "нулиране на стойността за въпрос: {0}",
+      question_setValueText: "присвояване на стойност: {1} на въпрос: {0}",
       column_visibilityText: "направи колона {0} на въпрос {1} видима", //{0} column name, {1} question name
       column_enableText: "направи колона {0} на въпрос {1} активна", //{0} column name, {1} question name
       column_requireText: "направи колона {0} на въпрос {1} задължителна", //{0} column name, {1} question name
+      column_resetValueText: "Нулиране на стойността на клетката за колона: {0}",
+      column_setValueText: "Присвояване на стойност на клетка: {1} на колона: {0}",
+      setValueExpressionPlaceholder: " Израз, чийто резултат ще бъде присвоен на целевия въпрос.",
       trigger_completeText: "анкетата е завършена",
       trigger_setvalueText: "задай на въпрос: {0} стойност {1}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "ясна стойност на въпроса: {0}", //{0} question name
@@ -221,9 +247,7 @@ export var bgStrings = {
       uncompletedRule_title: "Сигурен ли си, че искаш да напуснеш раздела?",
       uncompletedRule_text: "Едно или повече логически правила са незавършени. Ако напуснеш раздела, тези промени, които не може да бъдат приложени, ще изчезнат. Сигурен ли си, че искаш да напуснеш раздела?",
       uncompletedRule_apply: "Да",
-      uncompletedRule_cancel: "Не, искам да попълня правилата.",
-      expressionSetup: "",
-      actionsSetup: ""
+      uncompletedRule_cancel: "Не, искам да попълня правилата."
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ export var bgStrings = {
     fastEntry: "Ръчно въвеждане",
     fastEntryNonUniqueError: "Стойността '{0}' не е уникална.",
     fastEntryChoicesCountError: "Моля, ограничи броя на елементите от {0} до {1}",
+    fastEntryChoicesMinCountError: "Моля, въведете поне {0} артикула",
     fastEntryPlaceholder: "Може да зададеш данни в следния формат:стойност1|текстстойност2",
     formEntry: "Въвеждане на формуляр",
     testService: "Тествай услугата.",
@@ -327,6 +352,8 @@ export var bgStrings = {
     choicesOrder: "Ред на сортиране на избора",
     visible: "Видим",
     isRequired: "Задължителен",
+    markRequired: "Маркирай както се изисква",
+    removeRequiredMark: "Премахване на необходимия знак",
     isAllRowRequired: "Изискване за отговор на всички редове",
     requiredErrorText: "\"Задължително\" съобщение за грешка",
     startWithNewLine: "Показване на въпроса на нов ред",
@@ -408,7 +435,12 @@ export var bgStrings = {
       imageHeight: "Височина на изображението (в стойности, допустими от CSS)",
       imageWidth: "Вирочина на изображението (в стойности, допустими от CSS)"
     },
+    // survey templates
+    survey: {
+      title: "Заглавие"
+    },
     page: {
+      title: "Заглавие",
       maxTimeToFinish: "Времево ограничение за завършване на страницата (в секунди)"
     },
     question: {
@@ -639,6 +671,18 @@ export var bgStrings = {
     columnsVisibleIf: "Колоните се виждат, ако",
     rowsVisibleIf: "Редовете се виждат, ако",
     otherPlaceholder: "Заместител на областта за коментари",
+    signaturepad: {
+      showPlaceholder: "Показване на контейнера",
+      placeholder: "Текст в контейнер",
+      signatureWidth: "Ширина на областта за подпис",
+      signatureHeight: "Височина на областта за подпис",
+      signatureAutoScaleEnabled: "Автоматично мащабиране на областта за подписи",
+      penMinWidth: "Минимална ширина на писалката",
+      penMaxWidth: "Максимална ширина на перото"
+    },
+    filePlaceholder: "Текст в контейнер за файл",
+    photoPlaceholder: "Текст в контейнер за снимка",
+    fileOrPhotoPlaceholder: "Текст в контейнер за файл или снимка",
     rateType: "Тип на тарифата"
   },
   // Property values
@@ -681,6 +725,7 @@ export var bgStrings = {
     both: "И двете",
     left: "Вляво",
     right: "Отдясно",
+    leftRight: "Наляво и надясно",
     color: "цвят",
     date: "дата",
     datetime: "Време за среща",
@@ -876,7 +921,10 @@ export var bgStrings = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "Ако указаната колона съдържа идентични стойности, анкетата отговаря с \"Неуникална стойност на ключ\" грешка."
+    keyName: "Ако указаната колона съдържа идентични стойности, анкетата отговаря с \"Неуникална стойност на ключ\" грешка.",
+    filePlaceholder: "Прилага се, когато \"Тип източник\" е \"Локални файлове\" или когато камерата не е налична",
+    photoPlaceholder: "Прилага се, когато \"Тип източник\" е \"Камера\".",
+    fileOrPhotoPlaceholder: "Прилага се, когато \"Тип източник\" е \"Локални файлове или камера\"."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ export var bgStrings = {
     showLabel: "Показване на надписи на изображения",
     value: "Стойност",
     tabAlign: "Подравняване на раздели",
+    sourceType: "Тип източник",
+    fitToContainer: "Побиране в контейнера",
+    setValueExpression: "Задаване на израз за стойност",
     description: "Описание",
     logoFit: "Подходящо за лого",
     pages: "Страници",
@@ -910,6 +961,8 @@ export var bgStrings = {
     descriptionLocation: "Описание на местоположението",
     defaultValueExpression: "Стойност по подразбиране на израза",
     requiredIf: "Задължителен, ако",
+    resetValueIf: "Нулиране на стойността, ако",
+    setValueIf: "Задайте стойност, ако",
     validators: "Валидатори",
     bindings: "Обвързване",
     renderAs: "Представяне като",
@@ -986,6 +1039,9 @@ export var bgStrings = {
     "--base-unit": "Базова единица",
     groupGeneral: "Общ",
     groupAdvanced: "Разширен",
+    groupHeader: "Заглавка",
+    groupBackground: "Фон",
+    groupAppearance: "Външен вид",
     themeName: "Тема",
     themeMode: "Режими",
     themeModePanels: "Панели",
@@ -996,11 +1052,16 @@ export var bgStrings = {
     primaryDefaultColor: "По подразбиране",
     primaryDarkColor: "Върху",
     primaryLightColor: "Селектиран",
+    coverTitleForecolor: "Цвят на предния план на заглавието",
+    coverDescriptionForecolor: "Описание цвят на предния цвят",
+    coverOverlapEnabled: "Припокриване",
     backgroundDimColor: "Цвят на фона",
     backgroundImage: "Фоново изображение",
     backgroundImageFitAuto: "Автоматичен",
     backgroundImageFitCover: "Корица",
     backgroundImageFitContain: "Съдържание",
+    backgroundImageFitFill: "Участък",
+    backgroundImageFitTile: "Плочки",
     backgroundOpacity: "Непрозрачност",
     backgroundImageAttachmentFixed: "Неподвижен",
     backgroundImageAttachmentScroll: "Свитък",
@@ -1033,6 +1094,7 @@ export var bgStrings = {
     scale: "Мащаб",
     cornerRadius: "Радиус на ъгъла",
     surveyTitle: "Шрифт на заглавието на анкетата",
+    surveyDescription: "Шрифт за описание на проучването",
     pageTitle: "Шрифт на заглавието на страницата",
     pageDescription: "Page Description Font",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ export var bgStrings = {
     boxShadowInner: "Вътрешен",
     questionShadow: "Граница на панела с въпроси / Сянка",
     editorShadow: "Граница на редактора / Сянка",
+    headerView: "Изглед",
+    headerViewBasic: "Основен",
+    headerViewAdvanced: "Напреднал",
+    coverInheritWidthFrom: "Ширина на областта на съдържанието",
+    coverInheritWidthFromSurvey: "Същото като проучването",
+    coverInheritWidthFromContainer: "Побиране в контейнера",
+    coverTextAreaWidth: "Ширина на текста",
+    coverBackgroundColorSwitch: "Цвят на фона",
+    coverBackgroundColorNone: "Никой",
+    coverBackgroundColorAccentColor: "Цвят за акцентиране",
+    coverBackgroundColorCustom: "Обичай",
+    horizontalAlignmentLeft: "Ляво",
+    horizontalAlignmentCenter: "Център",
+    horizontalAlignmentRight: "Дясно",
+    verticalAlignmentTop: "Връх",
+    verticalAlignmentMiddle: "Среда",
+    verticalAlignmentBottom: "Дъно",
+    logoPosition: "Позиция на логото",
+    coverTitlePosition: "Позиция на заглавието",
+    coverDescriptionPosition: "Описание позиция",
     names: {
       default: "По подразбиране",
       sharp: "Остър",
@@ -1130,3 +1212,88 @@ editorLocalization.locales["bg"] = bgStrings;
 // pv.file: "Local files" => "Локални файлове"
 // pv.camera: "Camera" => "Фотоапарат"
 // pv.file-camera: "Local files or camera" => "Локални файлове или камера"
+// ed.translateUsigAI: "Auto-translate All" => "Автоматичен превод на всички"
+// ed.translationDialogTitle: "Untranslated strings" => "Непреведени низове"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "Моля, въведете поне {0} артикула"
+// lg.question_resetValueName: "Reset question value" => "Нулиране на стойността на въпроса"
+// lg.column_resetValue: "Reset column value" => "Нулиране на стойността на колона"
+// pe.markRequired: "Mark as required" => "Маркирай както се изисква"
+// pe.removeRequiredMark: "Remove the required mark" => "Премахване на необходимия знак"
+// p.resetValueIf: "Reset value if" => "Нулиране на стойността, ако"
+
+// lg.question_setValueName: "Set question value" => "Задаване на стойност на въпрос"
+// lg.column_resetValueName: "Reset column value" => "Нулиране на стойността на колона"
+// lg.column_setValueName: "Set column value" => "Задаване на стойност на колона"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " Израз, чийто резултат ще бъде присвоен на целевия въпрос."
+// survey.title: "Title" => "Заглавие"
+// page.title: "Title" => "Заглавие"
+// p.setValueIf: "Set value if" => "Задайте стойност, ако"
+// theme.groupHeader: "Header" => "Заглавка"
+// theme.coverTitleForecolor: "Title forecolor" => "Цвят на предния план на заглавието"
+// theme.coverOverlapEnabled: "Overlap" => "Припокриване"
+// theme.backgroundImageFitFill: "Stretch" => "Участък"
+// theme.backgroundImageFitTile: "Tile" => "Плочки"
+// theme.headerView: "View" => "Изглед"
+// theme.headerViewBasic: "Basic" => "Основен"
+// theme.headerViewAdvanced: "Advanced" => "Напреднал"
+// theme.coverInheritWidthFrom: "Content area width" => "Ширина на областта на съдържанието"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "Същото като проучването"
+// theme.coverInheritWidthFromPage: "Fit to page" => "Побери в страницата"
+// theme.coverTextAreaWidth: "Text width" => "Ширина на текста"
+// theme.coverBackgroundColorSwitch: "Background color" => "Цвят на фона"
+// theme.coverBackgroundColorNone: "None" => "Никой"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "Цвят за акцентиране"
+// theme.coverBackgroundColorCustom: "Custom" => "Обичай"
+// theme.horizontalAlignmentLeft: "Left" => "Ляво"
+// theme.horizontalAlignmentCenter: "Center" => "Център"
+// theme.horizontalAlignmentRight: "Right" => "Дясно"
+// theme.verticalAlignmentTop: "Top" => "Връх"
+// theme.verticalAlignmentMiddle: "Middle" => "Среда"
+// theme.verticalAlignmentBottom: "Bottom" => "Дъно"
+// lg.question_resetValueText: "reset value for question: {0}" => "нулиране на стойността за въпрос: {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "присвояване на стойност: {1} на въпрос: {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "Нулиране на стойността на клетката за колона: {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "Присвояване на стойност на клетка: {1} на колона: {0}"
+// ed.surveyJsonExportButton: "Export" => "Износ"
+// ed.surveyJsonImportButton: "Import" => "Внос"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "Копиране в системния буфер"
+// pe.filePlaceholder: "File placeholder text" => "Текст в контейнер за файл"
+// pe.photoPlaceholder: "Photo placeholder text" => "Текст в контейнер за снимка"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "Текст в контейнер за файл или снимка"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "Прилага се, когато \"Тип източник\" е \"Локални файлове\" или когато камерата не е налична"
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "Прилага се, когато \"Тип източник\" е \"Камера\"."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "Прилага се, когато \"Тип източник\" е \"Локални файлове или камера\"."
+// theme.groupBackground: "Background" => "Фон"
+// theme.groupAppearance: "Appearance" => "Външен вид"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Описание цвят на предния цвят"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "Наистина ли искате да нулирате темата? Всички ваши персонализации ще бъдат загубени."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "Да, нулирайте темата"
+// theme.groupBackground: "Background" => "Фон"
+// theme.groupAppearance: "Appearance" => "Външен вид"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Описание цвят на предния цвят"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "Побиране в контейнера"
+// signaturepad.showPlaceholder: "Show the placeholder" => "Показване на контейнера"
+// signaturepad.placeholder: "Placeholder text" => "Текст в контейнер"
+// theme.surveyDescription: "Survey description font" => "Шрифт за описание на проучването"
+// ed.prevFocus: "Focus previous" => "Фокус предишен"
+// ed.nextFocus: "Focus next" => "Фокусирай се върху следващия"
+// ed.saveTheme: "Save Theme" => "Запиши темата"
+// ed.saveThemeTooltip: "Save Theme" => "Запиши темата"
+// lg.page_requireName: "Make page required" => "Направи страницата задължителна"
+// lg.panel_requireName: "Make page required" => "Направи страницата задължителна"
+// signaturepad.signatureWidth: "Signature area width" => "Ширина на областта за подпис"
+// signaturepad.signatureHeight: "Signature area height" => "Височина на областта за подпис"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "Автоматично мащабиране на областта за подписи"
+// signaturepad.penMinWidth: "Minimum pen width" => "Минимална ширина на писалката"
+// signaturepad.penMaxWidth: "Maximum pen width" => "Максимална ширина на перото"
+// theme.logoPosition: "Logo position" => "Позиция на логото"
+// theme.coverTitlePosition: "Title position" => "Позиция на заглавието"
+// theme.coverDescriptionPosition: "Description position" => "Описание позиция"
+// ed.propertyGridNoResultsFound: "No results found" => "Няма намерени резултати"
+// pv.leftRight: "Left and right" => "Наляво и надясно"
+// p.sourceType: "Source type" => "Тип източник"
+// p.fitToContainer: "Fit to container" => "Побиране в контейнера"
+// p.setValueExpression: "Set value expression" => "Задаване на израз за стойност"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "Възможностите за избор се зареждат от уеб услуга."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "Отидете в настройките"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "Визуализация на заредените опции за избор"

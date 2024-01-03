@@ -56,6 +56,8 @@ var spanishTranslation = {
     hidePanel: "Ocultar panel",
     prevSelected: "Seleccionar anterior",
     nextSelected: "Seleccionar siguiente",
+    prevFocus: "Enfoque anterior",
+    nextFocus: "Enfoque siguiente",
     surveyTypeName: "Encuesta",
     pageTypeName: "Página",
     panelTypeName: "Panel",
@@ -84,6 +86,8 @@ var spanishTranslation = {
     translation: "Traducción",
     saveSurvey: "Guardar la encuesta",
     saveSurveyTooltip: "Guardar la encuesta",
+    saveTheme: "Guardar tema",
+    saveThemeTooltip: "Guardar tema",
     designer: "Diseñador de la encuesta",
     jsonEditor: "Editor de JSON",
     jsonHideErrors: "Ocultar errores",
@@ -106,6 +110,7 @@ var spanishTranslation = {
     toolbox: "Caja de herramientas",
     "property-grid": "Propiedades",
     propertyGridFilteredTextPlaceholder: "Escribe para buscar...",
+    propertyGridNoResultsFound: "No se han encontrado resultados",
     toolboxGeneralCategory: "general",
     toolboxChoiceCategory: "Preguntas de selección",
     toolboxTextCategory: "Preguntas entrada de texto",
@@ -136,17 +141,27 @@ var spanishTranslation = {
     translationNoStrings: "Sin cuerdas para traducir. Por favor, cambie el filtro",
     translationExportToSCVButton: "Exportar a CSV",
     translationImportFromSCVButton: "Importación de CSV",
+    translateUsigAI: "Traducir automáticamente todo",
+    translationDialogTitle: "Cadenas sin traducir",
     translationMergeLocaleWithDefault: "Merge {0} con lugar predeterminado",
     translationPlaceHolder: "Traducción...",
     themeExportButton: "Exportar",
     themeImportButton: "Importación",
+    surveyJsonExportButton: "Exportar",
+    surveyJsonImportButton: "Importación",
+    surveyJsonCopyButton: "Copiar en el portapapeles",
     themeResetButton: "Restablecer la configuración predeterminada del tema",
+    themeResetConfirmation: "¿Realmente quieres resetear el tema? Todas tus personalizaciones se perderán.",
+    themeResetConfirmationOk: "Sí, restablece el tema",
     bold: "Negrita",
     italic: "Itálica",
     underline: "Subrayar",
     addNewQuestion: "Añadir pregunta",
     selectPage: "Seleccionar página ...",
     carryForwardChoicesCopied: "Las opciones se copian de",
+    choicesLoadedFromWebText: "Las opciones se cargan desde un servicio web.",
+    choicesLoadedFromWebLinkText: "Ir a la configuración",
+    choicesLoadedFromWebPreviewTitle: "Vista previa de las opciones de elección cargadas",
     htmlPlaceHolder: "Contenido HTML irá aquí.",
     panelPlaceHolder: "Arrastra aquí una pregunta desde la caja de herramientas.",
     surveyPlaceHolder: "La encuesta está vacía. Arrastra una pregunta desde la caja de herramientas o haz click en el botón de abajo.",
@@ -161,14 +176,20 @@ var spanishTranslation = {
       empty_tab: "Crea una regla para personalizar el flujo de la encuesta.",
       page_visibilityName: "Visibilidad de la pagina",
       page_enableName: "Habilitar (deshabilitar) página",
+      page_requireName: "Hacer que la página sea obligatoria",
       panel_visibilityName: "Visibilidad del panel",
       panel_enableName: "Panel habilitar / deshabilitar",
+      panel_requireName: "Hacer que la página sea obligatoria",
       question_visibilityName: "Pregunta visibilidad",
       question_enableName: "Pregunta habilitar / deshabilitar",
       question_requireName: "Pregunta opcional requerida",
+      question_resetValueName: "Restablecer valor de pregunta",
+      question_setValueName: "Establecer el valor de la pregunta",
       column_visibilityName: "Mostrar (ocultar) columna",
       column_enableName: "Habilitar (deshabilitar) columna",
       column_requireName: "Hacer columna requerida",
+      column_resetValueName: "Restablecer valor de columna",
+      column_setValueName: "Establecer el valor de la columna",
       trigger_completeName: "Encuesta completa",
       trigger_setvalueName: "Establecer valor de la pregunta",
       trigger_copyvalueName: "Copiar valor de la pregunta",
@@ -195,9 +216,14 @@ var spanishTranslation = {
       question_visibilityText: "Hacer Pregunta {0} Visible", //{0} question name
       question_enableText: "Hacer Pregunta {0} Habilitar", //{0} question name
       question_requireText: "Hacer la pregunta {0} requerida", //{0} question name
+      question_resetValueText: "Restablecer valor para la pregunta: {0}",
+      question_setValueText: "Asignar valor: {1} a la pregunta: {0}",
       column_visibilityText: "hacer la columna {0} de la pregunta {1} visible", //{0} column name, {1} question name
       column_enableText: "hacer la columna {0} de la pregunta {1} activa", //{0} column name, {1} question name
       column_requireText: "hacer la columna {0} de la pregunta {1} requerida", //{0} column name, {1} question name
+      column_resetValueText: "Restablecer el valor de celda de la columna: {0}",
+      column_setValueText: "Asignar valor de celda: {1} a columna: {0}",
+      setValueExpressionPlaceholder: " Una expresión cuyo resultado se asignará a la pregunta de destino.",
       trigger_completeText: "La encuesta se completa",
       trigger_setvalueText: "En cuestión: {0} valor {1}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "Valor de pregunta claro: {0}", //{0} question name
@@ -221,9 +247,7 @@ var spanishTranslation = {
       uncompletedRule_title: "Las reglas lógicas están incompletas",
       uncompletedRule_text: "No ha completado algunas de las reglas lógicas. Si deja la pestaña ahora, los cambios se perderán. ¿Aún desea salir de la pestaña sin completar los cambios?",
       uncompletedRule_apply: "Sí",
-      uncompletedRule_cancel: "No, quiero completar las reglas",
-      // expressionSetup: "",
-      actionsSetup: " "
+      uncompletedRule_cancel: "No, quiero completar las reglas"
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ var spanishTranslation = {
     fastEntry: "Entrada rápida",
     fastEntryNonUniqueError: "Valor '{0}' no es único",
     fastEntryChoicesCountError: "Por favor, limita el númeror de elementos de {0} a {1}",
+    fastEntryChoicesMinCountError: "Introduce al menos {0} artículos",
     fastEntryPlaceholder: "Puedes introducir datos en el siguiente formato:\nvalue1|text\nvalue2",
     formEntry: "Entrada de forma",
     testService: "Probar el servicio",
@@ -327,6 +352,8 @@ var spanishTranslation = {
     choicesOrder: "Seleccione el orden de las opciones",
     visible: "¿Es visible?",
     isRequired: "¿Se requiere?",
+    markRequired: "Marcar según sea necesario",
+    removeRequiredMark: "Quitar la marca requerida",
     isAllRowRequired: "Requerir respuesta para todas las filas",
     requiredErrorText: "Texto de error requerido",
     startWithNewLine: "¿Empieza con la nueva línea?",
@@ -408,7 +435,12 @@ var spanishTranslation = {
       imageHeight: "Altura de la imagen (en valores aceptados por CSS)",
       imageWidth: "Ancho de imagen (en valores aceptados por CSS)"
     },
+    // survey templates
+    survey: {
+      title: "Título"
+    },
     page: {
+      title: "Título",
       maxTimeToFinish: "Tiempo límite para finalizar la página (en segundos)"
     },
     question: {
@@ -639,6 +671,18 @@ var spanishTranslation = {
     columnsVisibleIf: "Columnas son visibles si",
     rowsVisibleIf: "Filas son visibes si",
     otherPlaceholder: "Marcador de posición del área de comentarios",
+    signaturepad: {
+      showPlaceholder: "Mostrar el marcador de posición",
+      placeholder: "Texto de marcador de posición",
+      signatureWidth: "Ancho del área de firma",
+      signatureHeight: "Altura del área de firma",
+      signatureAutoScaleEnabled: "Escalado automático del área de firma",
+      penMinWidth: "Ancho mínimo del lápiz",
+      penMaxWidth: "Ancho máximo del lápiz"
+    },
+    filePlaceholder: "Texto del marcador de posición del archivo",
+    photoPlaceholder: "Texto del marcador de posición de la foto",
+    fileOrPhotoPlaceholder: "Texto de marcador de posición de archivo o foto",
     rateType: "Tipo de tarifa"
   },
   // Property values
@@ -681,6 +725,7 @@ var spanishTranslation = {
     both: "ambas",
     left: "izquierda",
     right: "Derecha",
+    leftRight: "Izquierda y derecha",
     color: "Color",
     date: "fecha",
     datetime: "fecha hora",
@@ -876,7 +921,10 @@ var spanishTranslation = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "Si la columna especificada contiene valores idénticos, la encuesta arroja el error \"Valor de clave no única\"."
+    keyName: "Si la columna especificada contiene valores idénticos, la encuesta arroja el error \"Valor de clave no única\".",
+    filePlaceholder: "Se aplica cuando \"Tipo de fuente\" es \"Archivos locales\" o cuando la cámara no está disponible",
+    photoPlaceholder: "Se aplica cuando \"Tipo de fuente\" es \"Cámara\".",
+    fileOrPhotoPlaceholder: "Se aplica cuando \"Tipo de fuente\" es \"Archivos locales o cámara\"."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ var spanishTranslation = {
     showLabel: "Mostrar leyenda de imagen",
     value: "Valor",
     tabAlign: "Alineación de tabulaciones",
+    sourceType: "Tipo de origen",
+    fitToContainer: "Ajuste al contenedor",
+    setValueExpression: "Establecer expresión de valor",
     description: "Descripción",
     logoFit: "Ajuste del logotipo",
     pages: "Páginas",
@@ -910,6 +961,8 @@ var spanishTranslation = {
     descriptionLocation: "Descripción ubicación",
     defaultValueExpression: "Expresión de valor predeterminada",
     requiredIf: "Requerido si",
+    resetValueIf: "Restablecer valor si",
+    setValueIf: "Establezca el valor si",
     validators: "Validadores",
     bindings: "Enlaces",
     renderAs: "Renderizar como",
@@ -986,6 +1039,9 @@ var spanishTranslation = {
     "--base-unit": "Unidad base",
     groupGeneral: "General",
     groupAdvanced: "Avanzado",
+    groupHeader: "Encabezado",
+    groupBackground: "Fondo",
+    groupAppearance: "Apariencia",
     themeName: "Tema",
     themeMode: "Apariencia de la pregunta",
     themeModePanels: "Predeterminado",
@@ -996,11 +1052,16 @@ var spanishTranslation = {
     primaryDefaultColor: "Predeterminado",
     primaryDarkColor: "Cernerse",
     primaryLightColor: "Seleccionado",
+    coverTitleForecolor: "Título de color anterior",
+    coverDescriptionForecolor: "Descripción forecolor",
+    coverOverlapEnabled: "Solapar",
     backgroundDimColor: "Color de fondo",
     backgroundImage: "Imagen de fondo",
     backgroundImageFitAuto: "Automático",
     backgroundImageFitCover: "Cubrir",
     backgroundImageFitContain: "Contener",
+    backgroundImageFitFill: "Elasticidad",
+    backgroundImageFitTile: "Teja",
     backgroundOpacity: "Opacidad",
     backgroundImageAttachmentFixed: "Fijo",
     backgroundImageAttachmentScroll: "Pergamino",
@@ -1033,6 +1094,7 @@ var spanishTranslation = {
     scale: "Escama",
     cornerRadius: "Radio de esquina",
     surveyTitle: "Fuente del título de la encuesta",
+    surveyDescription: "Fuente de descripción de la encuesta",
     pageTitle: "Fuente del título de la página",
     pageDescription: "Fuente de descripción de la página",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ var spanishTranslation = {
     boxShadowInner: "Interior",
     questionShadow: "Efectos de sombra",
     editorShadow: "Efectos de sombra del elemento de entrada",
+    headerView: "Vista",
+    headerViewBasic: "Básico",
+    headerViewAdvanced: "Avanzado",
+    coverInheritWidthFrom: "Ancho del área de contenido",
+    coverInheritWidthFromSurvey: "Igual que la encuesta",
+    coverInheritWidthFromContainer: "Ajuste al contenedor",
+    coverTextAreaWidth: "Ancho del texto",
+    coverBackgroundColorSwitch: "Color de fondo",
+    coverBackgroundColorNone: "Ninguno",
+    coverBackgroundColorAccentColor: "Color de acento",
+    coverBackgroundColorCustom: "Costumbre",
+    horizontalAlignmentLeft: "Izquierda",
+    horizontalAlignmentCenter: "Centro",
+    horizontalAlignmentRight: "Derecha",
+    verticalAlignmentTop: "Arriba",
+    verticalAlignmentMiddle: "Medio",
+    verticalAlignmentBottom: "Fondo",
+    logoPosition: "Posición del logotipo",
+    coverTitlePosition: "Posición del título",
+    coverDescriptionPosition: "Descripción posición",
     names: {
       default: "Predeterminado",
       sharp: "Afilado",
@@ -1094,7 +1176,6 @@ editorLocalization.locales["es"] = spanishTranslation;
 // lg.uncompletedRule_text: "You have not completed some of the logical rules. If you leave the tab now, the changes will be lost. Do you still want to leave the tab without completing the changes?" => "No ha completado algunas de las reglas lógicas. Si deja la pestaña ahora, los cambios se perderán. ¿Aún desea salir de la pestaña sin completar los cambios?"
 // lg.uncompletedRule_apply: "Yes" => "Sí"
 // lg.uncompletedRule_cancel: "No, I want to complete the rules" => "No, quiero completar las reglas"
-// lg.expressionSetup: "" => ""
 // pe.set: "Set" => "Poner"
 // pe.overridingPropertyPrefix: "Set by " => "Establecido por "
 // pe.propertyNameIsIncorrect: "Do not use reserved words: \"item\", \"choice\", \"panel\", \"row\"." => "No utilice palabras reservadas: \"elemento\", \"elección\", \"panel\", \"fila\"."
@@ -1329,7 +1410,6 @@ editorLocalization.locales["es"] = spanishTranslation;
 // colors.tulip: "Tulip" => "Tulipán"
 // colors.brown: "Brown" => "Marrón"
 // colors.green: "Green" => "Verde"
-// lg.expressionSetup: "" => ""
 // names.sharp: "Sharp" => "Afilado"
 // names.borderless: "Borderless" => "Sin bordes"
 // names.flat: "Flat" => "Plano"
@@ -1339,12 +1419,94 @@ editorLocalization.locales["es"] = spanishTranslation;
 // names.threedimensional: "3D" => ".3D"
 // ed.translationDeleteLanguage: "Are you certain you wish to delete all strings for this language?" => "¿Está seguro de que desea eliminar todas las cadenas de este idioma?"
 // ed.themeResetButton: "Reset theme settings to default" => "Restablecer la configuración predeterminada del tema"
-// lg.expressionSetup: "" => ""
 // theme.placeholderColor: "Placeholder color" => "Color del marcador de posición"
 // ed.themeSettings: "Theme Settings" => "Configuración del tema"
 // ed.themeSettingsTooltip: "Open theme settings" => "Abrir la configuración del tema"
-// lg.expressionSetup: "" => ""
 // pe.resetToDefaultCaption: "Reset" => "Restablecimiento"
 // pv.file: "Local files" => "Archivos locales"
 // pv.camera: "Camera" => "Cámara"
 // pv.file-camera: "Local files or camera" => "Archivos locales o cámara"
+// ed.translateUsigAI: "Auto-translate All" => "Traducir automáticamente todo"
+// ed.translationDialogTitle: "Untranslated strings" => "Cadenas sin traducir"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "Introduce al menos {0} artículos"
+// lg.question_resetValueName: "Reset question value" => "Restablecer valor de pregunta"
+// lg.column_resetValue: "Reset column value" => "Restablecer el valor de la columna"
+// pe.markRequired: "Mark as required" => "Marcar según sea necesario"
+// pe.removeRequiredMark: "Remove the required mark" => "Quitar la marca requerida"
+// p.resetValueIf: "Reset value if" => "Restablecer valor si"
+// lg.question_setValueName: "Set question value" => "Establecer el valor de la pregunta"
+// lg.column_resetValueName: "Reset column value" => "Restablecer valor de columna"
+// lg.column_setValueName: "Set column value" => "Establecer el valor de la columna"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " Una expresión cuyo resultado se asignará a la pregunta de destino."
+// survey.title: "Title" => "Título"
+// page.title: "Title" => "Título"
+// p.setValueIf: "Set value if" => "Establezca el valor si"
+// theme.groupHeader: "Header" => "Encabezado"
+// theme.coverTitleForecolor: "Title forecolor" => "Título de color anterior"
+// theme.coverOverlapEnabled: "Overlap" => "Solapar"
+// theme.backgroundImageFitFill: "Stretch" => "Elasticidad"
+// theme.backgroundImageFitTile: "Tile" => "Teja"
+// theme.headerView: "View" => "Vista"
+// theme.headerViewBasic: "Basic" => "Básico"
+// theme.headerViewAdvanced: "Advanced" => "Avanzado"
+// theme.coverInheritWidthFrom: "Content area width" => "Ancho del área de contenido"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "Igual que la encuesta"
+// theme.coverInheritWidthFromPage: "Fit to page" => "Ajustar a la página"
+// theme.coverTextAreaWidth: "Text width" => "Ancho del texto"
+// theme.coverBackgroundColorSwitch: "Background color" => "Color de fondo"
+// theme.coverBackgroundColorNone: "None" => "Ninguno"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "Color de acento"
+// theme.coverBackgroundColorCustom: "Custom" => "Costumbre"
+// theme.horizontalAlignmentLeft: "Left" => "Izquierda"
+// theme.horizontalAlignmentCenter: "Center" => "Centro"
+// theme.horizontalAlignmentRight: "Right" => "Derecha"
+// theme.verticalAlignmentTop: "Top" => "Arriba"
+// theme.verticalAlignmentMiddle: "Middle" => "Medio"
+// theme.verticalAlignmentBottom: "Bottom" => "Fondo"
+// theme.logoPosition: "Logo Position" => "Posición del logotipo"
+// theme.coverTitlePosition: "Title Position" => "Posición del título"
+// lg.question_resetValueText: "reset value for question: {0}" => "Restablecer valor para la pregunta: {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "Asignar valor: {1} a la pregunta: {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "Restablecer el valor de celda de la columna: {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "Asignar valor de celda: {1} a columna: {0}"
+// ed.surveyJsonExportButton: "Export" => "Exportar"
+// ed.surveyJsonImportButton: "Import" => "Importación"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "Copiar en el portapapeles"
+// pe.filePlaceholder: "File placeholder text" => "Texto del marcador de posición del archivo"
+// pe.photoPlaceholder: "Photo placeholder text" => "Texto del marcador de posición de la foto"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "Texto de marcador de posición de archivo o foto"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "Se aplica cuando \"Tipo de fuente\" es \"Archivos locales\" o cuando la cámara no está disponible"
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "Se aplica cuando \"Tipo de fuente\" es \"Cámara\"."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "Se aplica cuando \"Tipo de fuente\" es \"Archivos locales o cámara\"."
+// theme.groupBackground: "Background" => "Fondo"
+// theme.groupAppearance: "Appearance" => "Apariencia"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Descripción forecolor"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "¿Realmente quieres resetear el tema? Todas tus personalizaciones se perderán."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "Sí, restablece el tema"
+// theme.groupBackground: "Background" => "Fondo"
+// theme.groupAppearance: "Appearance" => "Apariencia"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Descripción forecolor"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "Ajuste al contenedor"
+// signaturepad.showPlaceholder: "Show the placeholder" => "Mostrar el marcador de posición"
+// signaturepad.placeholder: "Placeholder text" => "Texto de marcador de posición"
+// theme.surveyDescription: "Survey description font" => "Fuente de descripción de la encuesta"
+// ed.prevFocus: "Focus previous" => "Enfoque anterior"
+// ed.nextFocus: "Focus next" => "Enfoque siguiente"
+// ed.saveTheme: "Save Theme" => "Guardar tema"
+// ed.saveThemeTooltip: "Save Theme" => "Guardar tema"
+// lg.page_requireName: "Make page required" => "Hacer que la página sea obligatoria"
+// lg.panel_requireName: "Make page required" => "Hacer que la página sea obligatoria"
+// signaturepad.signatureWidth: "Signature area width" => "Ancho del área de firma"
+// signaturepad.signatureHeight: "Signature area height" => "Altura del área de firma"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "Escalado automático del área de firma"
+// signaturepad.penMinWidth: "Minimum pen width" => "Ancho mínimo del lápiz"
+// signaturepad.penMaxWidth: "Maximum pen width" => "Ancho máximo del lápiz"
+// theme.coverDescriptionPosition: "Description position" => "Descripción posición"
+// ed.propertyGridNoResultsFound: "No results found" => "No se han encontrado resultados"
+// pv.leftRight: "Left and right" => "Izquierda y derecha"
+// p.sourceType: "Source type" => "Tipo de origen"
+// p.fitToContainer: "Fit to container" => "Ajuste al contenedor"
+// p.setValueExpression: "Set value expression" => "Establecer expresión de valor"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "Las opciones se cargan desde un servicio web."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "Ir a la configuración"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "Vista previa de las opciones de elección cargadas"

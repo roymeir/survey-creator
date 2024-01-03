@@ -23,7 +23,8 @@ export var propertyGridCss = {
   panel: {
     title: "spg-title spg-panel__title",
     titleExpandable: "spg-panel__title--expandable",
-    titleOnExpand: "spg-panel__title--expanded",
+    titleExpanded: "spg-panel__title--expanded",
+    titleCollapsed: "spg-panel__title--collapsed",
     titleOnError: "spg-panel__title--error",
     description: "spg-description spg-panel__description",
     container: "spg-panel spg-row__panel",
@@ -34,12 +35,14 @@ export var propertyGridCss = {
     requiredText: "spg-panel__required-text"
   },
   paneldynamic: {
+    mainRoot: "spg-question spg-row__question",
     root: "spg-paneldynamic",
     navigation: "spg-paneldynamic__navigation",
     title: "spg-title spg-question__title",
     button: "spg-action-button spg-action-button--text",
     buttonRemove: "spg-action-button--danger",
     buttonAdd: "spg-paneldynamic__add-btn",
+    panelWrapper: "spg-paneldynamic__panel-wrapper",
     progressTop: "spg-paneldynamic__progress spg-paneldynamic__progress--top",
     progressBottom:
       "spg-paneldynamic__progress spg-paneldynamic__progress--bottom",

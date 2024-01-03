@@ -15,12 +15,13 @@ import {
   DragOrClickHelper,
   QuestionSelectBase,
   createDropdownActionModel,
-  CssClassBuilder
+  CssClassBuilder,
+  QuestionPanelDynamicModel
 } from "survey-core";
 import { CreatorBase } from "../creator-base";
 import { editorLocalization, getLocString } from "../editorLocalization";
 import { QuestionConverter } from "../questionconverter";
-import { IPortableDragEvent, IPortableMouseEvent } from "../utils/events";
+import { IPortableDragEvent, IPortableEvent, IPortableMouseEvent } from "../utils/events";
 import {
   isPropertyVisible,
   propertyExists,
@@ -32,9 +33,9 @@ import { settings } from "../creator-settings";
 import { StringEditorConnector, StringItemsNavigatorBase } from "./string-editor";
 import { DragDropSurveyElements } from "../survey-elements";
 
-export interface QuestionCarryForwardParams {
-  question: Question;
+export interface QuestionBannerParams {
   text: string;
+  actionText: string;
   onClick: () => void;
 }
 
@@ -77,13 +78,19 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
     return this.surveyElement;
   }
 
-  select(model: QuestionAdornerViewModel, event: IPortableMouseEvent) {
+  select(model: QuestionAdornerViewModel, event: IPortableEvent) {
     if (!model.surveyElement.isInteractiveDesignElement) {
       return;
     }
+    const creator = model.creator;
+    const selEl = model.surveyElement;
+    const el: any = document?.activeElement;
+    if (creator.selectedElement !== selEl && !!el && !!el.blur && el.tagName.toLocaleLowerCase() === "input") {
+      el.blur();
+    }
     event.stopPropagation();
     event.cancelBubble = true;
-    model.creator.selectElement(model.surveyElement, undefined, false);
+    creator.selectElement(selEl, undefined, false);
     return true;
   }
 
@@ -102,6 +109,9 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
 
     if (this.isEmptyElement) {
       result += " svc-question__content--empty";
+    }
+    if (this.isEmptyTemplate) {
+      result += " svc-question__content--empty-template";
     }
 
     if (this.isDragMe) {
@@ -150,19 +160,38 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
   get dragTypeOverMe() {
     return this.element.dragTypeOverMe;
   }
-  public get isUsingCarryForward(): boolean {
+  public get isBannerShowing(): boolean {
+    return this.isUsingCarryForward || this.isUsingRestfull;
+  }
+  private get isUsingCarryForward(): boolean {
     return (<any>this.element)?.isUsingCarryForward;
   }
-  public createCarryForwardParams(): QuestionCarryForwardParams {
-    if(!this.isUsingCarryForward) return null;
-    const name = (<any>this.element)?.choicesFromQuestion;
-    if(!name) return null;
-    const question = this.creator.survey.getQuestionByName(name);
-    if(!question) return null;
-    return { question: question, text: this.creator.getLocString("ed.carryForwardChoicesCopied"),
-      onClick: () => { this.creator.selectElement(question); } };
+  private get isUsingRestfull(): boolean {
+    return (<any>this.element)?.isUsingRestful;
   }
-
+  public createBannerParams(): QuestionBannerParams {
+    return this.createCarryForwardParams() || this.createUsingRestfulParams();
+  }
+  private createCarryForwardParams(): QuestionBannerParams {
+    if (!this.isUsingCarryForward) return null;
+    const name = (<any>this.element)?.choicesFromQuestion;
+    if (!name) return null;
+    const question = this.creator.survey.getQuestionByName(name);
+    if (!question) return null;
+    return {
+      actionText: question.name,
+      text: this.creator.getLocString("ed.carryForwardChoicesCopied"),
+      onClick: () => { this.creator.selectElement(question); }
+    };
+  }
+  private createUsingRestfulParams(): QuestionBannerParams {
+    if (!this.isUsingRestfull) return null;
+    return {
+      actionText: this.creator.getLocString("ed.choicesLoadedFromWebLinkText"),
+      text: this.creator.getLocString("ed.choicesLoadedFromWebText"),
+      onClick: () => { this.creator.selectElement(this.element, "choicesByUrl"); }
+    };
+  }
   public dispose(): void {
     this.surveyElement.unRegisterFunctionOnPropertyValueChanged("isRequired", "isRequiredAdorner");
     this.surveyElement.unRegisterFunctionOnPropertyValueChanged("inputType", "inputTypeAdorner");
@@ -178,8 +207,18 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
     if (!this.surveyElement.isInteractiveDesignElement) {
       return;
     }
-    this.updateActionsProperties();
+    //this.updateActionsProperties();
     toggleHovered(event, element);
+  }
+  protected updateActionsProperties(): void {
+    if (this.isDisposed) return;
+    super.updateActionsProperties();
+    const actions = this.actionContainer.visibleActions;
+    let switchToStartLocation = false;
+    for (var i = actions.length - 1; i >= 0; i--) {
+      if (actions[i].id === "convertTo") switchToStartLocation = true;
+      if (!actions[i].innerItem.location) actions[i].innerItem.location = switchToStartLocation ? "start" : "end";
+    }
   }
   protected updateElementAllowOptions(options: any, operationsAllow: boolean) {
     super.updateElementAllowOptions(options, operationsAllow);
@@ -206,6 +245,12 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
       );
     }
 
+    return false;
+  }
+  public get isEmptyTemplate(): boolean {
+    if (this.surveyElement instanceof QuestionPanelDynamicModel) {
+      return this.surveyElement.templateElements.length == 0;
+    }
     return false;
   }
 
@@ -238,8 +283,11 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
     return true;
   }
   public getConvertToTypesActions(): Array<IAction> {
+    const availableItems = this.creator.getAvailableToolboxItems(this.element, false);
+    const itemNames = [];
+    availableItems.forEach(item => itemNames.push(item.typeName));
     const convertClasses: string[] = QuestionConverter.getConvertToClasses(
-      this.currentType, this.creator.toolbox.itemNames, true
+      this.currentType, itemNames, true
     );
     const res = [];
     let lastItem = null;
@@ -281,8 +329,18 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
     });
     const newAction = this.createDropdownModel("convertInputType", availableTypes, true, 1, questionSubType,
       (item: any) => {
-        this.surveyElement.setPropertyValue(propName, item.id);
-        newAction.title = item.title;
+        const newValue = this.getUpdatedPropertyValue(propName, item.id);
+        this.surveyElement.setPropertyValue(propName, newValue);
+        let title = item.title;
+        if (newValue !== item.id) {
+          const popup = newAction.popupModel;
+          const list = popup.contentComponentData.model;
+          const newItem = list.getActionById(newValue);
+          if (newItem) {
+            title = newItem.title;
+          }
+        }
+        newAction.title = title;
       });
     newAction.disableShrink = true;
     this.surveyElement.registerFunctionOnPropertyValueChanged(
@@ -313,14 +371,14 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
     const newAction = createDropdownActionModel({
       id: id,
       css: "sv-action--convertTo sv-action-bar-item--secondary",
-      iconName: this.creator.toolbox.getItemByName(this.element.getType())?.iconName,
+      iconName: id == "convertTo" ? this.creator.toolbox.getItemByName(this.element.getType())?.iconName : undefined,
       iconSize: 24,
       title: actionTitle,
       enabled: enabled,
       visibleIndex: index,
       disableShrink: false,
+      location: "start",
       action: (newType) => {
-        newAction.popupModel.displayMode = this.creator.isMobileView ? "overlay" : "popup";
       },
     }, {
       items: actions,
@@ -329,6 +387,8 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
       selectedItem: selItem,
       horizontalPosition: "center"
     });
+    newAction.popupModel.displayMode = this.creator.isTouch ? "overlay" : "popup";
+    newAction.data.locOwner = this.creator;
     return newAction;
   }
 
@@ -350,7 +410,7 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
             "isRequired"
           )
         ) {
-          this.isRequired = !this.isRequired;
+          this.isRequired = this.getUpdatedPropertyValue("isRequired", !this.isRequired);
         }
       }
     });
@@ -360,7 +420,17 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
     }) as any);
     return requiredAction;
   }
-
+  protected getUpdatedPropertyValue(propName: string, newValue: any): any {
+    const options = {
+      obj: this.element,
+      propertyName: propName,
+      value: this.element[propName],
+      newValue: newValue,
+      doValidation: false
+    };
+    this.creator.onValueChangingCallback(options);
+    return options.newValue;
+  }
   protected buildActions(items: Array<Action>): void {
     super.buildActions(items);
     let element = this.surveyElement;
@@ -378,7 +448,7 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
       items.push(this.createRequiredAction());
     }
   }
-  protected duplicate() {
+  protected duplicate(): void {
     setTimeout(() => {
       var newElement = this.creator.fastCopyQuestion(this.surveyElement);
       this.creator.selectElement(newElement);
@@ -389,11 +459,7 @@ export class QuestionAdornerViewModel extends SurveyElementAdornerBase {
       this.currentAddQuestionType || settings.designer.defaultAddQuestionType);
   }
   questionTypeSelectorModel = this.creator.getQuestionTypeSelectorModel(
-    (type) => {
-      this.currentAddQuestionType = type;
-    },
-    this.surveyElement instanceof PanelModelBase ? this.surveyElement : null
-  );
+    (type) => { this.currentAddQuestionType = type; }, this.surveyElement);
   public get addNewQuestionText(): string {
     if (!this.currentAddQuestionType && this.creator)
       return this.creator.getLocString("ed.addNewQuestion");

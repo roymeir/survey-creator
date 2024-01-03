@@ -1,10 +1,8 @@
 import { getLocString } from "../../../editorLocalization";
 import { ComponentCollection, QuestionCustomModel, QuestionPanelDynamicModel } from "survey-core";
 
-ComponentCollection.Instance.add({
-  name: "boxshadowsettings",
-  showInToolbox: false,
-  questionJSON: {
+function getQuestionJSON() {
+  return {
     "type": "paneldynamic",
     "minPanelCount": 1,
     "panelAddText": getLocString("theme.boxShadowAddRule"),
@@ -53,7 +51,14 @@ ComponentCollection.Instance.add({
         "choices": [{ text: getLocString("theme.boxShadowDrop"), value: false }, { text: getLocString("theme.boxShadowInner"), value: true }]
       }
     ]
-  },
+  };
+}
+
+ComponentCollection.Instance.add({
+  name: "boxshadowsettings",
+  showInToolbox: false,
+  internal: true,
+  questionJSON: getQuestionJSON(),
   onCreated(question: QuestionCustomModel) {
     question.valueFromDataCallback = (value: string | Array<Object>): Array<Object> => typeof value == "string" ? parseBoxShadow(value) : value;
     question.valueToDataCallback = (value: string | Array<Object>): string => !!value ? (typeof value == "string" ? value : createBoxShadow(Array.isArray(value) ? value : [value])) : "";
@@ -61,9 +66,27 @@ ComponentCollection.Instance.add({
   },
 });
 
+export function updateBoxShadowSettingsJSON() {
+  const config = ComponentCollection.Instance.getCustomQuestionByName("boxshadowsettings");
+  config.json.questionJSON = getQuestionJSON();
+}
+
 export function createBoxShadow(value: Array<any>): string {
   return value.map((val => `${val.isInset == true ? "inset " : ""}${val.x ?? 0}px ${val.y ?? 0}px ${val.blur ?? 0}px ${val.spread ?? 0}px ${val.color ?? "#000000"}`
   )).join(", ");
+}
+
+export function createBoxShadowReset(value: string): string {
+  const resetValue: any = parseBoxShadow(value);
+
+  resetValue.forEach((valueItem) => {
+    valueItem.x = 0;
+    valueItem.y = 0;
+    valueItem.blur = 0;
+    valueItem.spread = 0;
+  });
+
+  return createBoxShadow(resetValue);
 }
 
 export function parseBoxShadow(value: string): Array<Object> {
@@ -71,10 +94,10 @@ export function parseBoxShadow(value: string): Array<Object> {
     const color = value.match(/#[a-zA-Z0-9]+|rgba?\(.*?\)/);
     const isInset = value.indexOf("inset") > -1;
     const res: Object = {};
-    if(isInset) {
+    if (isInset) {
       value = value.replace("inset", "");
     }
-    if(!!color) {
+    if (!!color) {
       res["color"] = color[0];
     }
     const values = value.replace(/\s+/g, " ").replace(/^\s|\s$/g, "").split(" ");

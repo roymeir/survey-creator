@@ -339,6 +339,7 @@ export class ConditionEditor extends PropertyEditorSetupValue {
               name: "conjunction",
               type: "dropdown",
               renderAs: "logicoperator",
+              searchEnabled: false,
               titleLocation: "hidden",
               showOptionsCaption: false,
               visibleIf: "{panelIndex} > 0",
@@ -701,7 +702,11 @@ export class ConditionEditor extends PropertyEditorSetupValue {
   }
   private addSurveyCalculatedValues(names: Array<any>) {
     this.survey.calculatedValues.forEach(item => {
-      if(names.indexOf(item.name) < 0) names.push(item.name);
+      const index = names.indexOf(item.name.toLowerCase());
+      if(index > -1) {
+        names.splice(index, 1);
+      }
+      names.push(item.name);
     });
   }
   private calculatedValueQuestion: Question = null;
@@ -724,8 +729,8 @@ export class ConditionEditor extends PropertyEditorSetupValue {
     if (!!panel.getQuestionByName("questionValue")) {
       panel.getQuestionByName("questionValue").clearValue();
     }
-    let json = this.getQuestionConditionJson(
-      panel.getQuestionByName("questionName").value,
+    const qName = panel.getQuestionByName("questionName").value;
+    let json = this.getQuestionConditionJson(qName,
       panel.getQuestionByName("operator").value
     );
     if (!json) {
@@ -754,6 +759,15 @@ export class ConditionEditor extends PropertyEditorSetupValue {
       newQuestion.description = "";
       newQuestion.titleLocation = "top";
       newQuestion.hasComment = false;
+      if(newQuestion.showOtherItem) {
+        const question = this.getConditionQuestion(qName);
+        if(question && question.getStoreOthersAsComment && question.getStoreOthersAsComment()) {
+          const other = newQuestion.otherItem;
+          newQuestion.choices.push(new ItemValue(other.value, other.title));
+          other.value = "#" + other.value + "#";
+          newQuestion.showOtherItem = false;
+        }
+      }
       panel.addElement(newQuestion);
     }
   }

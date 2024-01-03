@@ -42,13 +42,14 @@ import { parsePropertyDescription } from "./description-parser";
 import { QuestionFileEditorModel } from "../custom-questions/question-file";
 import { getAcceptedTypesByContentMode } from "../utils/utils";
 import { QuestionLinkValueModel } from "../components/link-value";
+import { CreatorBase } from "../creator-base";
 
 function propertyVisibleIf(params: any): boolean {
-  if(!this.question) return false;
+  if (!this.question) return false;
   const obj = this.question.obj;
   const prop = this.question.property;
   if (!obj || !prop) return false;
-  if(!Serializer.hasOriginalProperty(obj, prop.name)) return false;
+  if (!Serializer.hasOriginalProperty(obj, prop.name)) return false;
   return prop.visibleIf(obj);
 }
 function propertyEnableIf(params: any): boolean {
@@ -164,6 +165,8 @@ export interface IPropertyGridEditor {
     question: Question,
     options: ISurveyCreatorOptions
   ) => void;
+  onValueChanged?: (obj: Base, prop: JsonObjectProperty, question: Question) => void;
+  onValueChanging?: (obj: Base, prop: JsonObjectProperty, question: Question, options: any) => void;
   onMasterValueChanged?: (
     obj: Base,
     prop: JsonObjectProperty,
@@ -314,6 +317,12 @@ export var PropertyGridEditorCollection = {
     var res = this.getEditor(prop);
     if (!!res && !!res.onValueChanged) {
       res.onValueChanged(obj, prop, question);
+    }
+  },
+  onValueChanging(obj: Base, prop: JsonObjectProperty, question: Question, options: any) {
+    var res = this.getEditor(prop);
+    if (!!res && !!res.onValueChanging) {
+      res.onValueChanging(obj, prop, question, options);
     }
   },
   onMasterValueChanged(obj: Base, prop: JsonObjectProperty, question: Question) {
@@ -513,11 +522,11 @@ export class PropertyJSONGenerator {
       if (!!prop.visibleIf && eventVisibility) {
         q.visibleIf = "propertyVisibleIf() = true";
       }
-      if(!!prop.overridingProperty && q.visible) {
+      if (!!prop.overridingProperty && q.visible) {
         q.onUpdateCssClassesCallback = (css: any) => {
           css.questionWrapper = "spg-boolean-wrapper--overriding";
         };
-        if(!eventReadOnly) {
+        if (!eventReadOnly) {
           q.enableIf = "propertyEnableIf() = true";
         }
         const overridingQuestion = this.createOverridingQuestion(panel, q, prop.overridingProperty);
@@ -567,7 +576,7 @@ export class PropertyJSONGenerator {
     linkValue.onUpdateCssClassesCallback = (css: any) => {
       css.questionWrapper = "spg-link-wrapper--overriding";
     };
-    if(!!overridingQuestion) {
+    if (!!overridingQuestion) {
       linkValue.linkClickCallback = () => {
         //Focus and aways scroll into view
         overridingQuestion.focus(false, true);
@@ -756,7 +765,7 @@ export class PropertyGridModel {
     options: ISurveyCreatorOptions = new EmptySurveyCreatorOptions()
   ) {
     this.options = options;
-    if(this.options.enableLinkFileEditor) {
+    if (this.options.enableLinkFileEditor) {
       PropertyGridEditorCollection.register(new PropertyGridLinkEditor());
     }
     this.obj = obj;
@@ -964,7 +973,7 @@ export class PropertyGridModel {
     if (question.isRequired && (Helpers.isValueEmpty(val) || question["valueChangingEmpty"]))
       return this.getErrorTextOnValidate(
         editorLocalization.getString("pe.propertyIsEmpty"), prop.name, obj, val);
-    if(this.isPropNameInValid(obj, prop, val) || question["nameHasError"])
+    if (this.isPropNameInValid(obj, prop, val) || question["nameHasError"])
       return this.getErrorTextOnValidate(
         editorLocalization.getString("pe.propertyNameIsIncorrect"), prop.name, obj, val);
     const editorError = PropertyGridEditorCollection.validateValue(obj, question, prop, val);
@@ -972,7 +981,7 @@ export class PropertyGridModel {
   }
   private getErrorTextOnValidate(defaultError: string, propName: string, obj: Base, val: any): string {
     const customError = this.options.onGetErrorTextOnValidationCallback(propName, obj, val);
-    return !!customError ? customError: defaultError;
+    return !!customError ? customError : defaultError;
   }
   private onValidateQuestion(options: any) {
     var q = options.question;
@@ -982,6 +991,7 @@ export class PropertyGridModel {
   private onValueChanging(options: any) {
     var q = options.question;
     if (!q || !q.property || Helpers.isTwoValueEquals(options.value, options.oldValue, false, false, false)) return;
+    PropertyGridEditorCollection.onValueChanging(this.obj, q.property, q, options);
     var changingOptions = {
       obj: this.obj,
       propertyName: q.property.name,
@@ -999,7 +1009,7 @@ export class PropertyGridModel {
     q["nameHasError"] = isPropertyNameInValid;
   }
   private isPropNameInValid(obj: Base, prop: JsonObjectProperty, val: any): boolean {
-    if(obj["isQuestion"] && prop.name === "name" && !!val) {
+    if (obj["isQuestion"] && prop.name === "name" && !!val) {
       val = (<string>val).toLowerCase();
       return ["item", "choice", "row", "panel"].indexOf(val) > -1;
     }
@@ -1235,7 +1245,7 @@ export abstract class PropertyGridEditor implements IPropertyGridEditor {
     if (property.type !== "condition") {
       surveyPropertyEditor.editSurvey.css = defaultV2Css;
     }
-    if(question.isReadOnly) {
+    if (question.isReadOnly) {
       surveyPropertyEditor.editSurvey.mode = "display";
     }
     if (!settings.showDialog) return surveyPropertyEditor;
@@ -1264,7 +1274,7 @@ export abstract class PropertyGridEditor implements IPropertyGridEditor {
       }, options.rootElement);
     if (question.isReadOnly) {
       const applyBtn = popupModel.footerToolbar.getActionById("apply");
-      if(!!applyBtn) {
+      if (!!applyBtn) {
         applyBtn.visible = false;
       }
     }
@@ -1301,7 +1311,7 @@ export abstract class PropertyGridEditor implements IPropertyGridEditor {
   }
   onUpdateQuestionCssClasses(obj: Base, options: any) {
     if (!this.isSupportGrouping()) return;
-    if(this.hasPreviousElementForGrouping(options.question)) {
+    if (this.hasPreviousElementForGrouping(options.question)) {
       options.cssClasses.mainRoot += " spg-row-narrow__question";
     }
   }
@@ -1335,17 +1345,32 @@ export abstract class PropertyGridEditorStringBase extends PropertyGridEditor {
     return json;
   }
   protected updateType(prop: JsonObjectProperty, obj: Base, json: any) {
-    if(!json.maxLength && obj.hasDefaultPropertyValue(prop.name)) {
+    if (!json.maxLength && obj.hasDefaultPropertyValue(prop.name)) {
       json.type = `${json.type}withreset`;
     }
     return json;
   }
   public onCreated(obj: Base, question: Question, prop: JsonObjectProperty, options: ISurveyCreatorOptions) {
-    question.disableNativeUndoRedo = true;
-    if(prop.name === "title") {
+    if (question instanceof QuestionTextBase) {
+      question.onKeyDownPreprocess = (event: KeyboardEvent) => {
+        if ((event.ctrlKey || event.metaKey) && [89, 90].indexOf(event.keyCode) !== -1) {
+          if (question.isInputTextUpdate) {
+            (options as any).findSuitableShortcuts(event).forEach((shortcut: any) => {
+              shortcut.execute((options as any).selectedElement);
+            });
+            event.preventDefault();
+          } else if ((event.target as HTMLInputElement).value == question.value) {
+            (options as any).findSuitableShortcuts(event).forEach((shortcut: any) => {
+              shortcut.execute((options as any).selectedElement);
+            });
+          }
+        }
+      };
+    }
+    if (prop.name === "title") {
       question.allowSpaceAsAnswer = true;
     }
-    if(question.getType() == "textwithreset" || question.getType() == "commentwithreset") {
+    if (question.getType() == "textwithreset" || question.getType() == "commentwithreset") {
       question.resetValueAdorner.resetValueCallback = () => {
         obj.resetPropertyValue(prop.name);
       };
@@ -1383,22 +1408,21 @@ export class PropertyGridEditorString extends PropertyGridEditorStringBase {
 
 export class PropertyGridLinkEditor extends PropertyGridEditor {
   public fit(prop: JsonObjectProperty): boolean {
-    return ["logo", "imageLink", "backgroundImage"].indexOf(prop.name) > -1;
+    return prop.type === "url" || prop.type === "file";
   }
   public getJSON(
     obj: Base,
     prop: JsonObjectProperty,
     options: ISurveyCreatorOptions
   ): any {
-    const maxSize = (<any>options).onUploadFile?.isEmpty ? 65536 : undefined;
-    const res: any = { type: "fileedit", storeDataAsText: false, maxSize };
+    const res: any = { type: "fileedit", storeDataAsText: false };
     return res;
   }
 
   public onCreated(obj: Base, question: QuestionFileEditorModel, prop: JsonObjectProperty, options: ISurveyCreatorOptions) {
-    if(["image", "imageitemvalue"].indexOf(obj.getType()) > -1) {
+    if (["image", "imageitemvalue"].indexOf(obj.getType()) > -1) {
       const questionObj = obj.getType() == "imageitemvalue" ? (<any>obj).locOwner : <Question>obj;
-      if(questionObj) {
+      if (questionObj) {
         questionObj.registerFunctionOnPropertyValueChanged("contentMode", (newValue: string) => {
           question.acceptedTypes = getAcceptedTypesByContentMode(newValue);
         });
@@ -1407,13 +1431,16 @@ export class PropertyGridLinkEditor extends PropertyGridEditor {
     } else {
       question.acceptedTypes = getAcceptedTypesByContentMode("image");
     }
+    question.onChooseFilesCallback = ((input, onFilesChosen) => {
+      options.chooseFiles(input, onFilesChosen);
+    });
   }
 
 }
 
-export class PropertyGridColorEditor extends PropertyGridEditor {
+export class PropertyGridEditorColor extends PropertyGridEditor {
   public fit(prop: JsonObjectProperty): boolean {
-    return ["penColor", "backgroundColor"].indexOf(prop.name) > -1;
+    return prop.type == "color";
   }
   public getJSON(
     obj: Base,
@@ -1442,6 +1469,15 @@ export class PropertyGridEditorNumber extends PropertyGridEditor {
     }
     return res;
   }
+  public onValueChanging(obj: Base, prop: JsonObjectProperty, question: Question, options: any): void {
+    if(!options.value && options.value !== 0) {
+      if(prop.defaultValue !== undefined) {
+        options.value = prop.defaultValue;
+      } else {
+        options.value = prop.minValue !== undefined && prop.minValue > 0 ? prop.minValue : 0;
+      }
+    }
+  }
 }
 
 export class PropertyGridEditorImageSize extends PropertyGridEditorString {
@@ -1456,7 +1492,7 @@ export class PropertyGridEditorImageSize extends PropertyGridEditorString {
     const isDefaultValue = (imageHeight: number, imageWidth: number) => {
       const imageHeightProperty = Serializer.findProperty(obj.getType(), "imageHeight");
       const imageWidthProperty = Serializer.findProperty(obj.getType(), "imageWidth");
-      if(!imageHeightProperty && !imageWidthProperty) return false;
+      if (!imageHeightProperty && !imageWidthProperty) return false;
       return imageHeightProperty.isDefaultValue(imageHeight) && imageWidthProperty.isDefaultValue(imageWidth);
     };
     question.valueFromDataCallback = function (value: any): any {
@@ -1491,18 +1527,6 @@ export class PropertyGridEditorHtml extends PropertyGridEditorStringBase {
     return this.updateMaxLength(prop, {
       type: "comment"
     });
-  }
-}
-export class PropertyGridEditorColor extends PropertyGridEditor {
-  public fit(prop: JsonObjectProperty): boolean {
-    return prop.type == "color";
-  }
-  public getJSON(
-    obj: Base,
-    prop: JsonObjectProperty,
-    options: ISurveyCreatorOptions
-  ): any {
-    return { type: "text", inputType: "color" };
   }
 }
 export class PropertyGridEditorStringArray extends PropertyGridEditor {
@@ -1794,7 +1818,6 @@ export class PropertyGridEditorQuestionValue extends PropertyGridEditorQuestion 
 PropertyGridEditorCollection.register(new PropertyGridEditorBoolean());
 PropertyGridEditorCollection.register(new PropertyGridEditorString());
 PropertyGridEditorCollection.register(new PropertyGridEditorNumber());
-PropertyGridEditorCollection.register(new PropertyGridEditorColor());
 PropertyGridEditorCollection.register(new PropertyGridEditorText());
 PropertyGridEditorCollection.register(new PropertyGridEditorHtml());
 PropertyGridEditorCollection.register(new PropertyGridEditorDropdown());
@@ -1806,7 +1829,7 @@ PropertyGridEditorCollection.register(new PropertyGridEditorQuestionValue());
 PropertyGridEditorCollection.register(new PropertyGridEditorQuestionSelectBase());
 PropertyGridEditorCollection.register(new PropertyGridEditorQuestionCarryForward());
 PropertyGridEditorCollection.register(new PropertyGridEditorImageSize());
-PropertyGridEditorCollection.register(new PropertyGridColorEditor());
+PropertyGridEditorCollection.register(new PropertyGridEditorColor());
 
 QuestionFactory.Instance.registerQuestion("buttongroup", (name) => {
   return new QuestionButtonGroupModel(name);

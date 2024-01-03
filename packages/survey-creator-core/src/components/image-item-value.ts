@@ -31,19 +31,23 @@ export class ImageItemValueWrapperViewModel extends ItemValueWrapperViewModel {
     const fileInput = <HTMLInputElement>model.itemsRoot.getElementsByClassName("svc-choose-file-input")[0];
     model.creator.chooseFiles(fileInput, (files: File[]) => {
       model.isUploading = true;
-      model.creator.uploadFiles(files, model.question, (_, link) => {
-        model.item.imageLink = link;
+      model.creator.uploadFiles(files, model.question, (status, link) => {
+        if (status === "success") {
+          model.item.imageLink = link;
+        }
         model.isUploading = false;
       });
-    });
+    }, { element: model.question, item: model.item });
   }
 
   public uploadFiles(files) {
     this.isUploading = true;
-    this.creator.uploadFiles(files, this.question, (_, link) => {
-      this.creator.createNewItemValue(this.question, this.isChoosingNewFile, (res : ItemValue): void => {
-        (<ImageItemValue>res).imageLink = link;
-      });
+    this.creator.uploadFiles(files, this.question, (status, link) => {
+      if (status === "success") {
+        this.creator.createNewItemValue(this.question, this.isChoosingNewFile, (res: ItemValue): void => {
+          (<ImageItemValue>res).imageLink = link;
+        });
+      }
       this.isChoosingNewFile = false;
       this.isUploading = false;
     });
@@ -54,7 +58,7 @@ export class ImageItemValueWrapperViewModel extends ItemValueWrapperViewModel {
     model.creator.chooseFiles(fileInput, (files: File[]) => {
       this.isChoosingNewFile = true;
       model.uploadFiles(files);
-    });
+    }, { element: model.question, item: model.item });
   }
   onDragOver = (event: any) => {
     this.isFileDragging = true;
@@ -75,7 +79,7 @@ export class ImageItemValueWrapperViewModel extends ItemValueWrapperViewModel {
   onDragLeave = (event: any) => {
     this.isFileDragging = false;
   }
-  get acceptedTypes () {
+  get acceptedTypes() {
     return getAcceptedTypesByContentMode(this.question.contentMode);
   }
 }

@@ -1,4 +1,4 @@
-import { Action, ComputedUpdater, CssClassBuilder, IAction, ItemValue, ListModel, PopupModel, QuestionFactory, QuestionTextModel, Serializer, createDropdownActionModel, createDropdownActionModelAdvanced, property, propertyArray } from "survey-core";
+import { Action, ComputedUpdater, CssClassBuilder, IAction, IsTouch, ItemValue, ListModel, PopupModel, QuestionFactory, QuestionTextModel, Serializer, createDropdownActionModel, createDropdownActionModelAdvanced, property, propertyArray } from "survey-core";
 import { parseColor } from "../utils/utils";
 
 const DEFAULT_COLOR: string = "#000000";
@@ -21,9 +21,11 @@ export class QuestionColorModel extends QuestionTextModel {
     }
     newValue = (newValue.match(/#([0-9a-fA-F]){1,6}/) || [DEFAULT_COLOR])[0];
     if(newValue.length === 4) {
+      let value = newValue.slice(0, 1);
       for(let i = 1; i < 4; i++) {
-        newValue += newValue[i];
+        value += newValue[i] + newValue[i];
       }
+      newValue = value;
     }
     if(newValue.length < 7) {
       const length = newValue.length;
@@ -32,6 +34,10 @@ export class QuestionColorModel extends QuestionTextModel {
       }
     }
     return newValue;
+  }
+  protected isNewValueEqualsToValue(newValue: any): boolean {
+    if (super.isNewValueEqualsToValue(newValue) || this.isTwoValueEquals(newValue, this.value, true, true)) return true;
+    else return false;
   }
   protected setNewValue(newValue: string): void {
     this.resetRenderedValue();
@@ -104,6 +110,15 @@ export class QuestionColorModel extends QuestionTextModel {
   public set choices(newValue: Array<ItemValue>) {
     this.setPropertyValue("choices", newValue);
   }
+  protected onTextKeyDownHandler(event: any): void {
+    const popupModel = <PopupModel>this.dropdownAction.popupModel;
+    if(event.key === "ArrowDown") {
+      (popupModel).isVisible = true;
+    }
+    if(!popupModel.isVisible) {
+      super.onTextKeyDownHandler(event);
+    }
+  }
 
   public get showDropdownAction() {
     return !this.isValueEmpty(this.choices);
@@ -120,8 +135,10 @@ export class QuestionColorModel extends QuestionTextModel {
       verticalPosition: "bottom",
       horizontalPosition: "center"
     });
+    action.disableTabStop = true;
     const popupModel = <PopupModel>action.popupModel;
     const listModel = <ListModel<ItemValue>>popupModel.contentComponentData.model;
+    popupModel.displayMode = IsTouch ? "overlay" : "popup";
     popupModel.setWidthByTarget = true;
     popupModel.positionMode = "fixed";
     listModel.isItemSelected = (itemValue: ItemValue) => itemValue.value == this.value;

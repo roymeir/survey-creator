@@ -1,13 +1,13 @@
 import { Selector, ClientFunction } from "testcafe";
 
-export const url = "http://127.0.0.1:8080/testCafe/testcafe.html";
+export const url = "http://127.0.0.1:8080/testCafe/testcafe";
 // export const url =
 //     "http://127.0.0.1:7777/packages/survey-creator-knockout/example/index.html";
-export const urlByPage = "http://127.0.0.1:8080/testCafe/by-page.html";
-export const urlPreviewThemeSwitcher = "http://127.0.0.1:8080/testCafe/preview-theme-switcher.html";
-export const urlThemeForPreview = "http://127.0.0.1:8080/testCafe/theme-for-preview-option.html";
-export const urlDropdownCollapseView = "http://127.0.0.1:8080/testCafe/dropdown-collapse-view.html";
-export const urlLocalized_de = "http://127.0.0.1:8080/testCafe/testcafe_localized_ui.html";
+export const urlByPage = "http://127.0.0.1:8080/testCafe/by-page";
+export const urlPreviewThemeSwitcher = "http://127.0.0.1:8080/testCafe/preview-theme-switcher";
+export const urlThemeForPreview = "http://127.0.0.1:8080/testCafe/theme-for-preview-option";
+export const urlDropdownCollapseView = "http://127.0.0.1:8080/testCafe/dropdown-collapse-view";
+export const urlLocalized_de = "http://127.0.0.1:8080/testCafe/testcafe_localized_ui";
 
 export const base64image =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg==";
@@ -61,7 +61,8 @@ export const objectSelectorPopup = Selector(".sv-popup.svc-object-selector .sv-l
 export const selectedObjectTextSelector = ".svc-side-bar__container-header #svd-grid-object-selector .sv-action-bar-item__title";
 
 export const questions = Selector(".svc-question__content");
-export const questionToolbarActions = Selector(".svc-question__content-actions").filterVisible().find(".sv-action").filterVisible();
+export const questionToolbarActions = Selector(".svc-question__content--selected .svc-question__content-actions").filterVisible().find(".sv-action").filterVisible();
+export const unselectedQuestionToolbarActions = Selector(".svc-question__content-actions").filterVisible().find(".sv-action").filterVisible();
 
 export const pageNavigator = Selector(".svc-page-navigator__selector").filterVisible();
 export const toolbox = Selector(".svc-toolbox");
@@ -91,7 +92,7 @@ export function getBarItemByText(text) {
   return Selector(".sv-action-bar-item__title").withText(text).parent(".sv-action-bar-item");
 }
 export function getPropertyGridCategory(categoryName) {
-  return Selector(".spg-panel__title span").withText(categoryName);
+  return Selector(".spg-panel__title span").withText(categoryName).filterVisible();
 }
 
 export function getBarItemByTitle(text: string) {

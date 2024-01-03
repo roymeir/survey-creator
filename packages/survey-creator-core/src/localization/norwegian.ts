@@ -56,6 +56,8 @@ export var nbStrings = {
     hidePanel: "Skjul panel",
     prevSelected: "Velg forrige",
     nextSelected: "Velg neste",
+    prevFocus: "Fokus forrige",
+    nextFocus: "Fokus neste",
     surveyTypeName: "Undersøkelse",
     pageTypeName: "Side",
     panelTypeName: "Panel",
@@ -84,6 +86,8 @@ export var nbStrings = {
     translation: "Oversettelse",
     saveSurvey: "Lagre skjema",
     saveSurveyTooltip: "Lagre skjema",
+    saveTheme: "Lagre tema",
+    saveThemeTooltip: "Lagre tema",
     designer: "Skjemadesigner",
     jsonEditor: "JSON-redigering",
     jsonHideErrors: "Skjul feil",
@@ -106,6 +110,7 @@ export var nbStrings = {
     toolbox: "Verktøyliste",
     "property-grid": "Innstillinger",
     propertyGridFilteredTextPlaceholder: "Skriv for å søke ...",
+    propertyGridNoResultsFound: "Fant ingen resultater",
     toolboxGeneralCategory: "Generelt",
     toolboxChoiceCategory: "Choice Spørsmål",
     toolboxTextCategory: "Spørsmål om tekstinndata",
@@ -136,17 +141,27 @@ export var nbStrings = {
     translationNoStrings: "Ingen strenger å oversette. Vennligst endre filteret.",
     translationExportToSCVButton: "Eksporter til CSV",
     translationImportFromSCVButton: "Importer fra CSV",
+    translateUsigAI: "Oversett alle automatisk",
+    translationDialogTitle: "Uoversatte strenger",
     translationMergeLocaleWithDefault: "Flett {0} med standard språk",
     translationPlaceHolder: "Oversettelse...",
     themeExportButton: "Eksport",
     themeImportButton: "Importere",
+    surveyJsonExportButton: "Eksport",
+    surveyJsonImportButton: "Importere",
+    surveyJsonCopyButton: "Kopiere til utklippstavlen",
     themeResetButton: "Tilbakestill temainnstillinger til standard",
+    themeResetConfirmation: "Vil du virkelig tilbakestille temaet? Alle tilpasningene dine vil gå tapt.",
+    themeResetConfirmationOk: "Ja, tilbakestill temaet",
     bold: "Fet",
     italic: "Kursiv",
     underline: "Underlinjet",
     addNewQuestion: "Legg til spørsmål",
     selectPage: "Velg side...",
     carryForwardChoicesCopied: "Valgene kopieres fra",
+    choicesLoadedFromWebText: "Valgene lastes inn fra en webtjeneste.",
+    choicesLoadedFromWebLinkText: "Gå til innstillinger",
+    choicesLoadedFromWebPreviewTitle: "Forhåndsvisning av alternativer for lastet valg",
     htmlPlaceHolder: "HTML-innhold vil være her.",
     panelPlaceHolder: "Slipp et spørsmål fra verktøykassen her.",
     surveyPlaceHolder: "Undersøkelsen er tom. Dra et element fra verktøykassen, eller klikk på knappen nedenfor.",
@@ -161,14 +176,20 @@ export var nbStrings = {
       empty_tab: "Opprett en regel for å tilpasse flyten i evalueringen.",
       page_visibilityName: "Sidesynlighet",
       page_enableName: "Aktivere (deaktivere) side",
+      page_requireName: "Gjøre siden obligatorisk",
       panel_visibilityName: "Panelsynlighet",
       panel_enableName: "Panel aktivere/deaktivere",
+      panel_requireName: "Gjøre siden obligatorisk",
       question_visibilityName: "Spørsmålssynlghet",
       question_enableName: "Spørsmål aktivere/deaktivere",
       question_requireName: "Spørsmål valgfritt/påkrevd",
+      question_resetValueName: "Tilbakestille spørsmålsverdien",
+      question_setValueName: "Angi spørsmålsverdi",
       column_visibilityName: "Vis kolonne (skjul)",
       column_enableName: "Aktivere (deaktivere) kolonne",
       column_requireName: "Gjøre kolonne obligatorisk",
+      column_resetValueName: "Tilbakestille kolonneverdi",
+      column_setValueName: "Angi kolonneverdi",
       trigger_completeName: "Fullfør skjema",
       trigger_setvalueName: "Angi spørsmålsnavn",
       trigger_copyvalueName: "Kopier spørsmålsverdi",
@@ -195,9 +216,14 @@ export var nbStrings = {
       question_visibilityText: "Gjør spørsmål {0} synlig", //{0} question name
       question_enableText: "Gjør spørsmål {0} aktivert", //{0} question name
       question_requireText: "Gjør spørsmål {0} påkrevd", //{0} question name
+      question_resetValueText: "Tilbakestill verdi for spørsmål: {0}",
+      question_setValueText: "tilordne verdi: {1} til spørsmålet: {0}",
       column_visibilityText: "Gjør kolonne {0} av spørsmålet {1} synlig", //{0} column name, {1} question name
       column_enableText: "Gjør kolonne {0} av spørsmålet {1} aktiver", //{0} column name, {1} question name
       column_requireText: "Gjør kolonne {0} av spørsmålet {1} nødvendig", //{0} column name, {1} question name
+      column_resetValueText: "Tilbakestill celleverdi for kolonne: {0}",
+      column_setValueText: "Tilordne celleverdi: {1} til kolonne: {0}",
+      setValueExpressionPlaceholder: " Et uttrykk der resultatet tilordnes målspørsmålet.",
       trigger_completeText: "Skjemaet blir fullført",
       trigger_setvalueText: "Sett inn: {0} verdi {1}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "Klar spørsmålsverdi: {0}", //{0} question name
@@ -221,9 +247,7 @@ export var nbStrings = {
       uncompletedRule_title: "Logiske regler er ufullstendige",
       uncompletedRule_text: "Noen av de logiske reglene har du ikke fullført. Hvis du forlater fanen nå, vil endringene gå tapt. Vil du fortsatt forlate fanen uten å fullføre endringene?",
       uncompletedRule_apply: "Ja",
-      uncompletedRule_cancel: "Nei, jeg vil fullføre reglene",
-      // expressionSetup: "",
-      // actionsSetup: ""
+      uncompletedRule_cancel: "Nei, jeg vil fullføre reglene"
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ export var nbStrings = {
     fastEntry: "Rask innfylling",
     fastEntryNonUniqueError: "Verdien «{0}» er ikke unik",
     fastEntryChoicesCountError: "Begrens antall varer fra {0} til {1}",
+    fastEntryChoicesMinCountError: "Vennligst skriv inn minst {0} elementer",
     fastEntryPlaceholder: "Du kan angi data i følgende format:\nverdi1|tekst\nverdi2",
     formEntry: "Innfylling i skjema",
     testService: "Sjekk tjenesten",
@@ -327,6 +352,8 @@ export var nbStrings = {
     choicesOrder: "Velg rekkefølge på valg",
     visible: "Er synlig?",
     isRequired: "Er nødvendig?",
+    markRequired: "Merk etter behov",
+    removeRequiredMark: "Fjern ønsket merke",
     isAllRowRequired: "Nødvendig svar for alle rader",
     requiredErrorText: "Nødvendig feilmelding",
     startWithNewLine: "Må starte med ny linje?",
@@ -408,7 +435,12 @@ export var nbStrings = {
       imageHeight: "Bildehøyde (i CSS-godkjente verdier)",
       imageWidth: "Bildebredde (i CSS-godkjente verdier)"
     },
+    // survey templates
+    survey: {
+      title: "Tittel"
+    },
     page: {
+      title: "Tittel",
       maxTimeToFinish: "Tidsbegrensning for å fullføre siden (i sekunder)"
     },
     question: {
@@ -639,6 +671,18 @@ export var nbStrings = {
     columnsVisibleIf: "Kolonner er synlige hvis",
     rowsVisibleIf: "Rader er synlige hvis:",
     otherPlaceholder: "Plassholder for kommentarområde",
+    signaturepad: {
+      showPlaceholder: "Vise plassholderen",
+      placeholder: "Plassholdertekst",
+      signatureWidth: "Bredde på signaturområde",
+      signatureHeight: "Høyde på signaturområdet",
+      signatureAutoScaleEnabled: "Skalere signaturområdet automatisk",
+      penMinWidth: "Minimum pennebredde",
+      penMaxWidth: "Maksimal pennebredde"
+    },
+    filePlaceholder: "Plassholdertekst for fil",
+    photoPlaceholder: "Tekst for plassholdere for bilde",
+    fileOrPhotoPlaceholder: "Plassholdertekst for fil eller bilde",
     rateType: "Type sats"
   },
   // Property values
@@ -681,6 +725,7 @@ export var nbStrings = {
     both: "both",
     left: "left",
     right: "Høyre",
+    leftRight: "Venstre og høyre",
     color: "farge",
     date: "daddel",
     datetime: "datetime",
@@ -876,7 +921,10 @@ export var nbStrings = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "Hvis den angitte kolonnen inneholder identiske verdier, gir undersøkelsen feilen \"Ikke-unik nøkkelverdi\"."
+    keyName: "Hvis den angitte kolonnen inneholder identiske verdier, gir undersøkelsen feilen \"Ikke-unik nøkkelverdi\".",
+    filePlaceholder: "Gjelder når \"Kildetype\" er \"Lokale filer\" eller når kameraet er utilgjengelig",
+    photoPlaceholder: "Gjelder når \"Kildetype\" er \"Kamera\".",
+    fileOrPhotoPlaceholder: "Gjelder når \"Kildetype\" er \"Lokale filer eller kamera\"."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ export var nbStrings = {
     showLabel: "Vis bildetekster",
     value: "Verdi",
     tabAlign: "Justering av tabulatorer",
+    sourceType: "Type kilde",
+    fitToContainer: "Tilpass til container",
+    setValueExpression: "Angi verdiuttrykk",
     description: "description",
     logoFit: "Logo passform",
     pages: "Sider",
@@ -910,6 +961,8 @@ export var nbStrings = {
     descriptionLocation: "Beskrivelse plassering",
     defaultValueExpression: "Uttrykk for standardverdi",
     requiredIf: "requiredIf",
+    resetValueIf: "Tilbakestill verdien hvis",
+    setValueIf: "Angi verdi hvis",
     validators: "validators",
     bindings: "Bindinger",
     renderAs: "Gjengi som",
@@ -986,6 +1039,9 @@ export var nbStrings = {
     "--base-unit": "Basisenhet",
     groupGeneral: "Generelt",
     groupAdvanced: "Avansert",
+    groupHeader: "Topptekst",
+    groupBackground: "Bakgrunn",
+    groupAppearance: "Utseende",
     themeName: "Tema",
     themeMode: "Spørsmål utseende",
     themeModePanels: "Standard",
@@ -996,11 +1052,16 @@ export var nbStrings = {
     primaryDefaultColor: "Standard",
     primaryDarkColor: "Sveve",
     primaryLightColor: "Utvalgt",
+    coverTitleForecolor: "Tittel forfarge",
+    coverDescriptionForecolor: "Beskrivelse forfarge",
+    coverOverlapEnabled: "Overlappe",
     backgroundDimColor: "Bakgrunnsfarge",
     backgroundImage: "Bakgrunnsbilde",
     backgroundImageFitAuto: "Auto",
     backgroundImageFitCover: "Lokk",
     backgroundImageFitContain: "Inneholde",
+    backgroundImageFitFill: "Strekning",
+    backgroundImageFitTile: "Flis",
     backgroundOpacity: "Ugjennomsiktighet",
     backgroundImageAttachmentFixed: "Fast",
     backgroundImageAttachmentScroll: "Bla",
@@ -1033,6 +1094,7 @@ export var nbStrings = {
     scale: "Skala",
     cornerRadius: "Hjørne radius",
     surveyTitle: "Skrift for undersøkelsestittel",
+    surveyDescription: "Skrift for undersøkelsesbeskrivelse",
     pageTitle: "Skrift for sidetittel",
     pageDescription: "Skrift for sidebeskrivelse",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ export var nbStrings = {
     boxShadowInner: "Indre",
     questionShadow: "Skygge effekter",
     editorShadow: "Skyggeeffekter for inndataelement",
+    headerView: "Utsikt",
+    headerViewBasic: "Grunnleggende",
+    headerViewAdvanced: "Avansert",
+    coverInheritWidthFrom: "Bredde på innholdsområdet",
+    coverInheritWidthFromSurvey: "Samme som undersøkelse",
+    coverInheritWidthFromContainer: "Tilpass til container",
+    coverTextAreaWidth: "Tekstbredde",
+    coverBackgroundColorSwitch: "Bakgrunnsfarge",
+    coverBackgroundColorNone: "Ingen",
+    coverBackgroundColorAccentColor: "Uthevingsfarge",
+    coverBackgroundColorCustom: "Skikk",
+    horizontalAlignmentLeft: "Venstre",
+    horizontalAlignmentCenter: "Sentrum",
+    horizontalAlignmentRight: "Høyre",
+    verticalAlignmentTop: "Topp",
+    verticalAlignmentMiddle: "Midt",
+    verticalAlignmentBottom: "Bunn",
+    logoPosition: "Logo posisjon",
+    coverTitlePosition: "Tittelposisjon",
+    coverDescriptionPosition: "Beskrivelse posisjon",
     names: {
       default: "Standard",
       sharp: "Skarp",
@@ -1133,8 +1215,6 @@ editorLocalization.locales["nb"] = nbStrings;
 // lg.uncompletedRule_text: "You have not completed some of the logical rules. If you leave the tab now, the changes will be lost. Do you still want to leave the tab without completing the changes?" => "Noen av de logiske reglene har du ikke fullført. Hvis du forlater fanen nå, vil endringene gå tapt. Vil du fortsatt forlate fanen uten å fullføre endringene?"
 // lg.uncompletedRule_apply: "Yes" => "Ja"
 // lg.uncompletedRule_cancel: "No, I want to complete the rules" => "Nei, jeg vil fullføre reglene"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.clear: "Clear" => "Klar"
 // pe.set: "Set" => "Sett"
 // pe.change: "Change" => "Forandre"
@@ -1559,8 +1639,6 @@ editorLocalization.locales["nb"] = nbStrings;
 // colors.tulip: "Tulip" => "Tulipan"
 // colors.brown: "Brown" => "Brun"
 // colors.green: "Green" => "Grønn"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // names.sharp: "Sharp" => "Skarp"
 // names.borderless: "Borderless" => "Kantløse"
 // names.flat: "Flat" => "Flat"
@@ -1570,14 +1648,94 @@ editorLocalization.locales["nb"] = nbStrings;
 // names.threedimensional: "3D" => ".3D"
 // ed.translationDeleteLanguage: "Are you certain you wish to delete all strings for this language?" => "Er du sikker på at du ønsker å slette alle strenger for dette språket?"
 // ed.themeResetButton: "Reset theme settings to default" => "Tilbakestill temainnstillinger til standard"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // theme.placeholderColor: "Placeholder color" => "Plassholderfarge"
 // ed.themeSettings: "Theme Settings" => "Tema innstillinger"
 // ed.themeSettingsTooltip: "Open theme settings" => "Åpne temainnstillinger"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.resetToDefaultCaption: "Reset" => "Nullstille"
 // pv.file: "Local files" => "Lokale filer"
 // pv.camera: "Camera" => "Kamera"
 // pv.file-camera: "Local files or camera" => "Lokale filer eller kamera"
+// ed.translateUsigAI: "Auto-translate All" => "Oversett alle automatisk"
+// ed.translationDialogTitle: "Untranslated strings" => "Uoversatte strenger"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "Vennligst skriv inn minst {0} elementer"
+// lg.question_resetValueName: "Reset question value" => "Tilbakestille spørsmålsverdien"
+// lg.column_resetValue: "Reset column value" => "Tilbakestille kolonneverdi"
+// pe.markRequired: "Mark as required" => "Merk etter behov"
+// pe.removeRequiredMark: "Remove the required mark" => "Fjern ønsket merke"
+// p.resetValueIf: "Reset value if" => "Tilbakestill verdien hvis"
+// lg.question_setValueName: "Set question value" => "Angi spørsmålsverdi"
+// lg.column_resetValueName: "Reset column value" => "Tilbakestille kolonneverdi"
+// lg.column_setValueName: "Set column value" => "Angi kolonneverdi"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " Et uttrykk der resultatet tilordnes målspørsmålet."
+// survey.title: "Title" => "Tittel"
+// page.title: "Title" => "Tittel"
+// p.setValueIf: "Set value if" => "Angi verdi hvis"
+// theme.groupHeader: "Header" => "Topptekst"
+// theme.coverTitleForecolor: "Title forecolor" => "Tittel forfarge"
+// theme.coverOverlapEnabled: "Overlap" => "Overlappe"
+// theme.backgroundImageFitFill: "Stretch" => "Strekning"
+// theme.backgroundImageFitTile: "Tile" => "Flis"
+// theme.headerView: "View" => "Utsikt"
+// theme.headerViewBasic: "Basic" => "Grunnleggende"
+// theme.headerViewAdvanced: "Advanced" => "Avansert"
+// theme.coverInheritWidthFrom: "Content area width" => "Bredde på innholdsområdet"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "Samme som undersøkelse"
+// theme.coverInheritWidthFromPage: "Fit to page" => "Tilpass til side"
+// theme.coverTextAreaWidth: "Text width" => "Tekstbredde"
+// theme.coverBackgroundColorSwitch: "Background color" => "Bakgrunnsfarge"
+// theme.coverBackgroundColorNone: "None" => "Ingen"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "Uthevingsfarge"
+// theme.coverBackgroundColorCustom: "Custom" => "Skikk"
+// theme.horizontalAlignmentLeft: "Left" => "Venstre"
+// theme.horizontalAlignmentCenter: "Center" => "Sentrum"
+// theme.horizontalAlignmentRight: "Right" => "Høyre"
+// theme.verticalAlignmentTop: "Top" => "Topp"
+// theme.verticalAlignmentMiddle: "Middle" => "Midt"
+// theme.verticalAlignmentBottom: "Bottom" => "Bunn"
+// lg.question_resetValueText: "reset value for question: {0}" => "Tilbakestill verdi for spørsmål: {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "tilordne verdi: {1} til spørsmålet: {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "Tilbakestill celleverdi for kolonne: {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "Tilordne celleverdi: {1} til kolonne: {0}"
+// ed.surveyJsonExportButton: "Export" => "Eksport"
+// ed.surveyJsonImportButton: "Import" => "Importere"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "Kopiere til utklippstavlen"
+// pe.filePlaceholder: "File placeholder text" => "Plassholdertekst for fil"
+// pe.photoPlaceholder: "Photo placeholder text" => "Tekst for plassholdere for bilde"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "Plassholdertekst for fil eller bilde"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "Gjelder når \"Kildetype\" er \"Lokale filer\" eller når kameraet er utilgjengelig"
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "Gjelder når \"Kildetype\" er \"Kamera\"."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "Gjelder når \"Kildetype\" er \"Lokale filer eller kamera\"."
+// theme.groupBackground: "Background" => "Bakgrunn"
+// theme.groupAppearance: "Appearance" => "Utseende"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Beskrivelse forfarge"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "Vil du virkelig tilbakestille temaet? Alle tilpasningene dine vil gå tapt."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "Ja, tilbakestill temaet"
+// theme.groupBackground: "Background" => "Bakgrunn"
+// theme.groupAppearance: "Appearance" => "Utseende"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Beskrivelse forfarge"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "Tilpass til container"
+// signaturepad.showPlaceholder: "Show the placeholder" => "Vise plassholderen"
+// signaturepad.placeholder: "Placeholder text" => "Plassholdertekst"
+// theme.surveyDescription: "Survey description font" => "Skrift for undersøkelsesbeskrivelse"
+// ed.prevFocus: "Focus previous" => "Fokus forrige"
+// ed.nextFocus: "Focus next" => "Fokus neste"
+// ed.saveTheme: "Save Theme" => "Lagre tema"
+// ed.saveThemeTooltip: "Save Theme" => "Lagre tema"
+// lg.page_requireName: "Make page required" => "Gjøre siden obligatorisk"
+// lg.panel_requireName: "Make page required" => "Gjøre siden obligatorisk"
+// signaturepad.signatureWidth: "Signature area width" => "Bredde på signaturområde"
+// signaturepad.signatureHeight: "Signature area height" => "Høyde på signaturområdet"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "Skalere signaturområdet automatisk"
+// signaturepad.penMinWidth: "Minimum pen width" => "Minimum pennebredde"
+// signaturepad.penMaxWidth: "Maximum pen width" => "Maksimal pennebredde"
+// theme.logoPosition: "Logo position" => "Logo posisjon"
+// theme.coverTitlePosition: "Title position" => "Tittelposisjon"
+// theme.coverDescriptionPosition: "Description position" => "Beskrivelse posisjon"
+// ed.propertyGridNoResultsFound: "No results found" => "Fant ingen resultater"
+// pv.leftRight: "Left and right" => "Venstre og høyre"
+// p.sourceType: "Source type" => "Type kilde"
+// p.fitToContainer: "Fit to container" => "Tilpass til container"
+// p.setValueExpression: "Set value expression" => "Angi verdiuttrykk"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "Valgene lastes inn fra en webtjeneste."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "Gå til innstillinger"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "Forhåndsvisning av alternativer for lastet valg"

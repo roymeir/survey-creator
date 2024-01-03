@@ -235,6 +235,7 @@ test("Logic popup mobile", async (t) => {
 
 test("Property grid checkbox - all states", async (t) => {
   await wrapVisualTest(t, async (t, comparer) => {
+    await ClientFunction(() => window["creator"].currentPlugin.propertyGrid.searchEnabled = false)();
     await t.resizeWindow(2560, 1440);
     await setJSON({});
 
@@ -290,6 +291,7 @@ test("Property grid checkbox - all states", async (t) => {
 
 test("Property grid input all states", async (t) => {
   await wrapVisualTest(t, async (t, comparer) => {
+    await ClientFunction(() => window["creator"].currentPlugin.propertyGrid.searchEnabled = false)();
     await t.resizeWindow(2560, 1440);
     await setJSON({});
     const setInputProperty = ClientFunction((prop, value) => {
@@ -363,16 +365,14 @@ test("Check bindings question", async (t) => {
     await takeElementScreenshot("bindings-editor.png", Selector(".spg-question[data-name='bindings']"), t, comparer);
   });
 });
-
 test("Check triggers question", async (t) => {
   await wrapVisualTest(t, async (t, comparer) => {
     await t.resizeWindow(1920, 1920);
     await t
-      .click(Selector("h4[aria-label=General]"))
       .click(Selector("h4[aria-label=Logic]"))
-      .click(Selector("div[data-name='triggers'] .spg-action-button__icon[aria-label='Add New']"));
+      .click(Selector("div[data-name='triggers'] .spg-action-button--icon[title='Add New']"));
     await takeElementScreenshot("triggers-editor.png", Selector("div[data-name='triggers']"), t, comparer);
-    await ClientFunction(() => (<any>document).querySelector("[aria-label='triggerType'] input").focus())();
+    await ClientFunction(() => (<any>document).querySelector("[aria-label='row 1, column triggerType'] input").focus())();
     await resetHoverToCreator(t);
     await takeElementScreenshot("triggers-editor-focused.png", Selector("div[data-name='triggers']"), t, comparer);
   });
@@ -397,6 +397,7 @@ test("Check question with error", async (t) => {
 
 test("Check color editor", async (t) => {
   await wrapVisualTest(t, async (t, comparer) => {
+    await ClientFunction(() => window["creator"].currentPlugin.propertyGrid.searchEnabled = false)();
     await t.resizeWindow(1920, 1920);
     await ClientFunction(() => {
       (<any>window).Survey.Serializer.addProperty("survey", {
@@ -639,5 +640,57 @@ test("Check text editor with reset button", async (t) => {
     await takeElementScreenshot("text-with-reset-disabled-button.png", questionSelector, t, comparer);
     await t.typeText(questionSelector.find("input"), "value", { replace: true });
     await takeElementScreenshot("text-with-reset-enabled-button.png", questionSelector, t, comparer);
+  });
+});
+
+test("Check accepted file types hint link", async (t) => {
+  await wrapVisualTest(t, async (t, comparer) => {
+    await setJSON({
+      "pages": [
+        {
+          "name": "page1",
+          "elements": [
+            {
+              "type": "file",
+              "name": "question1"
+            }
+          ]
+        }
+      ]
+    });
+    await t.resizeWindow(1900, 1000);
+    await t.click("div[data-sv-drop-target-survey-element='question1']", { offsetX: 200, offsetY: 30 });
+    await t.click(Selector("[data-name='acceptedTypes'] button"));
+    await takeElementScreenshot("file-accepted-types-hint.png", Selector("[data-name='acceptedTypes']"), t, comparer);
+  });
+});
+test("Check property grid panel' header states", async (t) => {
+  await wrapVisualTest(t, async (t, comparer) => {
+    await setJSON({});
+    await t.resizeWindow(1920, 1920);
+    const headerSelector = Selector("h4[aria-label=General]").nth(0);
+    await t
+      .click(headerSelector);
+    await takeElementScreenshot("pg-panel-header-expanded-focused.png", headerSelector, t, comparer);
+    await t.pressKey("tab");
+    await takeElementScreenshot("pg-panel-header-expanded.png", headerSelector, t, comparer);
+    await t
+      .click(headerSelector);
+    await takeElementScreenshot("pg-panel-header-collapsed-focused.png", headerSelector, t, comparer);
+    await t.pressKey("tab");
+    await resetHoverToCreator(t);
+    await takeElementScreenshot("pg-panel-header-collapsed.png", headerSelector, t, comparer);
+  });
+});
+test("Dropdown input in property grid", async (t) => {
+  await wrapVisualTest(t, async (t, comparer) => {
+    await t.resizeWindow(1240, 870);
+
+    await t
+      .click(Selector("button[title='Open survey settings'"))
+      .click(Selector(".spg-dropdown[aria-label='Survey language']"))
+      .pressKey("a l i");
+
+    await takeElementScreenshot("pg-dropdown-editor-input.png", Selector(".spg-dropdown[aria-label='Survey language']"), t, comparer);
   });
 });

@@ -56,6 +56,8 @@ export var koreanStrings = {
     hidePanel: "패널 숨기기",
     prevSelected: "이전 선택",
     nextSelected: "다음을 선택합니다",
+    prevFocus: "포커스 이전",
+    nextFocus: "다음 초점",
     surveyTypeName: "조사",
     pageTypeName: "페이지",
     panelTypeName: "패널",
@@ -84,6 +86,8 @@ export var koreanStrings = {
     translation: "번역",
     saveSurvey: "설문지 저장",
     saveSurveyTooltip: "설문조사 저장",
+    saveTheme: "테마 저장",
+    saveThemeTooltip: "테마 저장",
     designer: "설문지 디자인",
     jsonEditor: "JSON 편집기",
     jsonHideErrors: "오류 숨기기",
@@ -106,6 +110,7 @@ export var koreanStrings = {
     toolbox: "도구상자",
     "property-grid": "속성",
     propertyGridFilteredTextPlaceholder: "검색하려면 입력...",
+    propertyGridNoResultsFound: "결과를 찾을 수 없습니다.",
     toolboxGeneralCategory: "일반",
     toolboxChoiceCategory: "선택 질문",
     toolboxTextCategory: "텍스트 입력 질문",
@@ -136,17 +141,27 @@ export var koreanStrings = {
     translationNoStrings: "번역할 문자열이 없습니다. 필터를 교체하십시오.",
     translationExportToSCVButton: "CSV로 내보내기",
     translationImportFromSCVButton: "CSV에서 가져오기",
+    translateUsigAI: "모두 자동 번역",
+    translationDialogTitle: "번역되지 않은 문자열",
     translationMergeLocaleWithDefault: "{0} 기본 로캘과 병합",
     translationPlaceHolder: "번역...",
     themeExportButton: "수출",
     themeImportButton: "수입",
+    surveyJsonExportButton: "수출",
+    surveyJsonImportButton: "수입",
+    surveyJsonCopyButton: "클립보드에 복사",
     themeResetButton: "테마 설정을 기본값으로 재설정",
+    themeResetConfirmation: "테마를 재설정 하시겠습니까? 모든 사용자 지정이 손실됩니다.",
+    themeResetConfirmationOk: "예, 테마를 재설정합니다.",
     bold: "대담한",
     italic: "이탤릭체",
     underline: "밑줄",
     addNewQuestion: "질문 추가",
     selectPage: "페이지 선택...",
     carryForwardChoicesCopied: "선택 항목은 다음에서 복사됩니다.",
+    choicesLoadedFromWebText: "선택 항목은 웹 서비스에서 로드됩니다.",
+    choicesLoadedFromWebLinkText: "설정으로 바로 가기",
+    choicesLoadedFromWebPreviewTitle: "로드된 선택 옵션 미리보기",
     htmlPlaceHolder: "HTML 콘텐츠가 여기에 있습니다.",
     panelPlaceHolder: "도구 상자에서 질문을 삭제하세요.",
     surveyPlaceHolder: "설문 조사가 비어 있습니다. 도구 상자에서 요소를 드래그하거나 아래 버튼을 클릭합니다.",
@@ -161,14 +176,20 @@ export var koreanStrings = {
       empty_tab: "설문 조사의 흐름을 사용자 지정하는 규칙을 만듭니다.",
       page_visibilityName: "페이지 표시(숨기기)",
       page_enableName: "사용(사용 안 함) 페이지",
+      page_requireName: "페이지를 필수로 설정",
       panel_visibilityName: "표시(숨기기) 패널",
       panel_enableName: "활성화(비활성화) 패널",
+      panel_requireName: "페이지를 필수로 설정",
       question_visibilityName: "질문 표시(숨기기)",
       question_enableName: "사용(사용 안 함) 질문",
       question_requireName: "질문 필수 항목 만들기",
+      question_resetValueName: "질문 값 재설정",
+      question_setValueName: "질문 값 설정",
       column_visibilityName: "열 표시(숨기기)",
       column_enableName: "사용(사용 안 함) 열",
       column_requireName: "열을 필수로 설정",
+      column_resetValueName: "열 값 재설정",
+      column_setValueName: "열 값 설정",
       trigger_completeName: "설문 조사 완료",
       trigger_setvalueName: "정답 설정",
       trigger_copyvalueName: "답변 복사",
@@ -195,9 +216,14 @@ export var koreanStrings = {
       question_visibilityText: "질문 {0} 표시", //{0} question name
       question_enableText: "질문 {0} 사용 설정", //{0} question name
       question_requireText: "질문 {0} 필수", //{0} question name
+      question_resetValueText: "질문에 대한 재설정 값: {0}",
+      question_setValueText: "할당 값: {1} 질문: {0}",
       column_visibilityText: "질문의 열 {0} {1} 표시", //{0} column name, {1} question name
       column_enableText: "질문의 열 {0} {1} 사용하도록 설정", //{0} column name, {1} question name
       column_requireText: "질문의 열 {0} {1} 필수", //{0} column name, {1} question name
+      column_resetValueText: "열의 셀 값 재설정: {0}",
+      column_setValueText: "셀 값 할당 : {1} 열 : {0}",
+      setValueExpressionPlaceholder: " 결과가 대상 질문에 할당되는 식입니다.",
       trigger_completeText: "조사가 완료됩니다",
       trigger_setvalueText: "질문으로 설정: {0} 값 {1}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "명확한 질문 값: {0}", //{0} question name
@@ -221,9 +247,7 @@ export var koreanStrings = {
       uncompletedRule_title: "논리적 규칙이 불완전합니다.",
       uncompletedRule_text: "일부 논리적 규칙을 완료하지 않았습니다. 지금 탭을 나가면 변경 내용이 손실됩니다. 변경을 완료하지 않고 탭을 종료하시겠습니까?",
       uncompletedRule_apply: "예",
-      uncompletedRule_cancel: "아니요, 규칙을 완료하고 싶습니다.",
-      // expressionSetup: "",
-      // actionsSetup: ""
+      uncompletedRule_cancel: "아니요, 규칙을 완료하고 싶습니다."
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ export var koreanStrings = {
     fastEntry: "빠른 입력",
     fastEntryNonUniqueError: "'{0}' 값은 고유하지 않습니다.",
     fastEntryChoicesCountError: "항목 수를 {0}개에서 {1}개로 제한하십시오.",
+    fastEntryChoicesMinCountError: "최소 {0} 항목을 입력하십시오.",
     fastEntryPlaceholder: "다음 형식으로 데이터를 설정할 수 있습니다.\nvalue1|텍스트\n값2",
     formEntry: "양식 입력",
     testService: "서비스 테스트",
@@ -327,6 +352,8 @@ export var koreanStrings = {
     choicesOrder: "항목 순서 선택",
     visible: "보입니까??",
     isRequired: "필수입니까?",
+    markRequired: "필요에 따라 표시",
+    removeRequiredMark: "필요한 표시를 제거하십시오",
     isAllRowRequired: "모든 행에 대한 응답 필요",
     requiredErrorText: "\"필수\" 오류 메시지",
     startWithNewLine: "새 줄로 시작하겠습니까?",
@@ -408,7 +435,12 @@ export var koreanStrings = {
       imageHeight: "이미지 높이(CSS에서 허용하는 값)",
       imageWidth: "이미지 너비(CSS에서 허용하는 값)"
     },
+    // survey templates
+    survey: {
+      title: "타이틀"
+    },
     page: {
+      title: "타이틀",
       maxTimeToFinish: "페이지 완료 시간 제한(초)"
     },
     question: {
@@ -639,6 +671,18 @@ export var koreanStrings = {
     columnsVisibleIf: "다음과 같은 경우 열이 표시됩니다.",
     rowsVisibleIf: "다음과 같은 경우 행이 표시됩니다.",
     otherPlaceholder: "주석 영역 자리 표시자",
+    signaturepad: {
+      showPlaceholder: "자리 표시자 표시",
+      placeholder: "자리 표시자 텍스트",
+      signatureWidth: "서명 영역 너비",
+      signatureHeight: "서명 영역 높이",
+      signatureAutoScaleEnabled: "서명 영역 자동 크기 조정",
+      penMinWidth: "최소 펜 너비",
+      penMaxWidth: "최대 펜 너비"
+    },
+    filePlaceholder: "파일 자리 표시자 텍스트",
+    photoPlaceholder: "사진 자리 표시자 텍스트",
+    fileOrPhotoPlaceholder: "파일 또는 사진 자리 표시자 텍스트",
     rateType: "비율 유형"
   },
   // Property values
@@ -681,6 +725,7 @@ export var koreanStrings = {
     both: "둘다",
     left: "왼쪽",
     right: "오른쪽",
+    leftRight: "왼쪽 및 오른쪽",
     color: "색",
     date: "날짜",
     datetime: "날짜/시간",
@@ -876,7 +921,10 @@ export var koreanStrings = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "지정된 열에 동일한 값이 포함되어 있으면 현장조사에서 \"고유하지 않은 키 값\" 오류가 발생합니다."
+    keyName: "지정된 열에 동일한 값이 포함되어 있으면 현장조사에서 \"고유하지 않은 키 값\" 오류가 발생합니다.",
+    filePlaceholder: "\"소스 유형\"이 \"로컬 파일\"이거나 카메라를 사용할 수 없는 경우에 적용됩니다.",
+    photoPlaceholder: "\"소스 유형\"이 \"카메라\"인 경우에 적용됩니다.",
+    fileOrPhotoPlaceholder: "\"소스 유형\"이 \"로컬 파일 또는 카메라\"인 경우에 적용됩니다."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ export var koreanStrings = {
     showLabel: "이미지 캡션 표시",
     value: "값",
     tabAlign: "탭 정렬",
+    sourceType: "소스 유형",
+    fitToContainer: "컨테이너에 맞추기",
+    setValueExpression: "설정 값 표현식",
     description: "설명",
     logoFit: "로고 핏",
     pages: "페이지",
@@ -910,6 +961,8 @@ export var koreanStrings = {
     descriptionLocation: "설명 위치",
     defaultValueExpression: "기본값 표현식",
     requiredIf: "다음과 같은 경우 필수입니다.",
+    resetValueIf: "다음과 같은 경우 값을 재설정합니다.",
+    setValueIf: "다음과 같은 경우 값을 설정합니다.",
     validators: "유효성 검사기",
     bindings: "바인딩",
     renderAs: "렌더링 형식",
@@ -986,6 +1039,9 @@ export var koreanStrings = {
     "--base-unit": "베이스 유닛",
     groupGeneral: "일반",
     groupAdvanced: "고급",
+    groupHeader: "머리글",
+    groupBackground: "배경",
+    groupAppearance: "외관",
     themeName: "주제",
     themeMode: "질문 모양",
     themeModePanels: "기본값",
@@ -996,11 +1052,16 @@ export var koreanStrings = {
     primaryDefaultColor: "기본값",
     primaryDarkColor: "호버",
     primaryLightColor: "선택한",
+    coverTitleForecolor: "제목 forecolor",
+    coverDescriptionForecolor: "설명 forecolor",
+    coverOverlapEnabled: "겹침",
     backgroundDimColor: "배경색",
     backgroundImage: "배경 이미지",
     backgroundImageFitAuto: "자동",
     backgroundImageFitCover: "표지",
     backgroundImageFitContain: "포함하다",
+    backgroundImageFitFill: "뻗다",
+    backgroundImageFitTile: "타일",
     backgroundOpacity: "불투명도",
     backgroundImageAttachmentFixed: "부정하게 결정된",
     backgroundImageAttachmentScroll: "스크롤",
@@ -1033,6 +1094,7 @@ export var koreanStrings = {
     scale: "저울",
     cornerRadius: "코너 반경",
     surveyTitle: "설문조사 제목 글꼴",
+    surveyDescription: "설문조사 설명 글꼴",
     pageTitle: "페이지 제목 글꼴",
     pageDescription: "페이지 설명 글꼴",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ export var koreanStrings = {
     boxShadowInner: "내부",
     questionShadow: "그림자 효과",
     editorShadow: "입력 요소 그림자 효과",
+    headerView: "보기",
+    headerViewBasic: "기초의",
+    headerViewAdvanced: "고급",
+    coverInheritWidthFrom: "콘텐츠 영역 너비",
+    coverInheritWidthFromSurvey: "설문조사와 동일",
+    coverInheritWidthFromContainer: "콘테이너에 적합",
+    coverTextAreaWidth: "텍스트 너비",
+    coverBackgroundColorSwitch: "배경색",
+    coverBackgroundColorNone: "없음",
+    coverBackgroundColorAccentColor: "강조 색상",
+    coverBackgroundColorCustom: "관습",
+    horizontalAlignmentLeft: "왼쪽",
+    horizontalAlignmentCenter: "중",
+    horizontalAlignmentRight: "오른쪽",
+    verticalAlignmentTop: "맨 위로",
+    verticalAlignmentMiddle: "중간",
+    verticalAlignmentBottom: "밑바닥",
+    logoPosition: "로고 위치",
+    coverTitlePosition: "타이틀 포지션",
+    coverDescriptionPosition: "설명 위치",
     names: {
       default: "기본값",
       sharp: "날카로운",
@@ -1225,8 +1307,6 @@ editorLocalization.locales["ko"] = koreanStrings;
 // lg.uncompletedRule_text: "You have not completed some of the logical rules. If you leave the tab now, the changes will be lost. Do you still want to leave the tab without completing the changes?" => "일부 논리적 규칙을 완료하지 않았습니다. 지금 탭을 나가면 변경 내용이 손실됩니다. 변경을 완료하지 않고 탭을 종료하시겠습니까?"
 // lg.uncompletedRule_apply: "Yes" => "예"
 // lg.uncompletedRule_cancel: "No, I want to complete the rules" => "아니요, 규칙을 완료하고 싶습니다."
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.save: "Save" => "구해내다"
 // pe.clear: "Clear" => "맑다"
 // pe.saveTooltip: "Save" => "구해내다"
@@ -1759,8 +1839,6 @@ editorLocalization.locales["ko"] = koreanStrings;
 // colors.tulip: "Tulip" => "튤립"
 // colors.brown: "Brown" => "갈색"
 // colors.green: "Green" => "녹색"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // names.sharp: "Sharp" => "날카로운"
 // names.borderless: "Borderless" => "국경"
 // names.flat: "Flat" => "플랫"
@@ -1770,14 +1848,95 @@ editorLocalization.locales["ko"] = koreanStrings;
 // names.threedimensional: "3D" => ".3D"
 // ed.translationDeleteLanguage: "Are you certain you wish to delete all strings for this language?" => "이 언어에 대한 모든 문자열을 삭제하시겠습니까?"
 // ed.themeResetButton: "Reset theme settings to default" => "테마 설정을 기본값으로 재설정"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // theme.placeholderColor: "Placeholder color" => "자리 표시자 색"
 // ed.themeSettings: "Theme Settings" => "테마 설정"
 // ed.themeSettingsTooltip: "Open theme settings" => "테마 설정 열기"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.resetToDefaultCaption: "Reset" => "재설정"
 // pv.file: "Local files" => "로컬 파일"
 // pv.camera: "Camera" => "사진기"
 // pv.file-camera: "Local files or camera" => "로컬 파일 또는 카메라"
+// ed.translateUsigAI: "Auto-translate All" => "모두 자동 번역"
+// ed.translationDialogTitle: "Untranslated strings" => "번역되지 않은 문자열"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "최소 {0} 항목을 입력하십시오."
+// lg.question_resetValueName: "Reset question value" => "질문 값 재설정"
+// lg.column_resetValue: "Reset column value" => "열 값 재설정"
+// pe.markRequired: "Mark as required" => "필요에 따라 표시"
+// pe.removeRequiredMark: "Remove the required mark" => "필요한 표시를 제거하십시오"
+// p.resetValueIf: "Reset value if" => "다음과 같은 경우 값을 재설정합니다."
+
+// lg.question_setValueName: "Set question value" => "질문 값 설정"
+// lg.column_resetValueName: "Reset column value" => "열 값 재설정"
+// lg.column_setValueName: "Set column value" => "열 값 설정"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " 결과가 대상 질문에 할당되는 식입니다."
+// survey.title: "Title" => "타이틀"
+// page.title: "Title" => "타이틀"
+// p.setValueIf: "Set value if" => "다음과 같은 경우 값을 설정합니다."
+// theme.groupHeader: "Header" => "머리글"
+// theme.coverTitleForecolor: "Title forecolor" => "제목 forecolor"
+// theme.coverOverlapEnabled: "Overlap" => "겹침"
+// theme.backgroundImageFitFill: "Stretch" => "뻗다"
+// theme.backgroundImageFitTile: "Tile" => "타일"
+// theme.headerView: "View" => "보기"
+// theme.headerViewBasic: "Basic" => "기초의"
+// theme.headerViewAdvanced: "Advanced" => "고급"
+// theme.coverInheritWidthFrom: "Content area width" => "콘텐츠 영역 너비"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "설문조사와 동일"
+// theme.coverInheritWidthFromPage: "Fit to page" => "페이지에 맞추기"
+// theme.coverTextAreaWidth: "Text width" => "텍스트 너비"
+// theme.coverBackgroundColorSwitch: "Background color" => "배경색"
+// theme.coverBackgroundColorNone: "None" => "없음"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "강조 색상"
+// theme.coverBackgroundColorCustom: "Custom" => "관습"
+// theme.horizontalAlignmentLeft: "Left" => "왼쪽"
+// theme.horizontalAlignmentCenter: "Center" => "중"
+// theme.horizontalAlignmentRight: "Right" => "오른쪽"
+// theme.verticalAlignmentTop: "Top" => "맨 위로"
+// theme.verticalAlignmentMiddle: "Middle" => "중간"
+// theme.verticalAlignmentBottom: "Bottom" => "밑바닥"
+// theme.logoPosition: "Logo Position" => "로고 위치"
+// theme.coverTitlePosition: "Title Position" => "타이틀 포지션"
+// theme.coverDescriptionPosition: "Description Position" => "설명 위치"
+// lg.question_resetValueText: "reset value for question: {0}" => "질문에 대한 재설정 값: {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "할당 값: {1} 질문: {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "열의 셀 값 재설정: {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "셀 값 할당 : {1} 열 : {0}"
+// ed.surveyJsonExportButton: "Export" => "수출"
+// ed.surveyJsonImportButton: "Import" => "수입"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "클립보드에 복사"
+// pe.filePlaceholder: "File placeholder text" => "파일 자리 표시자 텍스트"
+// pe.photoPlaceholder: "Photo placeholder text" => "사진 자리 표시자 텍스트"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "파일 또는 사진 자리 표시자 텍스트"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "\"소스 유형\"이 \"로컬 파일\"이거나 카메라를 사용할 수 없는 경우에 적용됩니다."
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "\"소스 유형\"이 \"카메라\"인 경우에 적용됩니다."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "\"소스 유형\"이 \"로컬 파일 또는 카메라\"인 경우에 적용됩니다."
+// theme.groupBackground: "Background" => "배경"
+// theme.groupAppearance: "Appearance" => "외관"
+// theme.coverDescriptionForecolor: "Description forecolor" => "설명 forecolor"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "테마를 재설정 하시겠습니까? 모든 사용자 지정이 손실됩니다."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "예, 테마를 재설정합니다."
+// theme.groupBackground: "Background" => "배경"
+// theme.groupAppearance: "Appearance" => "외관"
+// theme.coverDescriptionForecolor: "Description forecolor" => "설명 forecolor"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "콘테이너에 적합"
+// signaturepad.showPlaceholder: "Show the placeholder" => "자리 표시자 표시"
+// signaturepad.placeholder: "Placeholder text" => "자리 표시자 텍스트"
+// theme.surveyDescription: "Survey description font" => "설문조사 설명 글꼴"
+// ed.prevFocus: "Focus previous" => "포커스 이전"
+// ed.nextFocus: "Focus next" => "다음 초점"
+// ed.saveTheme: "Save Theme" => "테마 저장"
+// ed.saveThemeTooltip: "Save Theme" => "테마 저장"
+// lg.page_requireName: "Make page required" => "페이지를 필수로 설정"
+// lg.panel_requireName: "Make page required" => "페이지를 필수로 설정"
+// signaturepad.signatureWidth: "Signature area width" => "서명 영역 너비"
+// signaturepad.signatureHeight: "Signature area height" => "서명 영역 높이"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "서명 영역 자동 크기 조정"
+// signaturepad.penMinWidth: "Minimum pen width" => "최소 펜 너비"
+// signaturepad.penMaxWidth: "Maximum pen width" => "최대 펜 너비"
+// ed.propertyGridNoResultsFound: "No results found" => "결과를 찾을 수 없습니다."
+// pv.leftRight: "Left and right" => "왼쪽 및 오른쪽"
+// p.sourceType: "Source type" => "소스 유형"
+// p.fitToContainer: "Fit to container" => "컨테이너에 맞추기"
+// p.setValueExpression: "Set value expression" => "설정 값 표현식"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "선택 항목은 웹 서비스에서 로드됩니다."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "설정으로 바로 가기"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "로드된 선택 옵션 미리보기"

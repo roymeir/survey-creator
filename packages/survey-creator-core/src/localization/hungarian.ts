@@ -56,6 +56,8 @@ export var huStrings = {
     hidePanel: "Panel elrejtése",
     prevSelected: "Előző kiválasztása",
     nextSelected: "Válassza a következőt",
+    prevFocus: "Fókusz előző",
+    nextFocus: "Fókusz következő",
     surveyTypeName: "Felmérés",
     pageTypeName: "Oldal",
     panelTypeName: "Panel",
@@ -84,6 +86,8 @@ export var huStrings = {
     translation: "Fordítás",
     saveSurvey: "Kérdőív mentése",
     saveSurveyTooltip: "Felmérés mentése",
+    saveTheme: "Téma mentése",
+    saveThemeTooltip: "Téma mentése",
     designer: "Kérdőívtervező",
     jsonEditor: "JSON szerkesztő",
     jsonHideErrors: "Hibák elrejtése",
@@ -106,6 +110,7 @@ export var huStrings = {
     toolbox: "Eszköztár",
     "property-grid": "Kellékek",
     propertyGridFilteredTextPlaceholder: "Írja be a kereséshez...",
+    propertyGridNoResultsFound: "Nincs találat",
     toolboxGeneralCategory: "Általános",
     toolboxChoiceCategory: "Választási kérdések",
     toolboxTextCategory: "Szövegbeviteli kérdések",
@@ -136,17 +141,27 @@ export var huStrings = {
     translationNoStrings: "Nincs fordítható szöveg. Kérem változtasson a szűrési feltételeken.",
     translationExportToSCVButton: "Mentés CSV-ként",
     translationImportFromSCVButton: "Betöltés CSV-ből.",
+    translateUsigAI: "Összes automatikus fordítása",
+    translationDialogTitle: "Lefordítatlan karakterláncok",
     translationMergeLocaleWithDefault: "{0} összefűzése az alapértelmezett szöveggel.",
     translationPlaceHolder: "Fordítás...",
     themeExportButton: "Kivitel",
     themeImportButton: "Importál",
+    surveyJsonExportButton: "Kivitel",
+    surveyJsonImportButton: "Importál",
+    surveyJsonCopyButton: "Másolás a vágólapra",
     themeResetButton: "Témabeállítások visszaállítása alapértelmezettre",
+    themeResetConfirmation: "Tényleg vissza akarja állítani a témát? Az összes testreszabás elvész.",
+    themeResetConfirmationOk: "Igen, állítsa vissza a témát",
     bold: "Félkövér",
     italic: "Dőlt",
     underline: "Aláhúzott",
     addNewQuestion: "Kérdés felvétele",
     selectPage: "Válasszon oldalt...",
     carryForwardChoicesCopied: "A választási lehetőségek másolása innen történik",
+    choicesLoadedFromWebText: "A választási lehetőségek egy webszolgáltatásból töltődnek be.",
+    choicesLoadedFromWebLinkText: "Válassza a beállítások",
+    choicesLoadedFromWebPreviewTitle: "A betöltött választási lehetőségek előnézete",
     htmlPlaceHolder: "A HTML tartalom itt lesz.",
     panelPlaceHolder: "Itt dobjon el egy kérdést az eszköztárból.",
     surveyPlaceHolder: "A felmérés üres. Húzzon egy elemet az eszköztárról, vagy kattintson az alábbi gombra.",
@@ -161,14 +176,20 @@ export var huStrings = {
       empty_tab: "Hozzon létre egy szabályt a felmérés folyamatának testreszabásához.",
       page_visibilityName: "Oldal megjelenítése (elrejtése)",
       page_enableName: "Oldal engedélyezése (letiltása)",
+      page_requireName: "Az oldal kötelezővé tétele",
       panel_visibilityName: "Panel megjelenítése (elrejtése)",
       panel_enableName: "Panel engedélyezése (letiltása)",
+      panel_requireName: "Az oldal kötelezővé tétele",
       question_visibilityName: "Kérdés megjelenítése (elrejtése)",
       question_enableName: "Kérdés engedélyezése (letiltása)",
       question_requireName: "Kérdés feltevése kötelező",
+      question_resetValueName: "Kérdés értékének visszaállítása",
+      question_setValueName: "Kérdésérték beállítása",
       column_visibilityName: "Oszlop megjelenítése (elrejtése)",
       column_enableName: "Oszlop engedélyezése (letiltása)",
       column_requireName: "Oszlop kötelezővé tétele",
+      column_resetValueName: "Oszlopérték visszaállítása",
+      column_setValueName: "Oszlopérték beállítása",
       trigger_completeName: "Teljes felmérés",
       trigger_setvalueName: "Válasz beállítása",
       trigger_copyvalueName: "Válasz másolása",
@@ -195,9 +216,14 @@ export var huStrings = {
       question_visibilityText: "tegye láthatóvá a {0} kérdést", //{0} question name
       question_enableText: "Kérdés {0} engedélyezése", //{0} question name
       question_requireText: "Tegye fel a kérdést {0} szükséges", //{0} question name
+      question_resetValueText: "Kérdés visszaállítási értéke: {0}",
+      question_setValueText: "Érték hozzárendelése: {1} a kérdéshez: {0}",
       column_visibilityText: "A {1}. kérdés {0} oszlopának láthatóvá tétele", //{0} column name, {1} question name
       column_enableText: "A kérdés {0} oszlopának engedélyezése {1} engedélyezése", //{0} column name, {1} question name
       column_requireText: "Tegye kötelezővé a kérdés {0} oszlopát {1}", //{0} column name, {1} question name
+      column_resetValueText: "Az oszlop cellaértékének visszaállítása: {0}",
+      column_setValueText: "Cellaérték hozzárendelése: {1} oszlophoz: {0}",
+      setValueExpressionPlaceholder: " Olyan kifejezés, amelynek eredménye a célkérdéshez lesz rendelve.",
       trigger_completeText: "A felmérés befejeződött",
       trigger_setvalueText: "Kérdéses érték: {0} érték {1}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "Egyértelmű kérdésérték: {0}", //{0} question name
@@ -221,9 +247,7 @@ export var huStrings = {
       uncompletedRule_title: "A logikai szabályok hiányosak",
       uncompletedRule_text: "Nem teljesített néhány logikai szabályt. Ha most elhagyja a lapot, a módosítások elvesznek. Továbbra is el akarja hagyni a lapot a módosítások végrehajtása nélkül?",
       uncompletedRule_apply: "Igen",
-      uncompletedRule_cancel: "Nem, szeretném kiegészíteni a szabályokat",
-      // expressionSetup: "",
-      // actionsSetup: ""
+      uncompletedRule_cancel: "Nem, szeretném kiegészíteni a szabályokat"
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ export var huStrings = {
     fastEntry: "Gyors felvétel",
     fastEntryNonUniqueError: "A \"{0}\" érték nem egyedi",
     fastEntryChoicesCountError: "Kérjük, korlátozza a tételek számát {0} és {1} között",
+    fastEntryChoicesMinCountError: "Kérjük, adjon meg legalább {0} elemet",
     fastEntryPlaceholder: "Az adatokat a következő formátumban állíthatja be:\nérték1|szöveg\nérték2",
     formEntry: "Felvétel űrlappal",
     testService: "Szolgáltatás tesztelése",
@@ -327,6 +352,8 @@ export var huStrings = {
     choicesOrder: "Válassza ki a lehetőséget rendezését",
     visible: "Látható?",
     isRequired: "Kötelező?",
+    markRequired: "Megjelölés kötelezőként",
+    removeRequiredMark: "Távolítsa el a szükséges jelet",
     isAllRowRequired: "Válasz kérése minden sorhoz",
     requiredErrorText: "\"Kötelező\" hibaüzenet",
     startWithNewLine: "Új sorban kezdődik?",
@@ -408,7 +435,12 @@ export var huStrings = {
       imageHeight: "Képmagasság (CSS által elfogadott értékekben)",
       imageWidth: "Képszélesség (CSS által elfogadott értékekben)"
     },
+    // survey templates
+    survey: {
+      title: "Cím"
+    },
     page: {
+      title: "Cím",
       maxTimeToFinish: "Az oldal befejezésének határideje (másodpercben)"
     },
     question: {
@@ -639,6 +671,18 @@ export var huStrings = {
     columnsVisibleIf: "Az oszlopok akkor láthatók, ha",
     rowsVisibleIf: "A sorok akkor láthatók, ha",
     otherPlaceholder: "Megjegyzés terület helyőrzője",
+    signaturepad: {
+      showPlaceholder: "A helyőrző megjelenítése",
+      placeholder: "Helyőrző szöveg",
+      signatureWidth: "Aláírási terület szélessége",
+      signatureHeight: "Aláírási terület magassága",
+      signatureAutoScaleEnabled: "Az aláírási terület automatikus méretezése",
+      penMinWidth: "Tollszélesség minimális",
+      penMaxWidth: "Maximális tollszélesség"
+    },
+    filePlaceholder: "Fájl helyőrző szövege",
+    photoPlaceholder: "Fénykép helyőrző szövege",
+    fileOrPhotoPlaceholder: "Fájl vagy fénykép helyőrző szövege",
     rateType: "Ár típusa"
   },
   // Property values
@@ -681,6 +725,7 @@ export var huStrings = {
     both: "Mindkettő",
     left: "bal",
     right: "Jobbra",
+    leftRight: "Balra és jobbra",
     color: "szín",
     date: "dátum",
     datetime: "Dátum/idő",
@@ -876,7 +921,10 @@ export var huStrings = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "Ha a megadott oszlop azonos értékeket tartalmaz, a felmérés a \"Nem egyedi kulcsérték\" hibát adja vissza."
+    keyName: "Ha a megadott oszlop azonos értékeket tartalmaz, a felmérés a \"Nem egyedi kulcsérték\" hibát adja vissza.",
+    filePlaceholder: "Akkor érvényes, ha a \"Forrás típusa\" \"Helyi fájlok\", vagy ha a kamera nem érhető el",
+    photoPlaceholder: "Akkor érvényes, ha a \"Forrás típusa\" a \"Kamera\".",
+    fileOrPhotoPlaceholder: "Akkor érvényes, ha a \"Forrás típusa\" értéke \"Helyi fájlok vagy kamera\"."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ export var huStrings = {
     showLabel: "Képfeliratok megjelenítése",
     value: "Érték",
     tabAlign: "Tabulátorigazítás",
+    sourceType: "Forrás típusa",
+    fitToContainer: "Tárolóhoz igazítás",
+    setValueExpression: "Értékkifejezés beállítása",
     description: "Leírás",
     logoFit: "Logó illeszkedés",
     pages: "Oldalak",
@@ -910,6 +961,8 @@ export var huStrings = {
     descriptionLocation: "Leírás, hely",
     defaultValueExpression: "Alapértelmezett értékkifejezés",
     requiredIf: "Kötelező ha",
+    resetValueIf: "Érték visszaállítása, ha",
+    setValueIf: "Érték beállítása, ha",
     validators: "Validátorok",
     bindings: "Kötések",
     renderAs: "Renderelés mint",
@@ -986,6 +1039,9 @@ export var huStrings = {
     "--base-unit": "Alapegység",
     groupGeneral: "Általános",
     groupAdvanced: "Haladó",
+    groupHeader: "Fejléc",
+    groupBackground: "Háttér",
+    groupAppearance: "Megjelenés",
     themeName: "Téma",
     themeMode: "Kérdés megjelenése",
     themeModePanels: "Alapértelmezett",
@@ -996,11 +1052,16 @@ export var huStrings = {
     primaryDefaultColor: "Alapértelmezett",
     primaryDarkColor: "Lebeg",
     primaryLightColor: "Kiválasztott",
+    coverTitleForecolor: "Cím előszíne",
+    coverDescriptionForecolor: "Leírás előszín",
+    coverOverlapEnabled: "Átfed",
     backgroundDimColor: "Háttérszín",
     backgroundImage: "Háttérkép",
     backgroundImageFitAuto: "Kocsi",
     backgroundImageFitCover: "Fedő",
     backgroundImageFitContain: "Tartalmaz",
+    backgroundImageFitFill: "Nyúlik",
+    backgroundImageFitTile: "Cserép",
     backgroundOpacity: "Átlátszatlanság",
     backgroundImageAttachmentFixed: "Fix",
     backgroundImageAttachmentScroll: "Kézirattekercs",
@@ -1033,6 +1094,7 @@ export var huStrings = {
     scale: "Hangsor",
     cornerRadius: "Sarok sugara",
     surveyTitle: "Felmérés címének betűtípusa",
+    surveyDescription: "Felmérés leírásának betűtípusa",
     pageTitle: "Oldalcím betűtípusa",
     pageDescription: "Oldalleíró betűtípus",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ export var huStrings = {
     boxShadowInner: "Belső",
     questionShadow: "Árnyék effektusok",
     editorShadow: "Bemeneti elem árnyékeffektusai",
+    headerView: "Nézet",
+    headerViewBasic: "Alapvető",
+    headerViewAdvanced: "Haladó",
+    coverInheritWidthFrom: "Tartalomterület szélessége",
+    coverInheritWidthFromSurvey: "Ugyanaz, mint a felmérés",
+    coverInheritWidthFromContainer: "Tárolóhoz igazítás",
+    coverTextAreaWidth: "Szöveg szélessége",
+    coverBackgroundColorSwitch: "Háttérszín",
+    coverBackgroundColorNone: "Egyik sem",
+    coverBackgroundColorAccentColor: "Kiemelő szín",
+    coverBackgroundColorCustom: "Szokás",
+    horizontalAlignmentLeft: "Balra",
+    horizontalAlignmentCenter: "Központ",
+    horizontalAlignmentRight: "Jobbra",
+    verticalAlignmentTop: "Felső",
+    verticalAlignmentMiddle: "Középső",
+    verticalAlignmentBottom: "Fenék",
+    logoPosition: "Logó pozíciója",
+    coverTitlePosition: "Cím pozíciója",
+    coverDescriptionPosition: "Leírás pozíciója",
     names: {
       default: "Alapértelmezett",
       sharp: "Éles",
@@ -1201,8 +1283,6 @@ editorLocalization.locales["hu"] = huStrings;
 // lg.uncompletedRule_text: "You have not completed some of the logical rules. If you leave the tab now, the changes will be lost. Do you still want to leave the tab without completing the changes?" => "Nem teljesített néhány logikai szabályt. Ha most elhagyja a lapot, a módosítások elvesznek. Továbbra is el akarja hagyni a lapot a módosítások végrehajtása nélkül?"
 // lg.uncompletedRule_apply: "Yes" => "Igen"
 // lg.uncompletedRule_cancel: "No, I want to complete the rules" => "Nem, szeretném kiegészíteni a szabályokat"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.save: "Save" => "Megment"
 // pe.clear: "Clear" => "Világos"
 // pe.saveTooltip: "Save" => "Megment"
@@ -1709,8 +1789,6 @@ editorLocalization.locales["hu"] = huStrings;
 // colors.tulip: "Tulip" => "Tulipán"
 // colors.brown: "Brown" => "Barna"
 // colors.green: "Green" => "Zöld"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // names.sharp: "Sharp" => "Éles"
 // names.borderless: "Borderless" => "Szegély nélküli"
 // names.flat: "Flat" => "Lapos"
@@ -1720,14 +1798,94 @@ editorLocalization.locales["hu"] = huStrings;
 // names.threedimensional: "3D" => ".3D"
 // ed.translationDeleteLanguage: "Are you certain you wish to delete all strings for this language?" => "Biztos benne, hogy törölni szeretné az összes karakterláncot ehhez a nyelvhez?"
 // ed.themeResetButton: "Reset theme settings to default" => "Témabeállítások visszaállítása alapértelmezettre"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // theme.placeholderColor: "Placeholder color" => "Helyőrző színe"
 // ed.themeSettings: "Theme Settings" => "Téma beállítások"
 // ed.themeSettingsTooltip: "Open theme settings" => "Nyissa meg a témabeállításokat"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.resetToDefaultCaption: "Reset" => "Átszed"
 // pv.file: "Local files" => "Helyi fájlok"
 // pv.camera: "Camera" => "Fényképezőgép"
 // pv.file-camera: "Local files or camera" => "Helyi fájlok vagy kamera"
+// ed.translateUsigAI: "Auto-translate All" => "Összes automatikus fordítása"
+// ed.translationDialogTitle: "Untranslated strings" => "Lefordítatlan karakterláncok"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "Kérjük, adjon meg legalább {0} elemet"
+// lg.question_resetValueName: "Reset question value" => "Kérdés értékének visszaállítása"
+// lg.column_resetValue: "Reset column value" => "Oszlopérték visszaállítása"
+// pe.markRequired: "Mark as required" => "Megjelölés kötelezőként"
+// pe.removeRequiredMark: "Remove the required mark" => "Távolítsa el a szükséges jelet"
+// p.resetValueIf: "Reset value if" => "Érték visszaállítása, ha"
+// lg.question_setValueName: "Set question value" => "Kérdésérték beállítása"
+// lg.column_resetValueName: "Reset column value" => "Oszlopérték visszaállítása"
+// lg.column_setValueName: "Set column value" => "Oszlopérték beállítása"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " Olyan kifejezés, amelynek eredménye a célkérdéshez lesz rendelve."
+// survey.title: "Title" => "Cím"
+// page.title: "Title" => "Cím"
+// p.setValueIf: "Set value if" => "Érték beállítása, ha"
+// theme.groupHeader: "Header" => "Fejléc"
+// theme.coverTitleForecolor: "Title forecolor" => "Cím előszíne"
+// theme.coverOverlapEnabled: "Overlap" => "Átfed"
+// theme.backgroundImageFitFill: "Stretch" => "Nyúlik"
+// theme.backgroundImageFitTile: "Tile" => "Cserép"
+// theme.headerView: "View" => "Nézet"
+// theme.headerViewBasic: "Basic" => "Alapvető"
+// theme.headerViewAdvanced: "Advanced" => "Haladó"
+// theme.coverInheritWidthFrom: "Content area width" => "Tartalomterület szélessége"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "Ugyanaz, mint a felmérés"
+// theme.coverInheritWidthFromPage: "Fit to page" => "Laphoz igazítás"
+// theme.coverTextAreaWidth: "Text width" => "Szöveg szélessége"
+// theme.coverBackgroundColorSwitch: "Background color" => "Háttérszín"
+// theme.coverBackgroundColorNone: "None" => "Egyik sem"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "Kiemelő szín"
+// theme.coverBackgroundColorCustom: "Custom" => "Szokás"
+// theme.horizontalAlignmentLeft: "Left" => "Balra"
+// theme.horizontalAlignmentCenter: "Center" => "Központ"
+// theme.horizontalAlignmentRight: "Right" => "Jobbra"
+// theme.verticalAlignmentTop: "Top" => "Felső"
+// theme.verticalAlignmentMiddle: "Middle" => "Középső"
+// theme.verticalAlignmentBottom: "Bottom" => "Fenék"
+// theme.logoPosition: "Logo Position" => "Logó pozíciója"
+// theme.coverTitlePosition: "Title Position" => "Cím pozíciója"
+// lg.question_resetValueText: "reset value for question: {0}" => "Kérdés visszaállítási értéke: {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "Érték hozzárendelése: {1} a kérdéshez: {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "Az oszlop cellaértékének visszaállítása: {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "Cellaérték hozzárendelése: {1} oszlophoz: {0}"
+// ed.surveyJsonExportButton: "Export" => "Kivitel"
+// ed.surveyJsonImportButton: "Import" => "Importál"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "Másolás a vágólapra"
+// pe.filePlaceholder: "File placeholder text" => "Fájl helyőrző szövege"
+// pe.photoPlaceholder: "Photo placeholder text" => "Fénykép helyőrző szövege"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "Fájl vagy fénykép helyőrző szövege"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "Akkor érvényes, ha a \"Forrás típusa\" \"Helyi fájlok\", vagy ha a kamera nem érhető el"
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "Akkor érvényes, ha a \"Forrás típusa\" a \"Kamera\"."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "Akkor érvényes, ha a \"Forrás típusa\" értéke \"Helyi fájlok vagy kamera\"."
+// theme.groupBackground: "Background" => "Háttér"
+// theme.groupAppearance: "Appearance" => "Megjelenés"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Leírás előszín"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "Tényleg vissza akarja állítani a témát? Az összes testreszabás elvész."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "Igen, állítsa vissza a témát"
+// theme.groupBackground: "Background" => "Háttér"
+// theme.groupAppearance: "Appearance" => "Megjelenés"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Leírás előszín"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "Tárolóhoz igazítás"
+// signaturepad.showPlaceholder: "Show the placeholder" => "A helyőrző megjelenítése"
+// signaturepad.placeholder: "Placeholder text" => "Helyőrző szöveg"
+// theme.surveyDescription: "Survey description font" => "Felmérés leírásának betűtípusa"
+// ed.prevFocus: "Focus previous" => "Fókusz előző"
+// ed.nextFocus: "Focus next" => "Fókusz következő"
+// ed.saveTheme: "Save Theme" => "Téma mentése"
+// ed.saveThemeTooltip: "Save Theme" => "Téma mentése"
+// lg.page_requireName: "Make page required" => "Az oldal kötelezővé tétele"
+// lg.panel_requireName: "Make page required" => "Az oldal kötelezővé tétele"
+// signaturepad.signatureWidth: "Signature area width" => "Aláírási terület szélessége"
+// signaturepad.signatureHeight: "Signature area height" => "Aláírási terület magassága"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "Az aláírási terület automatikus méretezése"
+// signaturepad.penMinWidth: "Minimum pen width" => "Tollszélesség minimális"
+// signaturepad.penMaxWidth: "Maximum pen width" => "Maximális tollszélesség"
+// theme.coverDescriptionPosition: "Description position" => "Leírás pozíciója"
+// ed.propertyGridNoResultsFound: "No results found" => "Nincs találat"
+// pv.leftRight: "Left and right" => "Balra és jobbra"
+// p.sourceType: "Source type" => "Forrás típusa"
+// p.fitToContainer: "Fit to container" => "Tárolóhoz igazítás"
+// p.setValueExpression: "Set value expression" => "Értékkifejezés beállítása"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "A választási lehetőségek egy webszolgáltatásból töltődnek be."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "Válassza a beállítások"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "A betöltött választási lehetőségek előnézete"

@@ -302,6 +302,56 @@ test("toolbox categories + keepAllCategoriesExpanded property + remove item, Bug
   expect(toolbox.categories[0].collapsed).toBeFalsy();
   expect(toolbox.categories[1].collapsed).toBeFalsy();
 });
+test("toolbox categories defineCategories, #2", (): any => {
+  var toolbox = new QuestionToolbox([
+    "text",
+    "dropdown",
+    "checkbox",
+    "radiogroup",
+    "comment",
+    "matrix",
+    "rating"
+  ]);
+  toolbox.defineCategories([
+    { category: "select", items: [{ name: "dropdown", title: "New Dropdown" }, "checkbox", "radiogroup"] },
+    { category: "text", items: ["text", "comment"] }
+  ]);
+  expect(toolbox.categories).toHaveLength(2);
+  expect(toolbox.categories[0].name).toBe("select");
+  expect(toolbox.categories[1].name).toBe("text");
+  let items = toolbox.categories[0].items;
+  expect(items).toHaveLength(3);
+  expect(items[0].name).toBe("dropdown");
+  expect(items[0].title).toBe("New Dropdown");
+  expect(items[1].name).toBe("checkbox");
+  expect(items[2].name).toBe("radiogroup");
+  items = toolbox.categories[1].items;
+  expect(items).toHaveLength(2);
+  expect(items[0].name).toBe("text");
+  expect(items[1].name).toBe("comment");
+
+  toolbox.defineCategories([
+    { category: "text", items: [{ name: "text" }, "comment"] },
+    { category: "select", items: ["dropdown", "checkbox", "radiogroup"] },
+  ], true);
+  expect(toolbox.categories).toHaveLength(3);
+  expect(toolbox.categories[0].name).toBe("text");
+  expect(toolbox.categories[1].name).toBe("select");
+  expect(toolbox.categories[2].name).toBe("Misc");
+  items = toolbox.categories[0].items;
+  expect(items).toHaveLength(2);
+  expect(items[0].name).toBe("text");
+  expect(items[1].name).toBe("comment");
+  items = toolbox.categories[1].items;
+  expect(items).toHaveLength(3);
+  expect(items[0].name).toBe("dropdown");
+  expect(items[1].name).toBe("checkbox");
+  expect(items[2].name).toBe("radiogroup");
+  items = toolbox.categories[2].items;
+  expect(items).toHaveLength(2);
+  expect(items[0].name).toBe("rating");
+  expect(items[1].name).toBe("matrix");
+});
 
 test("toolbox copied questions", (): any => {
   var toolbox = new QuestionToolbox(["text", "dropdown"]);
@@ -361,6 +411,7 @@ test("Add customWidgets into toolbox", (): any => {
   CustomWidgetCollection.Instance.addCustomWidget(
     {
       name: "first",
+      iconName: "firsticon",
       widgetIsLoaded: () => {
         return true;
       },
@@ -421,6 +472,7 @@ test("Add customWidgets into toolbox", (): any => {
   expect(toolbox.items[0].name).toEqual("radiogroup");
   expect(toolbox.items[1].name).toEqual("dropdown");
   expect(toolbox.items[2].name).toEqual("first");
+  expect(toolbox.items[2].className).toEqual("svc-toolbox__item svc-toolbox__item--firsticon");
   expect(toolbox.items[3].name).toEqual("second");
   expect(toolbox.items[4].name).toEqual("comp1");
   CustomWidgetCollection.Instance.clear();

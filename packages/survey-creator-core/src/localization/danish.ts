@@ -56,6 +56,8 @@ export var danishStrings = {
     hidePanel: "Skjul panel",
     prevSelected: "Vælg forrige",
     nextSelected: "Vælg næste",
+    prevFocus: "Fokus forrige",
+    nextFocus: "Fokuser næste",
     surveyTypeName: "Spørgeundersøgelse",
     pageTypeName: "Side",
     panelTypeName: "Panelet",
@@ -84,6 +86,8 @@ export var danishStrings = {
     translation: "Oversættelse",
     saveSurvey: "Gem undersøgelse",
     saveSurveyTooltip: "Gem undersøgelse",
+    saveTheme: "Gem tema",
+    saveThemeTooltip: "Gem tema",
     designer: "Undersøgelsesdesigner",
     jsonEditor: "JSON Editor",
     jsonHideErrors: "Skjul fejl",
@@ -106,6 +110,7 @@ export var danishStrings = {
     toolbox: "Værktøjskasse",
     "property-grid": "Egenskaber",
     propertyGridFilteredTextPlaceholder: "Skriv for at søge...",
+    propertyGridNoResultsFound: "Ingen resultater fundet",
     toolboxGeneralCategory: "Generelt",
     toolboxChoiceCategory: "Spørgsmål om valg",
     toolboxTextCategory: "Spørgsmål om tekstinput",
@@ -136,17 +141,27 @@ export var danishStrings = {
     translationNoStrings: "Ingen tekststrenge at oversætte. Ret filteret.",
     translationExportToSCVButton: "Eksporter til CSV",
     translationImportFromSCVButton: "Importer fra CSV",
+    translateUsigAI: "Oversæt automatisk alle",
+    translationDialogTitle: "Uoversatte strenge",
     translationMergeLocaleWithDefault: "Flet {0} med standardsprog",
     translationPlaceHolder: "Oversættelse...",
     themeExportButton: "Eksport",
     themeImportButton: "Import",
+    surveyJsonExportButton: "Eksport",
+    surveyJsonImportButton: "Import",
+    surveyJsonCopyButton: "Kopier til udklipsholder",
     themeResetButton: "Nulstil temaindstillinger til standard",
+    themeResetConfirmation: "Vil du virkelig nulstille temaet? Alle dine tilpasninger går tabt.",
+    themeResetConfirmationOk: "Ja, nulstil temaet",
     bold: "Modig",
     italic: "Kursiv",
     underline: "Understrege",
     addNewQuestion: "Tilføj spørgsmål",
     selectPage: "Vælg side...",
     carryForwardChoicesCopied: "Valg kopieres fra",
+    choicesLoadedFromWebText: "Valg indlæses fra en webtjeneste.",
+    choicesLoadedFromWebLinkText: "Gå til indstillinger",
+    choicesLoadedFromWebPreviewTitle: "Forhåndsvisning af indlæste valgmuligheder",
     htmlPlaceHolder: "HTML-indhold vil være her.",
     panelPlaceHolder: "Smid et spørgsmål fra værktøjskassen her.",
     surveyPlaceHolder: "Undersøgelsen er tom. Træk et element fra værktøjskassen, eller klik på knappen nedenfor.",
@@ -161,14 +176,20 @@ export var danishStrings = {
       empty_tab: "Opret en regel for at tilpasse undersøgelsens flow.",
       page_visibilityName: "Vis (skjul) side",
       page_enableName: "Aktivér (deaktiver) side",
+      page_requireName: "Gør siden påkrævet",
       panel_visibilityName: "Panelet Vis (skjul)",
       panel_enableName: "Aktivér (deaktiver) panel",
+      panel_requireName: "Gør siden påkrævet",
       question_visibilityName: "Vis (skjul) spørgsmål",
       question_enableName: "Aktivér (deaktiver) spørgsmål",
       question_requireName: "Gør spørgsmål påkrævet",
+      question_resetValueName: "Nulstil spørgsmålsværdi",
+      question_setValueName: "Angiv spørgsmålsværdi",
       column_visibilityName: "Vis (skjul) kolonne",
       column_enableName: "Aktivér (deaktiver) kolonne",
       column_requireName: "Gør kolonne påkrævet",
+      column_resetValueName: "Nulstil kolonneværdi",
+      column_setValueName: "Angiv kolonneværdi",
       trigger_completeName: "Komplet undersøgelse",
       trigger_setvalueName: "Indstil svar",
       trigger_copyvalueName: "Kopier svar",
@@ -195,9 +216,14 @@ export var danishStrings = {
       question_visibilityText: "Gør spørgsmål {0} synlige", //{0} question name
       question_enableText: "Foretag spørgsmål{0} aktiver", //{0} question name
       question_requireText: "Gør spørgsmål {0} påkrævet", //{0} question name
+      question_resetValueText: "Nulstil værdi for spørgsmål: {0}",
+      question_setValueText: "Tildel værdi: {1} til spørgsmål: {0}",
       column_visibilityText: "Gør kolonne {0} af spørgsmål {1} synlig", //{0} column name, {1} question name
       column_enableText: "Få kolonne {0} af spørgsmål {1} aktivere", //{0} column name, {1} question name
       column_requireText: "Gøre kolonne {0} af spørgsmål {1} påkrævet", //{0} column name, {1} question name
+      column_resetValueText: "Nulstil celleværdi for kolonne: {0}",
+      column_setValueText: "Tildel celleværdi: {1} til kolonne: {0}",
+      setValueExpressionPlaceholder: " Et udtryk, hvis resultat vil blive tildelt målspørgsmålet.",
       trigger_completeText: "Undersøgelsen bliver afsluttet",
       trigger_setvalueText: "Sæt spørgsmålstegn ved: {0} værdi {1}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "Klar spørgsmålsværdi: {0}", //{0} question name
@@ -221,9 +247,7 @@ export var danishStrings = {
       uncompletedRule_title: "Logiske regler er ufuldstændige",
       uncompletedRule_text: "Du har ikke gennemført nogle af de logiske regler. Hvis du forlader fanen nu, vil ændringerne gå tabt. Vil du stadig forlade fanen uden at gennemføre ændringerne?",
       uncompletedRule_apply: "Ja",
-      uncompletedRule_cancel: "Nej, jeg vil gerne udfylde reglerne",
-      // expressionSetup: "",
-      // actionsSetup: ""
+      uncompletedRule_cancel: "Nej, jeg vil gerne udfylde reglerne"
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ export var danishStrings = {
     fastEntry: "Fast Entry",
     fastEntryNonUniqueError: "Værdien '{0}' er ikke unik",
     fastEntryChoicesCountError: "Begræns antallet af varer fra {0} til {1}",
+    fastEntryChoicesMinCountError: "Indtast mindst {0} punkter",
     fastEntryPlaceholder: "Du kan indstille data i følgende format:\nværdi1|tekst\nværdi2",
     formEntry: "Form Entry",
     testService: "Test the service",
@@ -327,6 +352,8 @@ export var danishStrings = {
     choicesOrder: "Vælg rækkefølge på valg",
     visible: "Er synlig?",
     isRequired: "Er påkrævet?",
+    markRequired: "Markér efter behov",
+    removeRequiredMark: "Fjern det påkrævede mærke",
     isAllRowRequired: "Kræv svar for alle rækker",
     requiredErrorText: "Fejlmeddelelsen \"Påkrævet\"",
     startWithNewLine: "Skal starte med ny linie?",
@@ -408,7 +435,12 @@ export var danishStrings = {
       imageHeight: "Billedhøjde (i CSS-accepterede værdier)",
       imageWidth: "Billedbredde (i CSS-accepterede værdier)"
     },
+    // survey templates
+    survey: {
+      title: "Titel"
+    },
     page: {
+      title: "Titel",
       maxTimeToFinish: "Tidsgrænse for at afslutte siden (i sekunder)"
     },
     question: {
@@ -639,6 +671,18 @@ export var danishStrings = {
     columnsVisibleIf: "Kolonner er synlige, hvis",
     rowsVisibleIf: "Rækker er synlige, hvis",
     otherPlaceholder: "Pladsholder til kommentarområde",
+    signaturepad: {
+      showPlaceholder: "Vis pladsholderen",
+      placeholder: "Pladsholdertekst",
+      signatureWidth: "Bredde på signaturområde",
+      signatureHeight: "Højde på signaturområde",
+      signatureAutoScaleEnabled: "Skaler signaturområdet automatisk",
+      penMinWidth: "Mindste bredde på pennen",
+      penMaxWidth: "Maksimal bredde på pennen"
+    },
+    filePlaceholder: "Filpladsholdertekst",
+    photoPlaceholder: "Eksempeltekst til billeder",
+    fileOrPhotoPlaceholder: "Arkiv- eller fotopladsholdertekst",
     rateType: "Sats type"
   },
   // Property values
@@ -681,6 +725,7 @@ export var danishStrings = {
     both: "Begge",
     left: "left",
     right: "Højre",
+    leftRight: "Venstre og højre",
     color: "farve",
     date: "dato",
     datetime: "datetime",
@@ -876,7 +921,10 @@ export var danishStrings = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "Hvis den angivne kolonne indeholder identiske værdier, kaster undersøgelsen fejlen \"Ikke-unik nøgleværdi\"."
+    keyName: "Hvis den angivne kolonne indeholder identiske værdier, kaster undersøgelsen fejlen \"Ikke-unik nøgleværdi\".",
+    filePlaceholder: "Gælder, når \"Kildetype\" er \"Lokale filer\", eller når kameraet ikke er tilgængeligt",
+    photoPlaceholder: "Gælder, når \"Kildetype\" er \"Kamera\".",
+    fileOrPhotoPlaceholder: "Gælder, når \"Kildetype\" er \"Lokale filer eller kamera\"."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ export var danishStrings = {
     showLabel: "Vis billedtekster",
     value: "Værdi",
     tabAlign: "Tabulatorjustering",
+    sourceType: "Kilde type",
+    fitToContainer: "Passer til beholder",
+    setValueExpression: "Angiv værdiudtryk",
     description: "description",
     logoFit: "Logo pasform",
     pages: "Sider",
@@ -910,6 +961,8 @@ export var danishStrings = {
     descriptionLocation: "Beskrivelse placering",
     defaultValueExpression: "Standardværdiudtryk",
     requiredIf: "Påkrævet, hvis",
+    resetValueIf: "Nulstil værdi, hvis",
+    setValueIf: "Angiv værdi, hvis",
     validators: "validators",
     bindings: "Bindings",
     renderAs: "Gengiv som",
@@ -986,6 +1039,9 @@ export var danishStrings = {
     "--base-unit": "Basisenhed",
     groupGeneral: "Generel",
     groupAdvanced: "Avanceret",
+    groupHeader: "Header",
+    groupBackground: "Baggrund",
+    groupAppearance: "Udseende",
     themeName: "Tema",
     themeMode: "Spørgsmål udseende",
     themeModePanels: "Standard",
@@ -996,11 +1052,16 @@ export var danishStrings = {
     primaryDefaultColor: "Standard",
     primaryDarkColor: "Hover",
     primaryLightColor: "Valgte",
+    coverTitleForecolor: "Titel forfarve",
+    coverDescriptionForecolor: "Beskrivelse forfarve",
+    coverOverlapEnabled: "Overlapning",
     backgroundDimColor: "Baggrundsfarve",
     backgroundImage: "Baggrundsbillede",
     backgroundImageFitAuto: "Auto",
     backgroundImageFitCover: "Dække",
     backgroundImageFitContain: "Indeholde",
+    backgroundImageFitFill: "Stræk",
+    backgroundImageFitTile: "Flise",
     backgroundOpacity: "Opacitet",
     backgroundImageAttachmentFixed: "Fast",
     backgroundImageAttachmentScroll: "Rulle",
@@ -1033,6 +1094,7 @@ export var danishStrings = {
     scale: "Skæl",
     cornerRadius: "Hjørne radius",
     surveyTitle: "Skrifttype for undersøgelsestitel",
+    surveyDescription: "Skrifttype til undersøgelsesbeskrivelse",
     pageTitle: "Sidetitel skrifttype",
     pageDescription: "Sidebeskrivelse skrifttype",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ export var danishStrings = {
     boxShadowInner: "Indre",
     questionShadow: "Skyggeeffekter",
     editorShadow: "Skyggeeffekter for inputelement",
+    headerView: "Udsigt",
+    headerViewBasic: "Grundlæggende",
+    headerViewAdvanced: "Avanceret",
+    coverInheritWidthFrom: "Bredde på indholdsområde",
+    coverInheritWidthFromSurvey: "Samme som undersøgelse",
+    coverInheritWidthFromContainer: "Passer til beholder",
+    coverTextAreaWidth: "Tekstbredde",
+    coverBackgroundColorSwitch: "Baggrundsfarve",
+    coverBackgroundColorNone: "Ingen",
+    coverBackgroundColorAccentColor: "Accent farve",
+    coverBackgroundColorCustom: "Sædvane",
+    horizontalAlignmentLeft: "Venstre",
+    horizontalAlignmentCenter: "Midte",
+    horizontalAlignmentRight: "Højre",
+    verticalAlignmentTop: "Top",
+    verticalAlignmentMiddle: "Midte",
+    verticalAlignmentBottom: "Bund",
+    logoPosition: "Logo position",
+    coverTitlePosition: "Titel position",
+    coverDescriptionPosition: "Beskrivelse position",
     names: {
       default: "Standard",
       sharp: "Skarp",
@@ -1215,8 +1297,6 @@ editorLocalization.locales["da"] = danishStrings;
 // lg.uncompletedRule_text: "You have not completed some of the logical rules. If you leave the tab now, the changes will be lost. Do you still want to leave the tab without completing the changes?" => "Du har ikke gennemført nogle af de logiske regler. Hvis du forlader fanen nu, vil ændringerne gå tabt. Vil du stadig forlade fanen uden at gennemføre ændringerne?"
 // lg.uncompletedRule_apply: "Yes" => "Ja"
 // lg.uncompletedRule_cancel: "No, I want to complete the rules" => "Nej, jeg vil gerne udfylde reglerne"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.save: "Save" => "Spare"
 // pe.clear: "Clear" => "Tydelig"
 // pe.saveTooltip: "Save" => "Spare"
@@ -1741,8 +1821,6 @@ editorLocalization.locales["da"] = danishStrings;
 // colors.tulip: "Tulip" => "Tulipan"
 // colors.brown: "Brown" => "Brun"
 // colors.green: "Green" => "Grøn"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // names.sharp: "Sharp" => "Skarp"
 // names.borderless: "Borderless" => "Kant"
 // names.flat: "Flat" => "Flad"
@@ -1752,14 +1830,94 @@ editorLocalization.locales["da"] = danishStrings;
 // names.threedimensional: "3D" => ".3D"
 // ed.translationDeleteLanguage: "Are you certain you wish to delete all strings for this language?" => "Er du sikker på, at du ønsker at slette alle strenge for dette sprog?"
 // ed.themeResetButton: "Reset theme settings to default" => "Nulstil temaindstillinger til standard"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // theme.placeholderColor: "Placeholder color" => "Pladsholderfarve"
 // ed.themeSettings: "Theme Settings" => "Temaindstillinger"
 // ed.themeSettingsTooltip: "Open theme settings" => "Åbn temaindstillinger"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.resetToDefaultCaption: "Reset" => "Nulstille"
 // pv.file: "Local files" => "Lokale filer"
 // pv.camera: "Camera" => "Kamera"
 // pv.file-camera: "Local files or camera" => "Lokale filer eller kamera"
+// ed.translateUsigAI: "Auto-translate All" => "Oversæt automatisk alle"
+// ed.translationDialogTitle: "Untranslated strings" => "Uoversatte strenge"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "Indtast mindst {0} punkter"
+// lg.question_resetValueName: "Reset question value" => "Nulstil spørgsmålsværdi"
+// lg.column_resetValue: "Reset column value" => "Nulstil kolonneværdi"
+// pe.markRequired: "Mark as required" => "Markér efter behov"
+// pe.removeRequiredMark: "Remove the required mark" => "Fjern det påkrævede mærke"
+// p.resetValueIf: "Reset value if" => "Nulstil værdi, hvis"
+// lg.question_setValueName: "Set question value" => "Angiv spørgsmålsværdi"
+// lg.column_resetValueName: "Reset column value" => "Nulstil kolonneværdi"
+// lg.column_setValueName: "Set column value" => "Angiv kolonneværdi"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " Et udtryk, hvis resultat vil blive tildelt målspørgsmålet."
+// survey.title: "Title" => "Titel"
+// page.title: "Title" => "Titel"
+// p.setValueIf: "Set value if" => "Angiv værdi, hvis"
+// theme.groupHeader: "Header" => "Header"
+// theme.coverTitleForecolor: "Title forecolor" => "Titel forfarve"
+// theme.coverOverlapEnabled: "Overlap" => "Overlapning"
+// theme.backgroundImageFitFill: "Stretch" => "Stræk"
+// theme.backgroundImageFitTile: "Tile" => "Flise"
+// theme.headerView: "View" => "Udsigt"
+// theme.headerViewBasic: "Basic" => "Grundlæggende"
+// theme.headerViewAdvanced: "Advanced" => "Avanceret"
+// theme.coverInheritWidthFrom: "Content area width" => "Bredde på indholdsområde"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "Samme som undersøgelse"
+// theme.coverInheritWidthFromPage: "Fit to page" => "Tilpas til side"
+// theme.coverTextAreaWidth: "Text width" => "Tekstbredde"
+// theme.coverBackgroundColorSwitch: "Background color" => "Baggrundsfarve"
+// theme.coverBackgroundColorNone: "None" => "Ingen"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "Accent farve"
+// theme.coverBackgroundColorCustom: "Custom" => "Sædvane"
+// theme.horizontalAlignmentLeft: "Left" => "Venstre"
+// theme.horizontalAlignmentCenter: "Center" => "Midte"
+// theme.horizontalAlignmentRight: "Right" => "Højre"
+// theme.verticalAlignmentTop: "Top" => "Top"
+// theme.verticalAlignmentMiddle: "Middle" => "Midte"
+// theme.verticalAlignmentBottom: "Bottom" => "Bund"
+// lg.question_resetValueText: "reset value for question: {0}" => "Nulstil værdi for spørgsmål: {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "Tildel værdi: {1} til spørgsmål: {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "Nulstil celleværdi for kolonne: {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "Tildel celleværdi: {1} til kolonne: {0}"
+// ed.surveyJsonExportButton: "Export" => "Eksport"
+// ed.surveyJsonImportButton: "Import" => "Import"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "Kopier til udklipsholder"
+// pe.filePlaceholder: "File placeholder text" => "Filpladsholdertekst"
+// pe.photoPlaceholder: "Photo placeholder text" => "Eksempeltekst til billeder"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "Arkiv- eller fotopladsholdertekst"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "Gælder, når \"Kildetype\" er \"Lokale filer\", eller når kameraet ikke er tilgængeligt"
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "Gælder, når \"Kildetype\" er \"Kamera\"."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "Gælder, når \"Kildetype\" er \"Lokale filer eller kamera\"."
+// theme.groupBackground: "Background" => "Baggrund"
+// theme.groupAppearance: "Appearance" => "Udseende"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Beskrivelse forfarve"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "Vil du virkelig nulstille temaet? Alle dine tilpasninger går tabt."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "Ja, nulstil temaet"
+// theme.groupBackground: "Background" => "Baggrund"
+// theme.groupAppearance: "Appearance" => "Udseende"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Beskrivelse forfarve"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "Passer til beholder"
+// signaturepad.showPlaceholder: "Show the placeholder" => "Vis pladsholderen"
+// signaturepad.placeholder: "Placeholder text" => "Pladsholdertekst"
+// theme.surveyDescription: "Survey description font" => "Skrifttype til undersøgelsesbeskrivelse"
+// ed.prevFocus: "Focus previous" => "Fokus forrige"
+// ed.nextFocus: "Focus next" => "Fokuser næste"
+// ed.saveTheme: "Save Theme" => "Gem tema"
+// ed.saveThemeTooltip: "Save Theme" => "Gem tema"
+// lg.page_requireName: "Make page required" => "Gør siden påkrævet"
+// lg.panel_requireName: "Make page required" => "Gør siden påkrævet"
+// signaturepad.signatureWidth: "Signature area width" => "Bredde på signaturområde"
+// signaturepad.signatureHeight: "Signature area height" => "Højde på signaturområde"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "Skaler signaturområdet automatisk"
+// signaturepad.penMinWidth: "Minimum pen width" => "Mindste bredde på pennen"
+// signaturepad.penMaxWidth: "Maximum pen width" => "Maksimal bredde på pennen"
+// theme.logoPosition: "Logo position" => "Logo position"
+// theme.coverTitlePosition: "Title position" => "Titel position"
+// theme.coverDescriptionPosition: "Description position" => "Beskrivelse position"
+// ed.propertyGridNoResultsFound: "No results found" => "Ingen resultater fundet"
+// pv.leftRight: "Left and right" => "Venstre og højre"
+// p.sourceType: "Source type" => "Kilde type"
+// p.fitToContainer: "Fit to container" => "Passer til beholder"
+// p.setValueExpression: "Set value expression" => "Angiv værdiudtryk"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "Valg indlæses fra en webtjeneste."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "Gå til indstillinger"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "Forhåndsvisning af indlæste valgmuligheder"

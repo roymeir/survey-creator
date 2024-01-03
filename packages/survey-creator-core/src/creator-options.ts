@@ -1,8 +1,15 @@
 /**
- * Survey Creator configuration. Pass it as an argument to the `SurveyCreator` constructor:
+ * Survey Creator configuration. Pass it as an argument to the `SurveyCreator`/`SurveyCreatorModel` constructor:
  *
  * ```js
+ * const creatorOptions = { ... };
  * const creator = new SurveyCreator.SurveyCreator(creatorOptions);
+ * 
+ * // In modular applications:
+ * import { SurveyCreatorModel } from "survey-creator-core";
+ * 
+ * const creatorOptions = { ... };
+ * const creator = new SurveyCreatorModel(creatorOptions);
  * ```
  */
 export interface ICreatorOptions {
@@ -32,18 +39,11 @@ export interface ICreatorOptions {
    */
   showLogicTab?: boolean;
   /**
-   * Specifies whether to display the Embed Survey tab.
-   *
-   * Default value: `false`
-   */
-  showEmbeddedSurveyTab?: boolean;
-  /**
    * Specifies whether to display the Translation tab.
    *
    * Default value: `false`
    */
   showTranslationTab?: boolean;
-  haveCommercialLicense?: boolean;
   /**
    * Specifies whether to call the [`saveSurveyFunc`](https://surveyjs.io/Documentation/Survey-Creator?id=surveycreator#saveSurveyFunc) and [`saveThemeFunc`](https://surveyjs.io/survey-creator/documentation/api-reference/survey-creator#saveThemeFunc) functions each time survey or theme settings are changed.
    *
@@ -177,6 +177,12 @@ export interface ICreatorOptions {
    */
   maximumColumnsCount?: number;
   /**
+   * Limits the minimum number of choices in [Checkbox](https://surveyjs.io/Documentation/Library?id=questioncheckboxmodel), [Dropdown](https://surveyjs.io/Documentation/Library?id=questiondropdownmodel), and [Radiogroup](https://surveyjs.io/Documentation/Library?id=questionradiogroupmodel) questions. Set this property if users should not delete choices below the specified limit.
+   *
+   * Default value: 0 (unlimited, taken from `settings.propertyGrid.minimumChoicesCount`)
+   */
+  minimumChoicesCount?: number;
+  /**
    * Limits the number of choices that users can add to [Checkbox](https://surveyjs.io/Documentation/Library?id=questioncheckboxmodel), [Dropdown](https://surveyjs.io/Documentation/Library?id=questiondropdownmodel), and [Radiogroup](https://surveyjs.io/Documentation/Library?id=questionradiogroupmodel) questions.
    *
    * Default value: 0 (unlimited, taken from `settings.propertyGrid.maximumChoicesCount`)
@@ -189,7 +195,7 @@ export interface ICreatorOptions {
    */
   maximumRowsCount?: number;
   /**
-   * Limits the number of rate value that users can add to [Rating](https://surveyjs.io/Documentation/Library?id=questionratingmodel) questions.
+   * Limits the number of rate values that users can add to [Rating](https://surveyjs.io/Documentation/Library?id=questionratingmodel) questions.
    *
    * Default value: 0 (unlimited, taken from `settings.propertyGrid.maximumRateValues`)
    */
@@ -200,6 +206,13 @@ export interface ICreatorOptions {
    * Default value: -1 (unlimited)
    */
   maxLogicItemsInCondition?: number;
+
+  /**
+   * Limits the number of nested panels within a [Panel](https://surveyjs.io/form-library/documentation/api-reference/panel-model) element.
+   * 
+   * Default value: -1 (unlimited)
+   */
+  maxNestedPanels?: number;
   /**
    * Specifies whether users can switch between UI themes in the Preview tab.
    *
@@ -217,7 +230,7 @@ export interface ICreatorOptions {
    */
   previewOrientation?: "landscape" | "portrait";
   /**
-   * Limits question and panels types available in the Toolbox and Add Question menu.
+   * Limits question and panel types available in the Toolbox and Add Question menu.
    * 
    * Refer to the [Limit Available Question and Panel Types](https://surveyjs.io/Documentation/Survey-Creator?id=toolbox#limit-available-question-and-panel-types) help topic for more information.
    */

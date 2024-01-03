@@ -56,6 +56,8 @@ export let svStrings = {
     hidePanel: "Dölj panel",
     prevSelected: "Välj föregående",
     nextSelected: "Välj nästa",
+    prevFocus: "Fokus föregående",
+    nextFocus: "Fokus nästa",
     surveyTypeName: "Undersökning",
     pageTypeName: "Sida",
     panelTypeName: "Panel",
@@ -84,6 +86,8 @@ export let svStrings = {
     translation: "Översättning",
     saveSurvey: "Spara Enkät",
     saveSurveyTooltip: "Spara undersökning",
+    saveTheme: "Spara tema",
+    saveThemeTooltip: "Spara tema",
     designer: "Enkät Designer",
     jsonEditor: "JSON Redigering",
     jsonHideErrors: "Dölj fel",
@@ -106,6 +110,7 @@ export let svStrings = {
     toolbox: "Verktygslista",
     "property-grid": "Egenskaper",
     propertyGridFilteredTextPlaceholder: "Skriv för att söka...",
+    propertyGridNoResultsFound: "Inga resultat hittades",
     toolboxGeneralCategory: "Generellt",
     toolboxChoiceCategory: "Frågor om val",
     toolboxTextCategory: "Frågor om textinmatning",
@@ -136,17 +141,27 @@ export let svStrings = {
     translationNoStrings: "Inga strängar är översatta. Vänligen ändra filtret.",
     translationExportToSCVButton: "Exportera till CSV",
     translationImportFromSCVButton: "Importera från CSV",
+    translateUsigAI: "Översätt alla automatiskt",
+    translationDialogTitle: "Oöversatta strängar",
     translationMergeLocaleWithDefault: "Mergea {0} med standard språk",
     translationPlaceHolder: "Översättning...",
     themeExportButton: "Export",
     themeImportButton: "Import",
+    surveyJsonExportButton: "Export",
+    surveyJsonImportButton: "Import",
+    surveyJsonCopyButton: "Kopiera till Urklipp",
     themeResetButton: "Återställ temainställningarna till standard",
+    themeResetConfirmation: "Vill du verkligen återställa temat? Alla dina anpassningar kommer att gå förlorade.",
+    themeResetConfirmationOk: "Ja, återställ temat",
     bold: "Djärv",
     italic: "Kursiv",
     underline: "Understryka",
     addNewQuestion: "Lägg till fråga",
     selectPage: "Välj sida...",
     carryForwardChoicesCopied: "Alternativen kopieras från",
+    choicesLoadedFromWebText: "Alternativen läses in från en webbtjänst.",
+    choicesLoadedFromWebLinkText: "Gå till inställningar",
+    choicesLoadedFromWebPreviewTitle: "Förhandsgranskning av inlästa alternativalternativ",
     htmlPlaceHolder: "HTML-innehåll kommer att finnas här.",
     panelPlaceHolder: "Släpp en fråga från verktygslådan här.",
     surveyPlaceHolder: "Enkäten är tom. Dra ett element från verktygslådan eller klicka på knappen nedan.",
@@ -161,14 +176,20 @@ export let svStrings = {
       empty_tab: "Skapa en regel för att anpassa undersökningens flöde.",
       page_visibilityName: "Visa (dölj) sida",
       page_enableName: "Aktivera (inaktivera) sida",
+      page_requireName: "Gör sidan obligatorisk",
       panel_visibilityName: "Visa (dölj) panelen",
       panel_enableName: "Aktivera (inaktivera) panelen",
+      panel_requireName: "Gör sidan obligatorisk",
       question_visibilityName: "Visa (dölj) fråga",
       question_enableName: "Aktivera (inaktivera) fråga",
       question_requireName: "Gör frågan obligatorisk",
+      question_resetValueName: "Återställ frågevärde",
+      question_setValueName: "Ange frågevärde",
       column_visibilityName: "Visa (dölj) kolumn",
       column_enableName: "Aktivera (inaktivera) kolumn",
       column_requireName: "Gör kolumnen obligatorisk",
+      column_resetValueName: "Återställ kolumnvärde",
+      column_setValueName: "Ange kolumnvärde",
       trigger_completeName: "Fullständig undersökning",
       trigger_setvalueName: "Ställ in svar",
       trigger_copyvalueName: "Kopiera svar",
@@ -195,9 +216,14 @@ export let svStrings = {
       question_visibilityText: "Gör frågan {0} synlig", //{0} question name
       question_enableText: "Gör frågan {0} aktivera", //{0} question name
       question_requireText: "Gör frågan {0} krävs", //{0} question name
+      question_resetValueText: "Återställ värde för fråga: {0}",
+      question_setValueText: "Tilldela värde: {1} till fråga: {0}",
       column_visibilityText: "Synliggör kolumn {0} av fråga {1}", //{0} column name, {1} question name
       column_enableText: "Gör kolumn {0} av fråga {1} aktivera", //{0} column name, {1} question name
       column_requireText: "Gör kolumn {0} av fråga {1} krävs", //{0} column name, {1} question name
+      column_resetValueText: "Återställ cellvärde för kolumn: {0}",
+      column_setValueText: "Tilldela cellvärde: {1} till kolumn: {0}",
+      setValueExpressionPlaceholder: " Ett uttryck vars resultat kommer att tilldelas målfrågan.",
       trigger_completeText: "Undersökningen blir slutförd",
       trigger_setvalueText: "ifrågasätts: {0} värde {1}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "Tydligt frågevärde: {0}", //{0} question name
@@ -221,9 +247,7 @@ export let svStrings = {
       uncompletedRule_title: "Logiska regler är ofullständiga",
       uncompletedRule_text: "Du har inte slutfört några av de logiska reglerna. Om du lämnar fliken nu kommer ändringarna att gå förlorade. Vill du fortfarande lämna fliken utan att slutföra ändringarna?",
       uncompletedRule_apply: "Ja",
-      uncompletedRule_cancel: "Nej, jag vill komplettera reglerna",
-      // expressionSetup: "",
-      // actionsSetup: ""
+      uncompletedRule_cancel: "Nej, jag vill komplettera reglerna"
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ export let svStrings = {
     fastEntry: "Snabb ifyllning",
     fastEntryNonUniqueError: "Värdet \"{0}\" är inte unikt",
     fastEntryChoicesCountError: "Begränsa antalet artiklar från {0} till {1}",
+    fastEntryChoicesMinCountError: "Ange minst {0} artiklar",
     fastEntryPlaceholder: "Du kan ange data i följande format:\nvärde1|text\nvärde2",
     formEntry: "Ifyllning i enkäten",
     testService: "Testa tjänsten",
@@ -327,6 +352,8 @@ export let svStrings = {
     choicesOrder: "Välj ordning på valet",
     visible: "Synlig?",
     isRequired: "Nödvändig?",
+    markRequired: "Markera efter behov",
+    removeRequiredMark: "Ta bort det obligatoriska märket",
     isAllRowRequired: "Kräv svar för alla rader",
     requiredErrorText: "Felmeddelandet \"Obligatoriskt\"",
     startWithNewLine: "Starta på en ny rad?",
@@ -408,7 +435,12 @@ export let svStrings = {
       imageHeight: "Bildhöjd (i CSS-accepterade värden)",
       imageWidth: "Bildbredd (i CSS-godkända värden)"
     },
+    // survey templates
+    survey: {
+      title: "Titel"
+    },
     page: {
+      title: "Titel",
       maxTimeToFinish: "Tidsgräns för att avsluta sidan (i sekunder)"
     },
     question: {
@@ -639,6 +671,18 @@ export let svStrings = {
     columnsVisibleIf: "Kolumner visas om",
     rowsVisibleIf: "Raderna visas om",
     otherPlaceholder: "Platshållare för kommentarsområde",
+    signaturepad: {
+      showPlaceholder: "Visa platshållaren",
+      placeholder: "Platshållartext",
+      signatureWidth: "Signaturområdets bredd",
+      signatureHeight: "Signaturområdets höjd",
+      signatureAutoScaleEnabled: "Skala signaturområdet automatiskt",
+      penMinWidth: "Minsta pennbredd",
+      penMaxWidth: "Maximal pennbredd"
+    },
+    filePlaceholder: "Text för filplatshållare",
+    photoPlaceholder: "Text för platshållare för foton",
+    fileOrPhotoPlaceholder: "Platshållartext för fil eller foto",
     rateType: "Typ av hastighet"
   },
   // Property values
@@ -681,6 +725,7 @@ export let svStrings = {
     both: "Båda",
     left: "left",
     right: "Höger",
+    leftRight: "Vänster och höger",
     color: "färg",
     date: "datum",
     datetime: "datetime",
@@ -876,7 +921,10 @@ export let svStrings = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "Om den angivna kolumnen innehåller identiska värden genereras felet \"Icke-unikt nyckelvärde\"."
+    keyName: "Om den angivna kolumnen innehåller identiska värden genereras felet \"Icke-unikt nyckelvärde\".",
+    filePlaceholder: "Gäller när \"Källtyp\" är \"Lokala filer\" eller när kameran inte är tillgänglig",
+    photoPlaceholder: "Gäller när \"Källtyp\" är \"Kamera\".",
+    fileOrPhotoPlaceholder: "Gäller när \"Källtyp\" är \"Lokala filer eller kamera\"."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ export let svStrings = {
     showLabel: "Visa bildtexter",
     value: "Värde",
     tabAlign: "Justering av tabb",
+    sourceType: "Typ av källa",
+    fitToContainer: "Passa till behållare",
+    setValueExpression: "Ange värde-uttryck",
     description: "description",
     logoFit: "Logotyp passform",
     pages: "Sidor",
@@ -910,6 +961,8 @@ export let svStrings = {
     descriptionLocation: "Beskrivning plats",
     defaultValueExpression: "Uttryck för standardvärde",
     requiredIf: "Obligatoriskt om",
+    resetValueIf: "Återställ värde om",
+    setValueIf: "Ange värde om",
     validators: "validators",
     bindings: "Bindningar",
     renderAs: "Återge som",
@@ -986,6 +1039,9 @@ export let svStrings = {
     "--base-unit": "Basenhet",
     groupGeneral: "Allmänt",
     groupAdvanced: "Avancerad",
+    groupHeader: "Rubrik",
+    groupBackground: "Bakgrund",
+    groupAppearance: "Utseende",
     themeName: "Tema",
     themeMode: "Fråga utseende",
     themeModePanels: "Standard",
@@ -996,11 +1052,16 @@ export let svStrings = {
     primaryDefaultColor: "Standard",
     primaryDarkColor: "Sväva",
     primaryLightColor: "Vald",
+    coverTitleForecolor: "Titel förfärg",
+    coverDescriptionForecolor: "Beskrivning förfärg",
+    coverOverlapEnabled: "Överlappa",
     backgroundDimColor: "Bakgrundsfärg",
     backgroundImage: "Bakgrundsbild",
     backgroundImageFitAuto: "Bil",
     backgroundImageFitCover: "Täcka",
     backgroundImageFitContain: "Innehålla",
+    backgroundImageFitFill: "Tänja",
+    backgroundImageFitTile: "Kakel",
     backgroundOpacity: "Ogenomskinlighet",
     backgroundImageAttachmentFixed: "Fast",
     backgroundImageAttachmentScroll: "Rulla",
@@ -1033,6 +1094,7 @@ export let svStrings = {
     scale: "Skala",
     cornerRadius: "Hörnradie",
     surveyTitle: "Teckensnitt för undersökningstitel",
+    surveyDescription: "Teckensnitt för undersökningsbeskrivning",
     pageTitle: "Teckensnitt för sidtitel",
     pageDescription: "Teckensnitt för sidbeskrivning",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ export let svStrings = {
     boxShadowInner: "Inre",
     questionShadow: "Skuggeffekter",
     editorShadow: "Skuggeffekter för indataelement",
+    headerView: "Utsikt",
+    headerViewBasic: "Grundläggande",
+    headerViewAdvanced: "Avancerad",
+    coverInheritWidthFrom: "Innehållets bredd",
+    coverInheritWidthFromSurvey: "Samma som undersökning",
+    coverInheritWidthFromContainer: "Passa till behållare",
+    coverTextAreaWidth: "Textens bredd",
+    coverBackgroundColorSwitch: "Bakgrundsfärg",
+    coverBackgroundColorNone: "Ingen",
+    coverBackgroundColorAccentColor: "Accentfärg",
+    coverBackgroundColorCustom: "Sed",
+    horizontalAlignmentLeft: "Vänster",
+    horizontalAlignmentCenter: "Centrum",
+    horizontalAlignmentRight: "Höger",
+    verticalAlignmentTop: "Topp",
+    verticalAlignmentMiddle: "Mitt",
+    verticalAlignmentBottom: "Botten",
+    logoPosition: "Logotypens placering",
+    coverTitlePosition: "Titel position",
+    coverDescriptionPosition: "Beskrivning position",
     names: {
       default: "Standard",
       sharp: "Skarp",
@@ -1208,8 +1290,6 @@ editorLocalization.locales["sv"] = svStrings;
 // lg.uncompletedRule_text: "You have not completed some of the logical rules. If you leave the tab now, the changes will be lost. Do you still want to leave the tab without completing the changes?" => "Du har inte slutfört några av de logiska reglerna. Om du lämnar fliken nu kommer ändringarna att gå förlorade. Vill du fortfarande lämna fliken utan att slutföra ändringarna?"
 // lg.uncompletedRule_apply: "Yes" => "Ja"
 // lg.uncompletedRule_cancel: "No, I want to complete the rules" => "Nej, jag vill komplettera reglerna"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.save: "Save" => "Spara"
 // pe.clear: "Clear" => "Klar"
 // pe.saveTooltip: "Save" => "Spara"
@@ -1733,8 +1813,6 @@ editorLocalization.locales["sv"] = svStrings;
 // colors.tulip: "Tulip" => "Tulpan"
 // colors.brown: "Brown" => "Brun"
 // colors.green: "Green" => "Grön"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // names.sharp: "Sharp" => "Skarp"
 // names.borderless: "Borderless" => "Marginalfri"
 // names.flat: "Flat" => "Flat"
@@ -1744,14 +1822,94 @@ editorLocalization.locales["sv"] = svStrings;
 // names.threedimensional: "3D" => ".3D"
 // ed.translationDeleteLanguage: "Are you certain you wish to delete all strings for this language?" => "Är du säker på att du vill ta bort alla strängar för det här språket?"
 // ed.themeResetButton: "Reset theme settings to default" => "Återställ temainställningarna till standard"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // theme.placeholderColor: "Placeholder color" => "Färg på platshållare"
 // ed.themeSettings: "Theme Settings" => "Tema Inställningar"
 // ed.themeSettingsTooltip: "Open theme settings" => "Öppna temainställningar"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.resetToDefaultCaption: "Reset" => "Nollställa"
 // pv.file: "Local files" => "Lokala filer"
 // pv.camera: "Camera" => "Kamera"
 // pv.file-camera: "Local files or camera" => "Lokala filer eller kamera"
+// ed.translateUsigAI: "Auto-translate All" => "Översätt alla automatiskt"
+// ed.translationDialogTitle: "Untranslated strings" => "Oöversatta strängar"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "Ange minst {0} artiklar"
+// lg.question_resetValueName: "Reset question value" => "Återställ frågevärde"
+// lg.column_resetValue: "Reset column value" => "Återställ kolumnvärde"
+// pe.markRequired: "Mark as required" => "Markera efter behov"
+// pe.removeRequiredMark: "Remove the required mark" => "Ta bort det obligatoriska märket"
+// p.resetValueIf: "Reset value if" => "Återställ värde om"
+// lg.question_setValueName: "Set question value" => "Ange frågevärde"
+// lg.column_resetValueName: "Reset column value" => "Återställ kolumnvärde"
+// lg.column_setValueName: "Set column value" => "Ange kolumnvärde"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " Ett uttryck vars resultat kommer att tilldelas målfrågan."
+// survey.title: "Title" => "Titel"
+// page.title: "Title" => "Titel"
+// p.setValueIf: "Set value if" => "Ange värde om"
+// theme.groupHeader: "Header" => "Rubrik"
+// theme.coverTitleForecolor: "Title forecolor" => "Titel förfärg"
+// theme.coverOverlapEnabled: "Overlap" => "Överlappa"
+// theme.backgroundImageFitFill: "Stretch" => "Tänja"
+// theme.backgroundImageFitTile: "Tile" => "Kakel"
+// theme.headerView: "View" => "Utsikt"
+// theme.headerViewBasic: "Basic" => "Grundläggande"
+// theme.headerViewAdvanced: "Advanced" => "Avancerad"
+// theme.coverInheritWidthFrom: "Content area width" => "Innehållets bredd"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "Samma som undersökning"
+// theme.coverInheritWidthFromPage: "Fit to page" => "Anpassa till sida"
+// theme.coverTextAreaWidth: "Text width" => "Textens bredd"
+// theme.coverBackgroundColorSwitch: "Background color" => "Bakgrundsfärg"
+// theme.coverBackgroundColorNone: "None" => "Ingen"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "Accentfärg"
+// theme.coverBackgroundColorCustom: "Custom" => "Sed"
+// theme.horizontalAlignmentLeft: "Left" => "Vänster"
+// theme.horizontalAlignmentCenter: "Center" => "Centrum"
+// theme.horizontalAlignmentRight: "Right" => "Höger"
+// theme.verticalAlignmentTop: "Top" => "Topp"
+// theme.verticalAlignmentMiddle: "Middle" => "Mitt"
+// theme.verticalAlignmentBottom: "Bottom" => "Botten"
+// theme.logoPosition: "Logo Position" => "Logotypens placering"
+// lg.question_resetValueText: "reset value for question: {0}" => "Återställ värde för fråga: {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "Tilldela värde: {1} till fråga: {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "Återställ cellvärde för kolumn: {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "Tilldela cellvärde: {1} till kolumn: {0}"
+// ed.surveyJsonExportButton: "Export" => "Export"
+// ed.surveyJsonImportButton: "Import" => "Import"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "Kopiera till Urklipp"
+// pe.filePlaceholder: "File placeholder text" => "Text för filplatshållare"
+// pe.photoPlaceholder: "Photo placeholder text" => "Text för platshållare för foton"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "Platshållartext för fil eller foto"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "Gäller när \"Källtyp\" är \"Lokala filer\" eller när kameran inte är tillgänglig"
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "Gäller när \"Källtyp\" är \"Kamera\"."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "Gäller när \"Källtyp\" är \"Lokala filer eller kamera\"."
+// theme.groupBackground: "Background" => "Bakgrund"
+// theme.groupAppearance: "Appearance" => "Utseende"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Beskrivning förfärg"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "Vill du verkligen återställa temat? Alla dina anpassningar kommer att gå förlorade."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "Ja, återställ temat"
+// theme.groupBackground: "Background" => "Bakgrund"
+// theme.groupAppearance: "Appearance" => "Utseende"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Beskrivning förfärg"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "Passa till behållare"
+// signaturepad.showPlaceholder: "Show the placeholder" => "Visa platshållaren"
+// signaturepad.placeholder: "Placeholder text" => "Platshållartext"
+// theme.surveyDescription: "Survey description font" => "Teckensnitt för undersökningsbeskrivning"
+// ed.prevFocus: "Focus previous" => "Fokus föregående"
+// ed.nextFocus: "Focus next" => "Fokus nästa"
+// ed.saveTheme: "Save Theme" => "Spara tema"
+// ed.saveThemeTooltip: "Save Theme" => "Spara tema"
+// lg.page_requireName: "Make page required" => "Gör sidan obligatorisk"
+// lg.panel_requireName: "Make page required" => "Gör sidan obligatorisk"
+// signaturepad.signatureWidth: "Signature area width" => "Signaturområdets bredd"
+// signaturepad.signatureHeight: "Signature area height" => "Signaturområdets höjd"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "Skala signaturområdet automatiskt"
+// signaturepad.penMinWidth: "Minimum pen width" => "Minsta pennbredd"
+// signaturepad.penMaxWidth: "Maximum pen width" => "Maximal pennbredd"
+// theme.coverTitlePosition: "Title position" => "Titel position"
+// theme.coverDescriptionPosition: "Description position" => "Beskrivning position"
+// ed.propertyGridNoResultsFound: "No results found" => "Inga resultat hittades"
+// pv.leftRight: "Left and right" => "Vänster och höger"
+// p.sourceType: "Source type" => "Typ av källa"
+// p.fitToContainer: "Fit to container" => "Passa till behållare"
+// p.setValueExpression: "Set value expression" => "Ange värde-uttryck"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "Alternativen läses in från en webbtjänst."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "Gå till inställningar"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "Förhandsgranskning av inlästa alternativalternativ"

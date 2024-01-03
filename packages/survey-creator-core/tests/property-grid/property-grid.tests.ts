@@ -1,5 +1,4 @@
 import {
-  PropertyGridModel,
   PropertyGridEditorCollection,
   PropertyJSONGenerator,
   PropertyGridEditorBoolean,
@@ -30,11 +29,9 @@ import {
   surveyLocalization,
   AdaptiveActionContainer,
   QuestionCommentModel,
-  QuestionImagePickerModel,
-  QuestionSignaturePadModel
+  QuestionImagePickerModel
 } from "survey-core";
 import {
-  ISurveyCreatorOptions,
   EmptySurveyCreatorOptions,
   ICollectionItemAllowOperations,
   settings
@@ -50,25 +47,7 @@ import {
 import { PropertyGridEditorMatrixRateValues } from "../../src/property-grid/matrices";
 import { editorLocalization } from "../../src/editorLocalization";
 import { SurveyQuestionEditorDefinition } from "../../src/question-editor/definition";
-
-export * from "../../src/property-grid/matrices";
-export * from "../../src/property-grid/bindings";
-export * from "../../src/property-grid/condition";
-export * from "../../src/property-grid/restfull";
-export * from "../../src/custom-questions/question-text-with-reset";
-
-export class PropertyGridModelTester extends PropertyGridModel {
-  constructor(obj: Base, options: ISurveyCreatorOptions = null) {
-    PropertyGridEditorCollection.clearHash();
-    super(obj, options);
-  }
-}
-function findSetupAction(actions: Array<any>): any {
-  for (var i = 0; i < actions.length; i++) {
-    if (actions[i].id === "property-grid-setup") return actions[i];
-  }
-  return null;
-}
+import { PropertyGridModelTester, findSetupAction } from "./property-grid.base";
 
 test("Check property grid survey options", () => {
   const oldValue = Serializer.findProperty(
@@ -483,14 +462,17 @@ test("column[] property editor, store column title if it was entered an equals t
   const row = columnsQuestion.visibleRows[0];
   expect(row.cells[0].value).toEqual("col1");
   expect(row.cells[1].value).toBeFalsy();
-  let json = question.toJSON();
-  expect(json).toEqual({
+  expect(question.toJSON()).toEqual({
     name: "q1",
     columns: [{ name: "col1" }]
   });
+  row.cells[1].value = "Column 1";
+  expect(question.toJSON()).toEqual({
+    name: "q1",
+    columns: [{ name: "col1", title: "Column 1" }]
+  });
   row.cells[1].value = "col1";
-  json = question.toJSON();
-  expect(json).toEqual({
+  expect(question.toJSON()).toEqual({
     name: "q1",
     columns: [{ name: "col1", title: "col1" }]
   });
@@ -553,7 +535,7 @@ test("surveypages property editor and onCollectionItemAllowingCallback", () => {
     item: Base,
     options: ICollectionItemAllowOperations
   ): void => {
-    if(property.name !== "pages") return;
+    if (property.name !== "pages") return;
     const name = (<any>item).name;
     options.allowDelete = name !== "page2";
     options.allowEdit = name !== "page2";
@@ -828,6 +810,29 @@ test("restfull property editor", () => {
   urlQuestion.value = "myUrl2";
   expect(question.choicesByUrl.url).toEqual("myUrl2");
 });
+test("restfull property editor & test dropdown", () => {
+  const question = new QuestionDropdownModel("q1");
+  question.choicesByUrl.url = "myUrl";
+  const propertyGrid = new PropertyGridModelTester(question);
+  const restFullQuestion = <QuestionCompositeModel>(
+    propertyGrid.survey.getQuestionByName("choicesByUrl")
+  );
+  const contentPanel = restFullQuestion.contentPanel;
+  const testQuestion = <QuestionDropdownModel>contentPanel.getQuestionByName("test");
+  const urlQuestion = contentPanel.getQuestionByName("url");
+  const valueNameQuestion = contentPanel.getQuestionByName("valueName");
+  expect(testQuestion).toBeTruthy();
+  expect(testQuestion.choices).toHaveLength(0);
+  expect(testQuestion.isVisible).toBeTruthy();
+  expect(testQuestion.choicesByUrl.url).toBe("myUrl");
+  urlQuestion.value = "";
+  expect(testQuestion.isVisible).toBeFalsy();
+  urlQuestion.value = "myUrl2";
+  expect(testQuestion.isVisible).toBeTruthy();
+  expect(testQuestion.choicesByUrl.url).toBe("myUrl2");
+  valueNameQuestion.value = "val";
+  expect(testQuestion.choicesByUrl.valueName).toBe("val");
+});
 test("restfull property editor, show imageLinkName", () => {
   const dropdown = new QuestionDropdownModel("q1");
   const imagePicker = new QuestionImagePickerModel("q2");
@@ -927,7 +932,7 @@ test("restfull property editor and options.onCanShowPropertyCallback", () => {
     parentObj: any,
     parentProperty: JsonObjectProperty
   ): boolean => {
-    return property.name == "choicesByUrl" || property.name == "url";
+    return property.name == "choicesByUrl" || property.name == "url" || property.name == "file";
   };
   var question = new QuestionDropdownModel("q1");
   question.choicesByUrl.url = "myUrl";
@@ -1841,6 +1846,18 @@ test("Support maximumColumnsCount option", () => {
   question.columns.splice(2, 1);
   expect(updater()).toBeTruthy();
 });
+test("Support minimumChoicesCount option", () => {
+  var question = new QuestionDropdownModel("q1");
+  question.choices.push(new ItemValue("item1"));
+  question.choices.push(new ItemValue("item2"));
+  var options = new EmptySurveyCreatorOptions();
+  options.minimumChoicesCount = 3;
+  var propertyGrid = new PropertyGridModelTester(question, options);
+  var editQuestion = <QuestionMatrixDynamicModel>(
+    propertyGrid.survey.getQuestionByName("choices")
+  );
+  expect(editQuestion.minRowCount).toEqual(3);
+});
 test("Support maximumChoicesCount option", () => {
   var question = new QuestionDropdownModel("q1");
   question.choices.push(new ItemValue("item1"));
@@ -2025,7 +2042,7 @@ test("Required properties restore on change to empty value", (): any => {
   var question = new QuestionTextModel("q1");
   question.title = "q1Title";
   var options = new EmptySurveyCreatorOptions();
-  options["survey"] = { getAllQuestions: ()=> [question] };
+  options["survey"] = { getAllQuestions: () => [question] };
   var propertyGrid = new PropertyGridModelTester(question, options);
   var titleQuestion = propertyGrid.survey.getQuestionByName("title") as QuestionTextModel;
   titleQuestion.value = "q1t";
@@ -2838,7 +2855,7 @@ test("PropertyEditor for question name", () => {
   const checkedData = ["Row", "panel", "choice", "Item"];
   const errorText = "Do not use reserved words: \"item\", \"choice\", \"panel\", \"row\".";
   let prevName = question.name;
-  for(let i = 0; i < checkedData.length; i ++) {
+  for (let i = 0; i < checkedData.length; i++) {
     const erroredName = checkedData[i];
     const validName = "q" + (i + 1).toString();
     nameQuestion.value = erroredName;
@@ -2854,32 +2871,13 @@ test("PropertyEditor for question name", () => {
   const panel = new PanelModel("p");
   propertyGrid = new PropertyGridModelTester(panel);
   nameQuestion = propertyGrid.survey.getQuestionByName("name");
-  for(let i = 0; i < checkedData.length; i ++) {
+  for (let i = 0; i < checkedData.length; i++) {
     const erroredName = checkedData[i];
     nameQuestion.value = erroredName;
     expect(nameQuestion.value).toBe(erroredName);
     expect(panel.name).toEqual(erroredName);
     expect(nameQuestion.errors).toHaveLength(0);
   }
-});
-test("editor base check for unique property value and correct error in another editor, Bug#4165", () => {
-  var question = new QuestionMatrixDropdownModel("q1");
-  question.addColumn("column1");
-  question.addColumn("column2");
-  question.addColumn("column3");
-
-  const propertyGrid = new PropertyGridModelTester(question);
-  const columnsQuestion = <QuestionMatrixDynamicModel>(
-    propertyGrid.survey.getQuestionByName("columns")
-  );
-  const rows = columnsQuestion.visibleRows;
-
-  const column1Name = rows[0].getQuestionByColumnName("name");
-  const column2Name = rows[1].getQuestionByColumnName("name");
-  column2Name.value = "column1";
-  expect(column2Name.errors).toHaveLength(1);
-  column1Name.value = "column5";
-  expect(column2Name.errors).toHaveLength(0);
 });
 test("Required name property for page", () => {
   const survey = new SurveyModel({
@@ -2907,4 +2905,36 @@ test("Allow to enter one space into question title #4416", () => {
   const propertyGrid2 = new PropertyGridModelTester(question);
   const titleQuestion2 = <QuestionMatrixDynamicModel>(propertyGrid2.survey.getQuestionByName("title"));
   expect(titleQuestion2.value).toBe(" ");
+});
+test("Do not allow to enter undefined or '' to number type", () => {
+  var question = new QuestionDropdownModel("q1");
+  question.choicesMin = 1;
+  question.choicesMax = 5;
+
+  const propertyGrid = new PropertyGridModelTester(question);
+  const choicesMinQuestion = <QuestionTextModel>(propertyGrid.survey.getQuestionByName("choicesMin"));
+  expect(choicesMinQuestion.inputType).toBe("number");
+  expect(choicesMinQuestion.value).toBe(1);
+  choicesMinQuestion.value = undefined;
+  expect(question.choicesMin).toBe(0);
+  expect(choicesMinQuestion.value).toBe(0);
+  choicesMinQuestion.value = 2;
+  expect(question.choicesMin).toBe(2);
+  expect(choicesMinQuestion.value).toBe(2);
+  choicesMinQuestion.value = "";
+  expect(question.choicesMin).toBe(0);
+  expect(choicesMinQuestion.value).toBe(0);
+});
+test("Allow delete all pages by default", () => {
+  const survey = new SurveyModel();
+  survey.setDesignMode(true);
+  survey.addNewPage("page1");
+  survey.addNewPage("page2");
+  var propertyGrid = new PropertyGridModelTester(survey);
+  var pagesQuestion = <QuestionMatrixDynamicModel>(
+    propertyGrid.survey.getQuestionByName("pages")
+  );
+  survey.currentPage = survey.pages[0];
+  expect(pagesQuestion.canRemoveRow(pagesQuestion.visibleRows[0])).toBeTruthy();
+  expect(pagesQuestion.canRemoveRow(pagesQuestion.visibleRows[1])).toBeTruthy();
 });

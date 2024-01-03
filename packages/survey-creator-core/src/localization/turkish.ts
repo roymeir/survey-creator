@@ -56,6 +56,8 @@ export var turkishStrings = {
     hidePanel: "Paneli Gizle",
     prevSelected: "Öncekini seç",
     nextSelected: "İleri'yi seçin",
+    prevFocus: "Öncesine odaklan",
+    nextFocus: "Sonrakine odaklan",
     surveyTypeName: "Anket",
     pageTypeName: "Sayfa",
     panelTypeName: "Panel",
@@ -84,6 +86,8 @@ export var turkishStrings = {
     translation: "Çeviri",
     saveSurvey: "Anketi Kaydet",
     saveSurveyTooltip: "Anketi Kaydet",
+    saveTheme: "Temayı Kaydet",
+    saveThemeTooltip: "Temayı Kaydet",
     designer: "Anket Tasarımı",
     jsonEditor: "JSON Editor",
     jsonHideErrors: "Hataları gizleme",
@@ -106,6 +110,7 @@ export var turkishStrings = {
     toolbox: "Araç Kutusu",
     "property-grid": "Özellikler",
     propertyGridFilteredTextPlaceholder: "Aramak için yazın...",
+    propertyGridNoResultsFound: "Sonuç bulunamadı",
     toolboxGeneralCategory: "Genel",
     toolboxChoiceCategory: "Seçim Soruları",
     toolboxTextCategory: "Metin Girişi Soruları",
@@ -136,17 +141,27 @@ export var turkishStrings = {
     translationNoStrings: "Çevrilecek yazı yok. Lütfen, filtreyi değiştirin.",
     translationExportToSCVButton: "CSV dışa çıkart",
     translationImportFromSCVButton: "CSV içe aktar",
+    translateUsigAI: "Tümünü Otomatik Çevir",
+    translationDialogTitle: "Çevrilmemiş dizeler",
     translationMergeLocaleWithDefault: "{0} varsayılan çeviri ile sıkıştır",
     translationPlaceHolder: "Çeviri...",
     themeExportButton: "Ihracat",
     themeImportButton: "Ithalat",
+    surveyJsonExportButton: "Ihracat",
+    surveyJsonImportButton: "Ithalat",
+    surveyJsonCopyButton: "Panoya kopyala",
     themeResetButton: "Tema ayarlarını varsayılana sıfırla",
+    themeResetConfirmation: "Temayı gerçekten sıfırlamak istiyor musunuz? Tüm özelleştirmeleriniz kaybolacak.",
+    themeResetConfirmationOk: "Evet, temayı sıfırlayın",
     bold: "Kalın",
     italic: "Italik",
     underline: "Alt Çizgi",
     addNewQuestion: "Soru Ekle",
     selectPage: "Sayfa seç...",
     carryForwardChoicesCopied: "Seçenekler şuradan kopyalanır:",
+    choicesLoadedFromWebText: "Seçimler bir web hizmetinden yüklenir.",
+    choicesLoadedFromWebLinkText: "Ayarlara git",
+    choicesLoadedFromWebPreviewTitle: "Yüklenen seçim seçeneklerinin önizlemesi",
     htmlPlaceHolder: "HTML içeriği burada olacak.",
     panelPlaceHolder: "Araç kutusundan buraya bir soru bırakın.",
     surveyPlaceHolder: "Anket boş. Araç kutusundan bir öğeyi sürükleyin veya aşağıdaki düğmeyi tıklatın.",
@@ -161,14 +176,20 @@ export var turkishStrings = {
       empty_tab: "Anketin akışını özelleştirmek için bir kural oluşturun.",
       page_visibilityName: "Sayfa görünürse",
       page_enableName: "Sayfayı etkinleştir (devre dışı bırak)",
+      page_requireName: "Sayfayı gerekli hale getirme",
       panel_visibilityName: "Panel görünürse",
       panel_enableName: "Panel aktif/pasif ise",
+      panel_requireName: "Sayfayı gerekli hale getirme",
       question_visibilityName: "Soru görüürse",
       question_enableName: "Soru aktif/pasifse",
       question_requireName: "Soru isteğe bağlı zorunluysa",
+      question_resetValueName: "Soru değerini sıfırla",
+      question_setValueName: "Soru değerini ayarla",
       column_visibilityName: "Göster (gizle) sütunu",
       column_enableName: "Etkinleştir (devre dışı bırak) sütunu",
       column_requireName: "Sütunu gerekli kıl",
+      column_resetValueName: "Sütun değerini sıfırla",
+      column_setValueName: "Sütun değerini ayarla",
       trigger_completeName: "Anketi tamamla",
       trigger_setvalueName: "Soru değerini güncelle",
       trigger_copyvalueName: "Soru değerini kopyala",
@@ -195,9 +216,14 @@ export var turkishStrings = {
       question_visibilityText: "{0} soruyu görünür yap", //{0} question name
       question_enableText: "{0} soruyu aktif yap", //{0} question name
       question_requireText: "{0} cevabı zorunlu yap", //{0} question name
+      question_resetValueText: "Soru için sıfırlama değeri: {0}",
+      question_setValueText: "Değer atayın: Soruya {1}: {0}",
       column_visibilityText: "Soru {1} sütununu {0} görünür hale getirme", //{0} column name, {1} question name
       column_enableText: "Sütunun {0} soru {1} etkinleştirin", //{0} column name, {1} question name
       column_requireText: "Sütun {0} soru {1} gerekli hale getirmek", //{0} column name, {1} question name
+      column_resetValueText: "Sütun için hücre değerini sıfırla: {0}",
+      column_setValueText: "Hücre değeri atayın: Sütuna {1}: {0}",
+      setValueExpressionPlaceholder: " Sonucu hedef soruya atanacak bir ifade.",
       trigger_completeText: "Anket tamamlandı",
       trigger_setvalueText: "Sorunun içine: {0} değer {1}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "net soru değeri: {0}", //{0} question name
@@ -221,9 +247,7 @@ export var turkishStrings = {
       uncompletedRule_title: "Mantıksal kurallar eksik",
       uncompletedRule_text: "Bazı mantıksal kuralları tamamlamadınız. Sekmeyi şimdi bırakırsanız, değişiklikler kaybolur. Yine de değişiklikleri tamamlamadan sekmeden çıkmak istiyor musunuz?",
       uncompletedRule_apply: "Evet",
-      uncompletedRule_cancel: "Hayır, kuralları tamamlamak istiyorum",
-      // expressionSetup: "",
-      // actionsSetup: ""
+      uncompletedRule_cancel: "Hayır, kuralları tamamlamak istiyorum"
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ export var turkishStrings = {
     fastEntry: "Hızlı Giriş",
     fastEntryNonUniqueError: "'{0}' değeri benzersiz değil",
     fastEntryChoicesCountError: "Lütfen öğe sayısını {0}'den {1}'ye sınırlayın",
+    fastEntryChoicesMinCountError: "Lütfen en az {0} ürün girin",
     fastEntryPlaceholder: "Verileri aşağıdaki biçimde ayarlayabilirsiniz:\ndeğer1|metin\ndeğer2",
     formEntry: "Form Girişi",
     testService: "Servisi test et",
@@ -327,6 +352,8 @@ export var turkishStrings = {
     choicesOrder: "Seçenek sırasını seç",
     visible: "Görünür?",
     isRequired: "Zorunlu?",
+    markRequired: "Gerektiği gibi işaretleyin",
+    removeRequiredMark: "Gerekli işareti kaldırın",
     isAllRowRequired: "Tüm satırlar zorunlu",
     requiredErrorText: "Zorunlu hata yazısı",
     startWithNewLine: "Yeni satırla başla?",
@@ -408,7 +435,12 @@ export var turkishStrings = {
       imageHeight: "Görüntü yüksekliği (CSS tarafından kabul edilen değerlerde)",
       imageWidth: "Resim genişliği (CSS tarafından kabul edilen değerlerde)"
     },
+    // survey templates
+    survey: {
+      title: "Başlık"
+    },
     page: {
+      title: "Başlık",
       maxTimeToFinish: "Sayfayı bitirmek için zaman sınırı (saniye cinsinden)"
     },
     question: {
@@ -639,6 +671,18 @@ export var turkishStrings = {
     columnsVisibleIf: "Sütunlar şu durumlarda görünür:",
     rowsVisibleIf: "Satırlar şu durumlarda görünür:",
     otherPlaceholder: "Yorum alanı yer tutucusu",
+    signaturepad: {
+      showPlaceholder: "Yer tutucuyu gösterme",
+      placeholder: "Yer tutucu metin",
+      signatureWidth: "İmza alanı genişliği",
+      signatureHeight: "İmza alanı yüksekliği",
+      signatureAutoScaleEnabled: "İmza alanını otomatik ölçeklendirme",
+      penMinWidth: "Minimum kalem genişliği",
+      penMaxWidth: "Maksimum kalem genişliği"
+    },
+    filePlaceholder: "Dosya yer tutucu metni",
+    photoPlaceholder: "Fotoğraf yer tutucu metni",
+    fileOrPhotoPlaceholder: "Dosya veya fotoğraf yer tutucu metni",
     rateType: "Fiyat türü"
   },
   // Property values
@@ -681,6 +725,7 @@ export var turkishStrings = {
     both: "Her ikiside",
     left: "Sol",
     right: "Sağ",
+    leftRight: "Sol ve sağ",
     color: "Renk",
     date: "tarih",
     datetime: "datetime",
@@ -876,7 +921,10 @@ export var turkishStrings = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "Belirtilen sütun aynı değerleri içeriyorsa, anket \"Benzersiz olmayan anahtar değeri\" hatasını atar."
+    keyName: "Belirtilen sütun aynı değerleri içeriyorsa, anket \"Benzersiz olmayan anahtar değeri\" hatasını atar.",
+    filePlaceholder: "\"Kaynak türü\" \"Yerel dosyalar\" olduğunda veya fotoğraf makinesi kullanılamadığında geçerlidir",
+    photoPlaceholder: "\"Kaynak türü\" \"Kamera\" olduğunda geçerlidir.",
+    fileOrPhotoPlaceholder: "\"Kaynak türü\" \"Yerel dosyalar veya kamera\" olduğunda geçerlidir."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ export var turkishStrings = {
     showLabel: "Başlığı göster",
     value: "Değer",
     tabAlign: "Sekme hizalaması",
+    sourceType: "Kaynak türü",
+    fitToContainer: "Konteynere sığdır",
+    setValueExpression: "Değer ifadesini ayarla",
     description: "Açıklama",
     logoFit: "Logo uyumu",
     pages: "Sayfa",
@@ -910,6 +961,8 @@ export var turkishStrings = {
     descriptionLocation: "Açıklama konumu",
     defaultValueExpression: "Varsayılan değer ifadesi",
     requiredIf: "Eğer gerekli mi?",
+    resetValueIf: "Sıfırlama değeri",
+    setValueIf: "Değeri ayarla",
     validators: "Doğrulayıcılar",
     bindings: "Bağlama",
     renderAs: "Farklı işle",
@@ -986,6 +1039,9 @@ export var turkishStrings = {
     "--base-unit": "Temel ünite",
     groupGeneral: "Genel",
     groupAdvanced: "İleri",
+    groupHeader: "Üstbilgi",
+    groupBackground: "Arka plan",
+    groupAppearance: "Görünüş",
     themeName: "Tema",
     themeMode: "Soru görünümü",
     themeModePanels: "Temerrüt",
@@ -996,11 +1052,16 @@ export var turkishStrings = {
     primaryDefaultColor: "Temerrüt",
     primaryDarkColor: "Hover",
     primaryLightColor: "Seçilmiş",
+    coverTitleForecolor: "Başlık ön rengi",
+    coverDescriptionForecolor: "Açıklama ön renk",
+    coverOverlapEnabled: "Örtüş",
     backgroundDimColor: "Arka plan rengi",
     backgroundImage: "Arka plan resmi",
     backgroundImageFitAuto: "Otomatik",
     backgroundImageFitCover: "Örtmek",
     backgroundImageFitContain: "Kapsamak",
+    backgroundImageFitFill: "Uzatmak",
+    backgroundImageFitTile: "Kiremit",
     backgroundOpacity: "Opak -lık",
     backgroundImageAttachmentFixed: "Sabit",
     backgroundImageAttachmentScroll: "Tomar",
@@ -1033,6 +1094,7 @@ export var turkishStrings = {
     scale: "Ölçeklemek",
     cornerRadius: "Köşe yarıçapı",
     surveyTitle: "Anket başlığı yazı tipi",
+    surveyDescription: "Anket açıklaması yazı tipi",
     pageTitle: "Sayfa başlığı yazı tipi",
     pageDescription: "Sayfa açıklaması yazı tipi",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ export var turkishStrings = {
     boxShadowInner: "İç",
     questionShadow: "Gölge efektleri",
     editorShadow: "Giriş öğesi gölge efektleri",
+    headerView: "Görünüm",
+    headerViewBasic: "Temel",
+    headerViewAdvanced: "İleri",
+    coverInheritWidthFrom: "İçerik alanı genişliği",
+    coverInheritWidthFromSurvey: "Anketle aynı",
+    coverInheritWidthFromContainer: "Konteynere sığdır",
+    coverTextAreaWidth: "Metin genişliği",
+    coverBackgroundColorSwitch: "Arka plan rengi",
+    coverBackgroundColorNone: "Hiç kimse",
+    coverBackgroundColorAccentColor: "Vurgu rengi",
+    coverBackgroundColorCustom: "Töre",
+    horizontalAlignmentLeft: "Sol",
+    horizontalAlignmentCenter: "Orta",
+    horizontalAlignmentRight: "Sağ",
+    verticalAlignmentTop: "Sayfanın Üstü",
+    verticalAlignmentMiddle: "Orta",
+    verticalAlignmentBottom: "Dip",
+    logoPosition: "Logo konumu",
+    coverTitlePosition: "Unvan pozisyonu",
+    coverDescriptionPosition: "Açıklama konumu",
     names: {
       default: "Temerrüt",
       sharp: "Keskin",
@@ -1142,8 +1224,6 @@ editorLocalization.locales["tr"] = turkishStrings;
 // lg.uncompletedRule_text: "You have not completed some of the logical rules. If you leave the tab now, the changes will be lost. Do you still want to leave the tab without completing the changes?" => "Bazı mantıksal kuralları tamamlamadınız. Sekmeyi şimdi bırakırsanız, değişiklikler kaybolur. Yine de değişiklikleri tamamlamadan sekmeden çıkmak istiyor musunuz?"
 // lg.uncompletedRule_apply: "Yes" => "Evet"
 // lg.uncompletedRule_cancel: "No, I want to complete the rules" => "Hayır, kuralları tamamlamak istiyorum"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.clear: "Clear" => "Berrak"
 // pe.saveTooltip: "Save" => "Kurtarmak"
 // pe.set: "Set" => "Ayarlamak"
@@ -1551,8 +1631,6 @@ editorLocalization.locales["tr"] = turkishStrings;
 // colors.tulip: "Tulip" => "Lale"
 // colors.brown: "Brown" => "Kahverengi"
 // colors.green: "Green" => "Yeşil"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // names.sharp: "Sharp" => "Keskin"
 // names.borderless: "Borderless" => "Kenarlıksız"
 // names.flat: "Flat" => "Düz"
@@ -1562,14 +1640,94 @@ editorLocalization.locales["tr"] = turkishStrings;
 // names.threedimensional: "3D" => ".3D"
 // ed.translationDeleteLanguage: "Are you certain you wish to delete all strings for this language?" => "Bu dil için tüm dizeleri silmek istediğinizden emin misiniz?"
 // ed.themeResetButton: "Reset theme settings to default" => "Tema ayarlarını varsayılana sıfırla"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // theme.placeholderColor: "Placeholder color" => "Yer tutucu rengi"
 // ed.themeSettings: "Theme Settings" => "Tema Ayarları"
 // ed.themeSettingsTooltip: "Open theme settings" => "Tema ayarlarını açma"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.resetToDefaultCaption: "Reset" => "Sıfırlama"
 // pv.file: "Local files" => "Yerel dosyalar"
 // pv.camera: "Camera" => "Kamera"
 // pv.file-camera: "Local files or camera" => "Yerel dosyalar veya kamera"
+// ed.translateUsigAI: "Auto-translate All" => "Tümünü Otomatik Çevir"
+// ed.translationDialogTitle: "Untranslated strings" => "Çevrilmemiş dizeler"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "Lütfen en az {0} ürün girin"
+// lg.question_resetValueName: "Reset question value" => "Soru değerini sıfırla"
+// lg.column_resetValue: "Reset column value" => "Sütun değerini sıfırla"
+// pe.markRequired: "Mark as required" => "Gerektiği gibi işaretleyin"
+// pe.removeRequiredMark: "Remove the required mark" => "Gerekli işareti kaldırın"
+// p.resetValueIf: "Reset value if" => "Sıfırlama değeri"
+// lg.question_setValueName: "Set question value" => "Soru değerini ayarla"
+// lg.column_resetValueName: "Reset column value" => "Sütun değerini sıfırla"
+// lg.column_setValueName: "Set column value" => "Sütun değerini ayarla"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " Sonucu hedef soruya atanacak bir ifade."
+// survey.title: "Title" => "Başlık"
+// page.title: "Title" => "Başlık"
+// p.setValueIf: "Set value if" => "Değeri ayarla"
+// theme.groupHeader: "Header" => "Üstbilgi"
+// theme.coverTitleForecolor: "Title forecolor" => "Başlık ön rengi"
+// theme.coverOverlapEnabled: "Overlap" => "Örtüş"
+// theme.backgroundImageFitFill: "Stretch" => "Uzatmak"
+// theme.backgroundImageFitTile: "Tile" => "Kiremit"
+// theme.headerView: "View" => "Görünüm"
+// theme.headerViewBasic: "Basic" => "Temel"
+// theme.headerViewAdvanced: "Advanced" => "İleri"
+// theme.coverInheritWidthFrom: "Content area width" => "İçerik alanı genişliği"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "Anketle aynı"
+// theme.coverInheritWidthFromPage: "Fit to page" => "Sayfaya sığdır"
+// theme.coverTextAreaWidth: "Text width" => "Metin genişliği"
+// theme.coverBackgroundColorSwitch: "Background color" => "Arka plan rengi"
+// theme.coverBackgroundColorNone: "None" => "Hiç kimse"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "Vurgu rengi"
+// theme.coverBackgroundColorCustom: "Custom" => "Töre"
+// theme.horizontalAlignmentLeft: "Left" => "Sol"
+// theme.horizontalAlignmentCenter: "Center" => "Orta"
+// theme.horizontalAlignmentRight: "Right" => "Sağ"
+// theme.verticalAlignmentTop: "Top" => "Sayfanın Üstü"
+// theme.verticalAlignmentMiddle: "Middle" => "Orta"
+// theme.verticalAlignmentBottom: "Bottom" => "Dip"
+// lg.question_resetValueText: "reset value for question: {0}" => "Soru için sıfırlama değeri: {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "Değer atayın: Soruya {1}: {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "Sütun için hücre değerini sıfırla: {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "Hücre değeri atayın: Sütuna {1}: {0}"
+// ed.surveyJsonExportButton: "Export" => "Ihracat"
+// ed.surveyJsonImportButton: "Import" => "Ithalat"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "Panoya kopyala"
+// pe.filePlaceholder: "File placeholder text" => "Dosya yer tutucu metni"
+// pe.photoPlaceholder: "Photo placeholder text" => "Fotoğraf yer tutucu metni"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "Dosya veya fotoğraf yer tutucu metni"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "\"Kaynak türü\" \"Yerel dosyalar\" olduğunda veya fotoğraf makinesi kullanılamadığında geçerlidir"
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "\"Kaynak türü\" \"Kamera\" olduğunda geçerlidir."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "\"Kaynak türü\" \"Yerel dosyalar veya kamera\" olduğunda geçerlidir."
+// theme.groupBackground: "Background" => "Arka plan"
+// theme.groupAppearance: "Appearance" => "Görünüş"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Açıklama ön renk"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "Temayı gerçekten sıfırlamak istiyor musunuz? Tüm özelleştirmeleriniz kaybolacak."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "Evet, temayı sıfırlayın"
+// theme.groupBackground: "Background" => "Arka plan"
+// theme.groupAppearance: "Appearance" => "Görünüş"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Açıklama ön renk"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "Konteynere sığdır"
+// signaturepad.showPlaceholder: "Show the placeholder" => "Yer tutucuyu gösterme"
+// signaturepad.placeholder: "Placeholder text" => "Yer tutucu metin"
+// theme.surveyDescription: "Survey description font" => "Anket açıklaması yazı tipi"
+// ed.prevFocus: "Focus previous" => "Öncesine odaklan"
+// ed.nextFocus: "Focus next" => "Sonrakine odaklan"
+// ed.saveTheme: "Save Theme" => "Temayı Kaydet"
+// ed.saveThemeTooltip: "Save Theme" => "Temayı Kaydet"
+// lg.page_requireName: "Make page required" => "Sayfayı gerekli hale getirme"
+// lg.panel_requireName: "Make page required" => "Sayfayı gerekli hale getirme"
+// signaturepad.signatureWidth: "Signature area width" => "İmza alanı genişliği"
+// signaturepad.signatureHeight: "Signature area height" => "İmza alanı yüksekliği"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "İmza alanını otomatik ölçeklendirme"
+// signaturepad.penMinWidth: "Minimum pen width" => "Minimum kalem genişliği"
+// signaturepad.penMaxWidth: "Maximum pen width" => "Maksimum kalem genişliği"
+// theme.logoPosition: "Logo position" => "Logo konumu"
+// theme.coverTitlePosition: "Title position" => "Unvan pozisyonu"
+// theme.coverDescriptionPosition: "Description position" => "Açıklama konumu"
+// ed.propertyGridNoResultsFound: "No results found" => "Sonuç bulunamadı"
+// pv.leftRight: "Left and right" => "Sol ve sağ"
+// p.sourceType: "Source type" => "Kaynak türü"
+// p.fitToContainer: "Fit to container" => "Konteynere sığdır"
+// p.setValueExpression: "Set value expression" => "Değer ifadesini ayarla"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "Seçimler bir web hizmetinden yüklenir."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "Ayarlara git"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "Yüklenen seçim seçeneklerinin önizlemesi"

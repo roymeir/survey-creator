@@ -1,5 +1,7 @@
-import { Base, ImageItemValue, ItemValue, Model, QuestionCheckboxModel, JsonObjectProperty,
-  QuestionImageModel, QuestionImagePickerModel, QuestionRatingModel, Serializer, settings, SurveyModel, DragTypeOverMeEnum } from "survey-core";
+import {
+  Base, ImageItemValue, ItemValue, Model, QuestionCheckboxModel, JsonObjectProperty,
+  QuestionImageModel, QuestionImagePickerModel, QuestionRatingModel, Serializer, settings, SurveyModel, DragTypeOverMeEnum
+} from "survey-core";
 import { ImageItemValueWrapperViewModel } from "../src/components/image-item-value";
 import { ItemValueWrapperViewModel } from "../src/components/item-value";
 import { QuestionImageAdornerViewModel } from "../src/components/question-image";
@@ -120,6 +122,33 @@ test("item hasNone, hasOther, hasSelectAll change trigger updateIsNew and behave
   expect(noneItemAdorner.isNew).toBeFalsy();
   expect(noneItemAdorner.allowAdd).toBeFalsy();
   expect(noneItemAdorner.allowRemove).toBeTruthy();
+});
+test("Allow remove for choices and generated choices", () => {
+  const creator = new CreatorTester();
+  creator.JSON = {
+    elements: [{ type: "dropdown", name: "q1", choices: [1, 2, "item4"], choicesMin: 3, choicesMax: 10 }]
+  };
+  const question = <QuestionCheckboxModel>creator.survey.getAllQuestions()[0];
+
+  const choiceItemAdorner = new ItemValueWrapperViewModel(
+    creator,
+    question,
+    question.choices[0]
+  );
+  const generatedItemAdorner = new ItemValueWrapperViewModel(
+    creator,
+    question,
+    question.visibleChoices[4]
+  );
+  expect(choiceItemAdorner.item.value).toBe(1);
+  expect(choiceItemAdorner.isNew).toBeFalsy();
+  expect(choiceItemAdorner.allowAdd).toBeFalsy();
+  expect(choiceItemAdorner.allowRemove).toBeTruthy();
+
+  expect(generatedItemAdorner.item.value).toBe(4);
+  expect(generatedItemAdorner.isNew).toBeFalsy();
+  expect(generatedItemAdorner.allowAdd).toBeFalsy();
+  expect(generatedItemAdorner.allowRemove).toBeFalsy();
 });
 
 test("item value allowRemove on events", () => {
@@ -575,11 +604,13 @@ test("QuestionRatingAdornerViewModel respect maximumRateValues with rate values"
   const creator = new CreatorTester();
   creator.maximumRateValues = 4;
   creator.JSON = {
-    elements: [{ type: "rating", name: "q1", "rateValues": [
-      "item1",
-      "item2",
-      "item3"
-    ] }]
+    elements: [{
+      type: "rating", name: "q1", "rateValues": [
+        "item1",
+        "item2",
+        "item3"
+      ]
+    }]
   };
   const question = <QuestionRatingModel>creator.survey.getAllQuestions()[0];
 
@@ -873,4 +904,57 @@ test("calculateDragOverLocation", () => {
   creatorSettings.dragDrop.allowDragToTheSameLine = true;
   location = calculateDragOverLocation(350, 170, <any>{ getBoundingClientRect: () => ({ x: 100, y: 100, width: 300, height: 100 }) });
   expect(location).toBe(DragTypeOverMeEnum.Right);
+});
+
+test("ImageItemValueWrapperViewModel pass context to onOpenFileChooser event", () => {
+  const creator = new CreatorTester();
+  creator.JSON = {
+    elements: [{ type: "imagepicker", name: "q1", choices: [1, 2, 3] }]
+  };
+  const question = <QuestionImagePickerModel>creator.survey.getAllQuestions()[0];
+  const rootElement = document.createElement("div");
+  rootElement.innerHTML = "<input type='file' class='svc-choose-file-input' />";
+  const imageItemAdorner = new ImageItemValueWrapperViewModel(creator, question, question.choices[0], undefined, rootElement);
+
+  let context: any = undefined;
+  creator.onOpenFileChooser.add((s, o) => {
+    context = {
+      element: o.element,
+      item: o.item
+    };
+    o.callback([{}]);
+  });
+  creator.onUploadFile.add((s, o) => {
+    o.callback({}, "success");
+  });
+  imageItemAdorner.chooseFile(imageItemAdorner);
+  expect(context).toBeDefined();
+  expect(context.element).toBe(question);
+  expect(context.item).toBe(question.choices[0]);
+});
+
+test("ImageItemValueWrapperViewModel shouldn't override existing image if upload fails", () => {
+  const creator = new CreatorTester();
+  creator.JSON = {
+    elements: [{ type: "imagepicker", name: "q1", choices: [1, 2, 3] }]
+  };
+  const question = <QuestionImagePickerModel>creator.survey.getAllQuestions()[0];
+  const rootElement = document.createElement("div");
+  rootElement.innerHTML = "<input type='file' class='svc-choose-file-input' />";
+  const imageItemAdorner = new ImageItemValueWrapperViewModel(creator, question, question.choices[0], undefined, rootElement);
+
+  const successFile = "image1.png";
+  const errorFile = "image2.png";
+  let isSuccess = true;
+  creator.onOpenFileChooser.add((s, o) => {
+    o.callback([{}]);
+  });
+  creator.onUploadFile.add((s, o) => {
+    o.callback(isSuccess ? "success" : "error", isSuccess ? successFile : errorFile);
+  });
+  imageItemAdorner.chooseFile(imageItemAdorner);
+  expect(question.choices[0].imageLink).toBe(successFile);
+  isSuccess = false;
+  imageItemAdorner.chooseFile(imageItemAdorner);
+  expect(question.choices[0].imageLink).toBe(successFile);
 });

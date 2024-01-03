@@ -56,6 +56,8 @@ export var fiStrings = {
     hidePanel: "Piilota Paneeli",
     prevSelected: "Valitse edellinen",
     nextSelected: "Valitse seuraava",
+    prevFocus: "Keskity edelliseen",
+    nextFocus: "Keskity seuraavaksi",
     surveyTypeName: "Tutkimus",
     pageTypeName: "Sivu",
     panelTypeName: "Paneeli",
@@ -84,6 +86,8 @@ export var fiStrings = {
     translation: "Käännös",
     saveSurvey: "Tallenna kysely",
     saveSurveyTooltip: "Tallenna kysely",
+    saveTheme: "Tallenna teema",
+    saveThemeTooltip: "Tallenna teema",
     designer: "Kyselyn suunnittelija",
     jsonEditor: "JSON Editori",
     jsonHideErrors: "Piilota virheet",
@@ -106,6 +110,7 @@ export var fiStrings = {
     toolbox: "Työkalupakki",
     "property-grid": "Properties",
     propertyGridFilteredTextPlaceholder: "Kirjoita etsiäksesi...",
+    propertyGridNoResultsFound: "Tuloksia ei löytynyt",
     toolboxGeneralCategory: "Yleinen",
     toolboxChoiceCategory: "Valintaa koskevat kysymykset",
     toolboxTextCategory: "Tekstinsyöttökysymykset",
@@ -136,17 +141,27 @@ export var fiStrings = {
     translationNoStrings: "Ei merkkijonoja käännettäväksi. Vaihda suodatin.",
     translationExportToSCVButton: "Vie (CSV)",
     translationImportFromSCVButton: "Tuo (CSV)",
+    translateUsigAI: "Käännä kaikki automaattisesti",
+    translationDialogTitle: "Kääntämättömät merkkijonot",
     translationMergeLocaleWithDefault: "Yhdistä {0} oletuskielellä",
     translationPlaceHolder: "Käännös...",
     themeExportButton: "Vienti",
     themeImportButton: "Tuoda",
+    surveyJsonExportButton: "Vienti",
+    surveyJsonImportButton: "Tuoda",
+    surveyJsonCopyButton: "Kopioi leikepöydälle",
     themeResetButton: "Palauta teema-asetukset oletusasetuksiin",
+    themeResetConfirmation: "Haluatko todella nollata teeman? Kaikki mukautuksesi menetetään.",
+    themeResetConfirmationOk: "Kyllä, nollaa teema",
     bold: "Lihavoitu",
     italic: "Kursiivi",
     underline: "Alleviivaa",
     addNewQuestion: "Lisää kysymys",
     selectPage: "Valitse sivu...",
     carryForwardChoicesCopied: "Valinnat kopioidaan kohteesta",
+    choicesLoadedFromWebText: "Valinnat ladataan verkkopalvelusta.",
+    choicesLoadedFromWebLinkText: "Siirry asetuksiin",
+    choicesLoadedFromWebPreviewTitle: "Ladattujen valintavaihtoehtojen esikatselu",
     htmlPlaceHolder: "HTML-sisältö on täällä.",
     panelPlaceHolder: "Pudota kysymys työkalupakista tähän.",
     surveyPlaceHolder: "Kysely on tyhjä. Vedä elementti työkalupakista tai napsauta alla olevaa painiketta.",
@@ -161,14 +176,20 @@ export var fiStrings = {
       empty_tab: "Luo sääntö kyselyn kulun mukauttamista varten.",
       page_visibilityName: "Sivun näkyvyys",
       page_enableName: "Ota käyttöön (poista käytöstä) sivu",
+      page_requireName: "Tee sivusta pakollinen",
       panel_visibilityName: "Panelin näkyvyys",
       panel_enableName: "Paneeli käytössä/Ei käytössä",
+      panel_requireName: "Tee sivusta pakollinen",
       question_visibilityName: "Kysymyksen näkyvyys",
       question_enableName: "Kysymys käytössä/Ei käytössä",
       question_requireName: "Kysymys valinnainen vaaditaan",
+      question_resetValueName: "Palauta kysymyksen arvo",
+      question_setValueName: "Aseta kysymyksen arvo",
       column_visibilityName: "Näytä (piilota) -sarake",
       column_enableName: "Ota käyttöön (poista käytöstä) sarake",
       column_requireName: "Tee sarakkeesta pakollinen",
+      column_resetValueName: "Palauta sarakkeen arvo",
+      column_setValueName: "Sarakkeen arvon määrittäminen",
       trigger_completeName: "Valmis kysely",
       trigger_setvalueName: "Aseta kysymyksen arvo",
       trigger_copyvalueName: "Kopioi kysymyksen arvo",
@@ -195,9 +216,14 @@ export var fiStrings = {
       question_visibilityText: "Tee kysymys {0} näkyväksi", //{0} question name
       question_enableText: "Ota kysymys {0} käyttöön", //{0} question name
       question_requireText: "Tee kysymyksestä {0} pakollinen", //{0} question name
+      question_resetValueText: "nollaa kysymyksen arvo: {0}",
+      question_setValueText: "Määritä arvo: {1} kysymykseen: {0}",
       column_visibilityText: "Tee kysymyksen {1} sarakkeesta {0} näkyvä", //{0} column name, {1} question name
       column_enableText: "Ota kysymyksen sarake {0} {1} käyttöön", //{0} column name, {1} question name
       column_requireText: "Tee kysymyksen sarake {0} {1} pakollinen", //{0} column name, {1} question name
+      column_resetValueText: "Palauta sarakkeen soluarvo: {0}",
+      column_setValueText: "Määritä solun arvo: {1} sarakkeeseen: {0}",
+      setValueExpressionPlaceholder: " Lauseke, jonka tulos määritetään kohdekysymykselle.",
       trigger_completeText: "Kyselystä tulee täytetty",
       trigger_setvalueText: "Laita arvo {1} kysymykseen {0}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "Selkeän kysymyksen arvo: {0}", //{0} question name
@@ -221,9 +247,7 @@ export var fiStrings = {
       uncompletedRule_title: "Loogiset säännöt ovat epätäydellisiä",
       uncompletedRule_text: "Et ole suorittanut joitakin loogisia sääntöjä. Jos poistut välilehdestä nyt, muutokset menetetään. Haluatko silti poistua välilehdeltä suorittamatta muutoksia?",
       uncompletedRule_apply: "Kyllä",
-      uncompletedRule_cancel: "Ei, haluan täyttää säännöt",
-      // expressionSetup: "",
-      // actionsSetup: ""
+      uncompletedRule_cancel: "Ei, haluan täyttää säännöt"
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ export var fiStrings = {
     fastEntry: "Nopea pääsy",
     fastEntryNonUniqueError: "Arvo \"{0}\" ei ole ainutkertainen",
     fastEntryChoicesCountError: "Rajoita tuotteiden määrä {0} {1}",
+    fastEntryChoicesMinCountError: "Anna vähintään {0} kohdetta",
     fastEntryPlaceholder: "Voit asettaa tiedot seuraavassa muodossa:\narvo1|teksti\narvo2",
     formEntry: "Lomakkeen pääsy",
     testService: "Testaa palvelu",
@@ -327,6 +352,8 @@ export var fiStrings = {
     choicesOrder: "Valitse valintojen järjestys",
     visible: "On näkyvä?",
     isRequired: "On vaadittu?",
+    markRequired: "Merkitse pakollisesti",
+    removeRequiredMark: "Poista vaadittu merkki",
     isAllRowRequired: "Vaadi vastaus kaikille riveille",
     requiredErrorText: "Vaadittu virheteksti",
     startWithNewLine: "Onko aloitus uudella rivillä?",
@@ -408,7 +435,12 @@ export var fiStrings = {
       imageHeight: "Kuvan korkeus (CSS:n hyväksymissä arvoissa)",
       imageWidth: "Kuvan leveys (CSS-hyväksytyissä arvoissa)"
     },
+    // survey templates
+    survey: {
+      title: "Nimike"
+    },
     page: {
+      title: "Nimike",
       maxTimeToFinish: "Sivun viimeistelyn aikaraja (sekunteina)"
     },
     question: {
@@ -639,6 +671,18 @@ export var fiStrings = {
     columnsVisibleIf: "Sarakkeet ovat näkyvissä, jos",
     rowsVisibleIf: "Rivit ovat näkyvissä, jos",
     otherPlaceholder: "Kommenttialueen paikkamerkki",
+    signaturepad: {
+      showPlaceholder: "Paikkamerkin näyttäminen",
+      placeholder: "Paikkamerkkiteksti",
+      signatureWidth: "Allekirjoitusalueen leveys",
+      signatureHeight: "Allekirjoitusalueen korkeus",
+      signatureAutoScaleEnabled: "Allekirjoitusalueen automaattinen skaalaus",
+      penMinWidth: "Kynän vähimmäisleveys",
+      penMaxWidth: "Kynän enimmäisleveys"
+    },
+    filePlaceholder: "Tiedoston paikkamerkkiteksti",
+    photoPlaceholder: "Valokuvan paikkamerkkiteksti",
+    fileOrPhotoPlaceholder: "Tiedoston tai valokuvan paikkamerkkiteksti",
     rateType: "Hinnan tyyppi"
   },
   // Property values
@@ -681,6 +725,7 @@ export var fiStrings = {
     both: "both",
     left: "left",
     right: "Oikea",
+    leftRight: "Vasen ja oikea",
     color: "väri",
     date: "päivämäärä",
     datetime: "päivämäärä ja aika",
@@ -876,7 +921,10 @@ export var fiStrings = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "Jos määritetty sarake sisältää samat arvot, kysely heittää \"Ei-yksilöllinen avainarvo\" -virheen."
+    keyName: "Jos määritetty sarake sisältää samat arvot, kysely heittää \"Ei-yksilöllinen avainarvo\" -virheen.",
+    filePlaceholder: "Käytetään, kun \"Lähdetyyppi\" on \"Paikalliset tiedostot\" tai kun kamera ei ole käytettävissä",
+    photoPlaceholder: "Käytetään, kun \"Lähdetyyppi\" on \"Kamera\".",
+    fileOrPhotoPlaceholder: "Käytetään, kun \"Lähdetyyppi\" on \"Paikalliset tiedostot tai kamera\"."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ export var fiStrings = {
     showLabel: "Näytä kuvatekstit",
     value: "Arvo",
     tabAlign: "Sarkaimen tasaus",
+    sourceType: "Lähteen tyyppi",
+    fitToContainer: "Sovita konttiin",
+    setValueExpression: "Arvolausekkeen määrittäminen",
     description: "description",
     logoFit: "Logon sopivuus",
     pages: "Sivut",
@@ -910,6 +961,8 @@ export var fiStrings = {
     descriptionLocation: "Kuvaus, sijainti",
     defaultValueExpression: "Oletusarvon lauseke",
     requiredIf: "requiredIf",
+    resetValueIf: "Nollaa arvo, jos",
+    setValueIf: "Aseta arvo, jos",
     validators: "validators",
     bindings: "Siteet",
     renderAs: "Hahmonna muodossa",
@@ -986,6 +1039,9 @@ export var fiStrings = {
     "--base-unit": "Perusyksikkö",
     groupGeneral: "Yleiset",
     groupAdvanced: "Edistynyt",
+    groupHeader: "Otsikko",
+    groupBackground: "Tausta",
+    groupAppearance: "Ulkonäkö",
     themeName: "Teema",
     themeMode: "Kysymyksen ulkonäkö",
     themeModePanels: "Laiminlyönti",
@@ -996,11 +1052,16 @@ export var fiStrings = {
     primaryDefaultColor: "Laiminlyönti",
     primaryDarkColor: "Häilyä",
     primaryLightColor: "Valittu",
+    coverTitleForecolor: "Otsikon etuväri",
+    coverDescriptionForecolor: "Kuvaus etuväri",
+    coverOverlapEnabled: "Limittyä",
     backgroundDimColor: "Taustaväri",
     backgroundImage: "Taustakuvan",
     backgroundImageFitAuto: "Auto",
     backgroundImageFitCover: "Kansi",
     backgroundImageFitContain: "Sisältää",
+    backgroundImageFitFill: "Venyä",
+    backgroundImageFitTile: "Laatta",
     backgroundOpacity: "Läpikuultamattomuus",
     backgroundImageAttachmentFixed: "Kiinteä",
     backgroundImageAttachmentScroll: "Vierittää",
@@ -1033,6 +1094,7 @@ export var fiStrings = {
     scale: "Mittakaava",
     cornerRadius: "Kulman säde",
     surveyTitle: "Kyselyn otsikon fontti",
+    surveyDescription: "Kyselyn kuvauksen fontti",
     pageTitle: "Sivun otsikon fontti",
     pageDescription: "Sivun kuvauksen fontti",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ export var fiStrings = {
     boxShadowInner: "Sisäinen",
     questionShadow: "Varjo-tehosteet",
     editorShadow: "Syöttöelementin varjotehosteet",
+    headerView: "Näkymä",
+    headerViewBasic: "Emäksinen",
+    headerViewAdvanced: "Edistynyt",
+    coverInheritWidthFrom: "Sisältöalueen leveys",
+    coverInheritWidthFromSurvey: "Sama kuin kyselyssä",
+    coverInheritWidthFromContainer: "Sovita konttiin",
+    coverTextAreaWidth: "Tekstin leveys",
+    coverBackgroundColorSwitch: "Taustaväri",
+    coverBackgroundColorNone: "Ei lainkaan",
+    coverBackgroundColorAccentColor: "Korostusväri",
+    coverBackgroundColorCustom: "Tapa",
+    horizontalAlignmentLeft: "Vasen",
+    horizontalAlignmentCenter: "Keskus",
+    horizontalAlignmentRight: "Oikea",
+    verticalAlignmentTop: "Huippu",
+    verticalAlignmentMiddle: "Keskus",
+    verticalAlignmentBottom: "Pohja",
+    logoPosition: "Logon sijainti",
+    coverTitlePosition: "Otsikon sijainti",
+    coverDescriptionPosition: "Kuvauksen sijainti",
     names: {
       default: "Laiminlyönti",
       sharp: "Terävä",
@@ -1132,8 +1214,6 @@ editorLocalization.locales["fi"] = fiStrings;
 // lg.uncompletedRule_text: "You have not completed some of the logical rules. If you leave the tab now, the changes will be lost. Do you still want to leave the tab without completing the changes?" => "Et ole suorittanut joitakin loogisia sääntöjä. Jos poistut välilehdestä nyt, muutokset menetetään. Haluatko silti poistua välilehdeltä suorittamatta muutoksia?"
 // lg.uncompletedRule_apply: "Yes" => "Kyllä"
 // lg.uncompletedRule_cancel: "No, I want to complete the rules" => "Ei, haluan täyttää säännöt"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.clear: "Clear" => "Selvä"
 // pe.set: "Set" => "Joukko"
 // pe.change: "Change" => "Muuttaa"
@@ -1555,8 +1635,6 @@ editorLocalization.locales["fi"] = fiStrings;
 // colors.tulip: "Tulip" => "Tulppaani"
 // colors.brown: "Brown" => "Ruskea"
 // colors.green: "Green" => "Vihreä"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // names.sharp: "Sharp" => "Terävä"
 // names.borderless: "Borderless" => "Reunukseton"
 // names.flat: "Flat" => "Tasainen"
@@ -1566,14 +1644,95 @@ editorLocalization.locales["fi"] = fiStrings;
 // names.threedimensional: "3D" => ".3D"
 // ed.translationDeleteLanguage: "Are you certain you wish to delete all strings for this language?" => "Oletko varma, että haluat poistaa kaikki merkkijonot tältä kieleltä?"
 // ed.themeResetButton: "Reset theme settings to default" => "Palauta teema-asetukset oletusasetuksiin"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // theme.placeholderColor: "Placeholder color" => "Paikkamerkin väri"
 // ed.themeSettings: "Theme Settings" => "Teeman asetukset"
 // ed.themeSettingsTooltip: "Open theme settings" => "Avaa teema-asetukset"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.resetToDefaultCaption: "Reset" => "Nollata"
 // pv.file: "Local files" => "Paikalliset tiedostot"
 // pv.camera: "Camera" => "Kamera"
 // pv.file-camera: "Local files or camera" => "Paikalliset tiedostot tai kamera"
+// ed.translateUsigAI: "Auto-translate All" => "Käännä kaikki automaattisesti"
+// ed.translationDialogTitle: "Untranslated strings" => "Kääntämättömät merkkijonot"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "Anna vähintään {0} kohdetta"
+// lg.question_resetValueName: "Reset question value" => "Palauta kysymyksen arvo"
+// lg.column_resetValue: "Reset column value" => "Palauta sarakkeen arvo"
+// pe.markRequired: "Mark as required" => "Merkitse pakollisesti"
+// pe.removeRequiredMark: "Remove the required mark" => "Poista vaadittu merkki"
+// p.resetValueIf: "Reset value if" => "Nollaa arvo, jos"
+// lg.question_setValueName: "Set question value" => "Aseta kysymyksen arvo"
+// lg.column_resetValueName: "Reset column value" => "Palauta sarakkeen arvo"
+// lg.column_setValueName: "Set column value" => "Sarakkeen arvon määrittäminen"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " Lauseke, jonka tulos määritetään kohdekysymykselle."
+// survey.title: "Title" => "Nimike"
+// page.title: "Title" => "Nimike"
+// p.setValueIf: "Set value if" => "Aseta arvo, jos"
+// theme.groupHeader: "Header" => "Otsikko"
+// theme.coverTitleForecolor: "Title forecolor" => "Otsikon etuväri"
+// theme.coverOverlapEnabled: "Overlap" => "Limittyä"
+// theme.backgroundImageFitFill: "Stretch" => "Venyä"
+// theme.backgroundImageFitTile: "Tile" => "Laatta"
+// theme.headerView: "View" => "Näkymä"
+// theme.headerViewBasic: "Basic" => "Emäksinen"
+// theme.headerViewAdvanced: "Advanced" => "Edistynyt"
+// theme.coverInheritWidthFrom: "Content area width" => "Sisältöalueen leveys"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "Sama kuin kyselyssä"
+// theme.coverInheritWidthFromPage: "Fit to page" => "Sovita sivulle"
+// theme.coverTextAreaWidth: "Text width" => "Tekstin leveys"
+// theme.coverBackgroundColorSwitch: "Background color" => "Taustaväri"
+// theme.coverBackgroundColorNone: "None" => "Ei lainkaan"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "Korostusväri"
+// theme.coverBackgroundColorCustom: "Custom" => "Tapa"
+// theme.horizontalAlignmentLeft: "Left" => "Vasen"
+// theme.horizontalAlignmentCenter: "Center" => "Keskus"
+// theme.horizontalAlignmentRight: "Right" => "Oikea"
+// theme.verticalAlignmentTop: "Top" => "Huippu"
+// theme.verticalAlignmentMiddle: "Middle" => "Keskus"
+// theme.verticalAlignmentBottom: "Bottom" => "Pohja"
+// theme.logoPosition: "Logo Position" => "Logon sijainti"
+// theme.coverTitlePosition: "Title Position" => "Otsikon sijainti"
+// lg.question_resetValueText: "reset value for question: {0}" => "nollaa kysymyksen arvo: {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "Määritä arvo: {1} kysymykseen: {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "Palauta sarakkeen soluarvo: {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "Määritä solun arvo: {1} sarakkeeseen: {0}"
+// ed.surveyJsonExportButton: "Export" => "Vienti"
+// ed.surveyJsonImportButton: "Import" => "Tuoda"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "Kopioi leikepöydälle"
+// pe.filePlaceholder: "File placeholder text" => "Tiedoston paikkamerkkiteksti"
+// pe.photoPlaceholder: "Photo placeholder text" => "Valokuvan paikkamerkkiteksti"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "Tiedoston tai valokuvan paikkamerkkiteksti"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "Käytetään, kun \"Lähdetyyppi\" on \"Paikalliset tiedostot\" tai kun kamera ei ole käytettävissä"
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "Käytetään, kun \"Lähdetyyppi\" on \"Kamera\"."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "Käytetään, kun \"Lähdetyyppi\" on \"Paikalliset tiedostot tai kamera\"."
+// theme.groupBackground: "Background" => "Tausta"
+// theme.groupAppearance: "Appearance" => "Ulkonäkö"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Kuvaus etuväri"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "Haluatko todella nollata teeman? Kaikki mukautuksesi menetetään."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "Kyllä, nollaa teema"
+// theme.groupBackground: "Background" => "Tausta"
+// theme.groupAppearance: "Appearance" => "Ulkonäkö"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Kuvaus etuväri"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "Sovita konttiin"
+// signaturepad.showPlaceholder: "Show the placeholder" => "Paikkamerkin näyttäminen"
+// signaturepad.placeholder: "Placeholder text" => "Paikkamerkkiteksti"
+// theme.surveyDescription: "Survey description font" => "Kyselyn kuvauksen fontti"r
+
+// ed.prevFocus: "Focus previous" => "Keskity edelliseen"
+// ed.nextFocus: "Focus next" => "Keskity seuraavaksi"
+// ed.saveTheme: "Save Theme" => "Tallenna teema"
+// ed.saveThemeTooltip: "Save Theme" => "Tallenna teema"
+// lg.page_requireName: "Make page required" => "Tee sivusta pakollinen"
+// lg.panel_requireName: "Make page required" => "Tee sivusta pakollinen"
+// signaturepad.signatureWidth: "Signature area width" => "Allekirjoitusalueen leveys"
+// signaturepad.signatureHeight: "Signature area height" => "Allekirjoitusalueen korkeus"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "Allekirjoitusalueen automaattinen skaalaus"
+// signaturepad.penMinWidth: "Minimum pen width" => "Kynän vähimmäisleveys"
+// signaturepad.penMaxWidth: "Maximum pen width" => "Kynän enimmäisleveys"
+// theme.coverDescriptionPosition: "Description position" => "Kuvauksen sijainti"
+// ed.propertyGridNoResultsFound: "No results found" => "Tuloksia ei löytynyt"
+// pv.leftRight: "Left and right" => "Vasen ja oikea"
+// p.sourceType: "Source type" => "Lähteen tyyppi"
+// p.fitToContainer: "Fit to container" => "Sovita konttiin"
+// p.setValueExpression: "Set value expression" => "Arvolausekkeen määrittäminen"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "Valinnat ladataan verkkopalvelusta."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "Siirry asetuksiin"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "Ladattujen valintavaihtoehtojen esikatselu"

@@ -1085,7 +1085,7 @@ test("Change operators via callback", () => {
   const options = new EmptySurveyCreatorOptions();
   let evnt_questionType: string = "";
   options.isConditionOperatorEnabled = (questionName: string, question: Question, operator: string, isEnabled: boolean): boolean => {
-    if(questionName === "q2" && ["contains", "anyof"].indexOf(operator) > -1) return false;
+    if (questionName === "q2" && ["contains", "anyof"].indexOf(operator) > -1) return false;
     evnt_questionType = question.getType();
     return isEnabled;
   };
@@ -1471,6 +1471,18 @@ test("questionName choices", () => {
   expect(choices[2].text).toEqual("question 10");
   expect(choices[3].text).toEqual("question 11");
 });
+test("questionName choices and calculated values", () => {
+  const survey = new SurveyModel({
+    elements: [{ type: "text", name: "q1" }],
+    calculatedValues: [{ name: "defaultSetValue", expression: "false" }]
+  });
+  const question = survey.getQuestionByName("q1");
+  const editor = new ConditionEditor(survey, question);
+  const panel = editor.panel.panels[0];
+  const choices = panel.getQuestionByName("questionName").choices;
+  expect(choices).toHaveLength(1);
+  expect(choices[0].text).toEqual("defaultSetValue");
+});
 test("questionName title visibility", () => {
   const survey = new SurveyModel({
     elements: [
@@ -1768,4 +1780,69 @@ test("Condition editor and question value cssClasses", () => {
   expect(comp.contentQuestion).toBeTruthy();
   expect(comp.contentQuestion.cssClasses.content).toContain("sd-question__content");
   ComponentCollection.Instance.clear();
+});
+test("Hide search for conjunction", () => {
+  var survey = new SurveyModel({
+    elements: [
+      { name: "q1", type: "text" },
+      { name: "q2", type: "radiogroup", choices: [1, 2, 3] },
+      { name: "q3", type: "checkbox", choices: [1, 2, 3] },
+      { name: "q4", type: "text" }
+    ]
+  });
+  var question = survey.getQuestionByName("q4");
+  var editor = new ConditionEditor(survey, question);
+  expect(editor.panel.panels).toHaveLength(1);
+  var panel = editor.panel.panels[0];
+  expect(panel.getQuestionByName("operator").searchEnable).toBeFalsy();
+  expect(panel.getQuestionByName("operator").dropdownListModel.listModel.searchEnabled).toBeFalsy();
+  expect(panel.getQuestionByName("questionValue").isReadOnly).toBeTruthy();
+  panel.getQuestionByName("questionName").value = "q1";
+  panel.getQuestionByName("questionValue").value = "abc";
+  expect(editor.text).toEqual("{q1} = 'abc'");
+  expect(panel.getQuestionByName("conjunction").isVisible).toBeFalsy();
+  editor.panel.addPanel();
+  panel = editor.panel.panels[1];
+  expect(panel.getQuestionByName("operator").searchEnable).toBeFalsy();
+  expect(panel.getQuestionByName("operator").dropdownListModel.listModel.searchEnabled).toBeFalsy();
+  expect(panel.getQuestionByName("conjunction").isVisible).toBeTruthy();
+  expect(panel.getQuestionByName("conjunction").choices).toHaveLength(2);
+  expect(panel.getQuestionByName("conjunction").searchEnable).toBeFalsy();
+  expect(panel.getQuestionByName("conjunction").dropdownListModel.listModel.searchEnabled).toBeFalsy();
+});
+test("Do not show comment for other if storeOthersAsComment is true/false", () => {
+  const survey = new SurveyModel({
+    elements: [
+      { name: "q1", type: "text" },
+      { name: "q2", type: "radiogroup", choices: [1, 2, 3], showOtherItem: true },
+      { name: "q3", type: "checkbox", choices: [1, 2, 3], showOtherItem: true },
+      { name: "q4", type: "radiogroup", choices: [1, 2, 3], showOtherItem: true, storeOthersAsComment: false },
+      { name: "q5", type: "text", visibleIf: "{q2} = 'other' and {q3} = ['other'] and {q4} = 'foo'" }
+    ]
+  });
+  const question = survey.getQuestionByName("q5");
+  const conditionEditor = new ConditionEditor(survey, question, undefined, "visibleIf");
+  expect(conditionEditor.panel.panelCount).toBe(3);
+  const radioQuestion = <QuestionRadiogroupModel>conditionEditor.panel.panels[0].getQuestionByName("questionValue");
+  const checkQuestion = <QuestionCheckboxModel>conditionEditor.panel.panels[1].getQuestionByName("questionValue");
+  const radioQuestion2 = <QuestionRadiogroupModel>conditionEditor.panel.panels[2].getQuestionByName("questionValue");
+  expect(radioQuestion.value).toBe("other");
+  expect(radioQuestion.choices).toHaveLength(4);
+  expect(radioQuestion.choices[3].value).toBe("other");
+  expect(radioQuestion.otherItem.value).toBe("#other#");
+  expect(radioQuestion.showOtherItem).toBeFalsy();
+
+  expect(checkQuestion.value).toHaveLength(1);
+  expect(checkQuestion.value[0]).toBe("other");
+  expect(checkQuestion.choices).toHaveLength(4);
+  expect(checkQuestion.choices[3].value).toBe("other");
+  expect(checkQuestion.otherItem.value).toBe("#other#");
+  expect(checkQuestion.showOtherItem).toBeFalsy();
+
+  expect(radioQuestion2.value).toBe("foo");
+  expect(radioQuestion2.choices).toHaveLength(3);
+  expect(radioQuestion2.choices[2].value).toBe(3);
+  expect(radioQuestion2.otherItem.value).toBe("other");
+  expect(radioQuestion2.showOtherItem).toBeTruthy();
+  expect(radioQuestion2.comment).toBe("foo");
 });

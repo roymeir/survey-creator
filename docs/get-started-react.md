@@ -11,6 +11,7 @@ This step-by-step tutorial will help you get started with the [Survey Creator](h
 - [Configure Survey Creator](#configure-survey-creator)
 - [Render Survey Creator](#render-survey-creator)
 - [Save and Load Survey Model Schemas](#save-and-load-survey-model-schemas)
+- [Manage Image Uploads](#manage-image-uploads)
 
 [View Full Code on GitHub](https://github.com/surveyjs/code-examples/tree/main/get-started-creator/react (linkStyle))
 
@@ -33,18 +34,14 @@ import "survey-core/defaultV2.min.css";
 import "survey-creator-core/survey-creator-core.min.css";
 ```
 
-Note that although standalone surveys support [multiple predefined themes](https://surveyjs.io/form-library/documentation/get-started-react#configure-styles), surveys within Survey Creator apply only one theme ("Default V2"). However, you can use the survey configuration (JSON object) produced by Survey Creator to build a standalone survey and apply any theme to it. You can also customize Survey Creator theme colors as shown in the following example:
-
-[View Demo](https://surveyjs.io/survey-creator/examples/edit-user-interface-theme-with-custom-css/reactjs (linkStyle))
-
 ## Configure Survey Creator
 
-To configure the Survey Creator component, specify [its properties](https://surveyjs.io/Documentation/Survey-Creator?id=ICreatorOptions) in a configuration object. In this tutorial, the object enables the following properties:
+To configure the Survey Creator component, specify [its properties](https://surveyjs.io/survey-creator/documentation/api-reference/icreatoroptions) in a configuration object. In this tutorial, the object enables the following properties:
 
-- [`showLogicTab`](https://surveyjs.io/Documentation/Survey-Creator?id=ICreatorOptions#showLogicTab)        
+- [`showLogicTab`](https://surveyjs.io/survey-creator/documentation/api-reference/icreatoroptions#showLogicTab)        
 Displays the Logic tab in the tab panel.
 
-- [`isAutoSave`](https://surveyjs.io/Documentation/Survey-Creator?id=ICreatorOptions#isAutoSave)        
+- [`isAutoSave`](https://surveyjs.io/survey-creator/documentation/api-reference/icreatoroptions#isAutoSave)        
 Automatically saves the survey JSON schema on every change.
 
 ```js
@@ -90,7 +87,7 @@ export function SurveyCreatorWidget() {
 
 ## Render Survey Creator
 
-To render a survey, import the `SurveyCreatorComponent`, add it to the template, and pass the instance you created in the previous step to the component's `creator` attribute:
+To render Survey Creator, import the `SurveyCreatorComponent`, add it to the template, and pass the instance you created in the previous step to the component's `creator` attribute:
 
 ```js
 import { SurveyCreatorComponent, SurveyCreator } from "survey-creator-react";
@@ -182,7 +179,7 @@ function saveSurveyJson(url, json, saveNo, callback) {
 }
 ```
 
-To load a survey model schema JSON into Survey Creator, assign the schema to Survey Creator's [`JSON`](https://surveyjs.io/Documentation/Survey-Creator?id=surveycreator#JSON) or [`text`](https://surveyjs.io/Documentation/Survey-Creator?id=surveycreator#text) property. Use `text` if the JSON object is converted to a string; otherwise, use `JSON`. The following code takes a survey model schema from the `localStorage`. If the schema is not found (for example, when Survey Creator is launched for the first time), a default JSON is used:
+To load a survey model schema JSON into Survey Creator, assign the schema to Survey Creator's [`JSON`](https://surveyjs.io/survey-creator/documentation/api-reference/survey-creator#JSON) or [`text`](https://surveyjs.io/survey-creator/documentation/api-reference/survey-creator#text) property. Use `text` if the JSON object is converted to a string; otherwise, use `JSON`. The following code takes a survey model schema from the `localStorage`. If the schema is not found (for example, when Survey Creator is launched for the first time), a default JSON is used:
 
 
 ```js
@@ -208,8 +205,6 @@ export function SurveyCreatorWidget() {
   // ...
 }
 ```
-
-To view the application, run `npm run start` in a command line and open [http://localhost:3000/](http://localhost:3000/) in your browser.
 
 <details>
   <summary>View Full Code</summary>
@@ -278,6 +273,131 @@ export function SurveyCreatorWidget() {
 // }
 ```
 </details>
+
+## Manage Image Uploads
+
+When survey authors design a form or questionnaire, they can add images to use as a survey [logo](https://surveyjs.io/form-library/documentation/api-reference/survey-data-model#logo) or [background](https://surveyjs.io/form-library/documentation/api-reference/survey-data-model#backgroundImage), in the survey header, or within [Image](https://surveyjs.io/form-library/examples/add-image-and-video-to-survey/) and [Image Picker](https://surveyjs.io/form-library/examples/image-picker-question/) questions. Those images are embedded in the survey and theme JSON schemas as Base64 URLs. However, this technique increases the schema size. To avoid this, you can upload images to a server and save only image links in the JSON schemas.
+
+To implement image upload, handle the [`onUploadFile`](https://surveyjs.io/survey-creator/documentation/api-reference/survey-creator#onUploadFile) event. Its `options.files` parameter stores the images you should send to your server. Once the server responds with an image link, call the `options.callback(status, imageLink)` method. Pass `"success"` as the `status` parameter and a link to the uploaded image as the `imageLink` parameter.
+
+```js
+export function SurveyCreatorWidget() {
+  // ...
+  creator.onUploadFile.add((_, options) => {
+    const formData = new FormData();
+    options.files.forEach(file => {
+      formData.append(file.name, file);
+    });
+    fetch("https://example.com/uploadFiles", {
+      method: "post",
+      body: formData
+    }).then(response => response.json())
+      .then(result => {
+        options.callback(
+          "success",
+          // A link to the uploaded file
+          "https://example.com/files?name=" + result[options.files[0].name]
+        );
+      })
+      .catch(error => {
+        options.callback('error');
+      });
+  });
+  // ...
+}
+```
+
+To view the application, run `npm run start` in a command line and open [http://localhost:3000/](http://localhost:3000/) in your browser.
+
+<details>
+  <summary>View Full Code</summary>
+
+```js
+import { SurveyCreatorComponent, SurveyCreator } from "survey-creator-react";
+import "survey-core/defaultV2.min.css";
+import "survey-creator-core/survey-creator-core.min.css";
+
+const creatorOptions = {
+  showLogicTab: true,
+  isAutoSave: true
+};
+
+const defaultJson = {
+  pages: [{
+    name: "Name",
+    elements: [{
+      name: "FirstName",
+      title: "Enter your first name:",
+      type: "text"
+    }, {
+      name: "LastName",
+      title: "Enter your last name:",
+      type: "text"
+    }]
+  }]
+};
+
+export function SurveyCreatorWidget() {
+  const creator = new SurveyCreator(creatorOptions);
+  creator.text = window.localStorage.getItem("survey-json") || JSON.stringify(defaultJson);
+  creator.saveSurveyFunc = (saveNo, callback) => { 
+    window.localStorage.setItem("survey-json", creator.text);
+    callback(saveNo, true);
+    // saveSurveyJson(
+    //     "https://your-web-service.com/",
+    //     creator.JSON,
+    //     saveNo,
+    //     callback
+    // );
+  };
+  // creator.onUploadFile.add((_, options) => {
+  //   const formData = new FormData();
+  //   options.files.forEach(file => {
+  //     formData.append(file.name, file);
+  //   });
+  //   fetch("https://example.com/uploadFiles", {
+  //     method: "post",
+  //     body: formData
+  //   }).then(response => response.json())
+  //     .then(result => {
+  //       options.callback(
+  //         "success",
+  //         // A link to the uploaded file
+  //         "https://example.com/files?name=" + result[options.files[0].name]
+  //       );
+  //     })
+  //     .catch(error => {
+  //       options.callback('error');
+  //     });
+  // });
+  return (
+    <SurveyCreatorComponent creator={creator} />
+  )
+}
+
+// function saveSurveyJson(url, json, saveNo, callback) {
+//   fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json;charset=UTF-8'
+//     },
+//     body: JSON.stringify(json)
+//   })
+//   .then(response => {
+//     if (response.ok) {
+//       callback(saveNo, true);
+//     } else {
+//       callback(saveNo, false);
+//     }
+//   })
+//   .catch(error => {
+//     callback(saveNo, false);
+//   });
+// }
+```
+</details>
+
+[View Demo](https://surveyjs.io/survey-creator/examples/file-upload/reactjs (linkStyle))
 
 [View Full Code on GitHub](https://github.com/surveyjs/code-examples/tree/main/get-started-creator/react (linkStyle))
 

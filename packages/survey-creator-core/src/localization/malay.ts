@@ -56,6 +56,8 @@ export var msStrings = {
     hidePanel: "Sembunyikan Panel",
     prevSelected: "Pilih sebelumnya",
     nextSelected: "Pilih seterusnya",
+    prevFocus: "Fokus sebelum ini",
+    nextFocus: "Fokus seterusnya",
     surveyTypeName: "Kaji selidik",
     pageTypeName: "Laman",
     panelTypeName: "Panel",
@@ -84,6 +86,8 @@ export var msStrings = {
     translation: "Terjemahan",
     saveSurvey: "Simpan Tinjauan",
     saveSurveyTooltip: "Simpan Tinjauan",
+    saveTheme: "Simpan Tema",
+    saveThemeTooltip: "Simpan Tema",
     designer: "Pereka Bentuk Tinjauan",
     jsonEditor: "Editor JSON",
     jsonHideErrors: "Sembunyikan ralat",
@@ -106,6 +110,7 @@ export var msStrings = {
     toolbox: "Kotak Alat",
     "property-grid": "Ciri",
     propertyGridFilteredTextPlaceholder: "Taip untuk mencari...",
+    propertyGridNoResultsFound: "Tiada keputusan ditemui",
     toolboxGeneralCategory: "Umum",
     toolboxChoiceCategory: "Soalan Pilihan",
     toolboxTextCategory: "Soalan Input Teks",
@@ -136,17 +141,27 @@ export var msStrings = {
     translationNoStrings: "Tiada rentetan untuk diterjemah. Sila ubah penapis.",
     translationExportToSCVButton: "Eksport kepada CSV",
     translationImportFromSCVButton: "Import daripada CSV",
+    translateUsigAI: "Terjemahkan Secara automatik Semua",
+    translationDialogTitle: "Rentetan tidak diterjemahkan",
     translationMergeLocaleWithDefault: "Gabung {0} dengan tempatan lalai",
     translationPlaceHolder: "Penterjemahan...",
     themeExportButton: "Eksport",
     themeImportButton: "Import",
+    surveyJsonExportButton: "Eksport",
+    surveyJsonImportButton: "Import",
+    surveyJsonCopyButton: "Salin ke papan keratan",
     themeResetButton: "Mengeset semula seting tema kepada lalai",
+    themeResetConfirmation: "Adakah anda benar-benar mahu menetapkan semula tema? Semua penyesuaian anda akan hilang.",
+    themeResetConfirmationOk: "Ya, tetapkan semula tema",
     bold: "Tebal",
     italic: "Condong",
     underline: "Garis bawah",
     addNewQuestion: "Tambahkan soalan",
     selectPage: "Pilih halaman...",
     carryForwardChoicesCopied: "Pilihan disalin daripada",
+    choicesLoadedFromWebText: "Pilihan dimuatkan dari perkhidmatan web.",
+    choicesLoadedFromWebLinkText: "Pergi ke seting",
+    choicesLoadedFromWebPreviewTitle: "Pratonton pilihan pilihan yang dimuatkan",
     htmlPlaceHolder: "Kandungan HTML akan berada di sini.",
     panelPlaceHolder: "Lepaskan soalan dari kotak alat di sini.",
     surveyPlaceHolder: "Tinjauan itu kosong. Seret elemen dari kotak alat atau klik butang di bawah.",
@@ -161,14 +176,20 @@ export var msStrings = {
       empty_tab: "Cipta peraturan untuk menyesuaikan aliran tinjauan.",
       page_visibilityName: "Kebolehlihatan halaman",
       page_enableName: "Halaman Dayakan (nyahdayakan)",
+      page_requireName: "Buat halaman diperlukan",
       panel_visibilityName: "Kebolehlihatan panel",
       panel_enableName: "Dayakan/Lumpuhkan panel",
+      panel_requireName: "Buat halaman diperlukan",
       question_visibilityName: "Kebolehlihatan soalan",
       question_enableName: "Dayakan/Lumpuhkan soalan",
       question_requireName: "Pilihan soalan diperlukan",
+      question_resetValueName: "Mengeset semula nilai soalan",
+      question_setValueName: "Mengesetkan nilai soalan",
       column_visibilityName: "Tunjukkan lajur (sembunyikan)",
       column_enableName: "Mendayakan (nyahdayakan) lajur",
       column_requireName: "Jadikan lajur diperlukan",
+      column_resetValueName: "Mengeset semula nilai lajur",
+      column_setValueName: "Mengesetkan nilai lajur",
       trigger_completeName: "Lengkapkan tinjauan",
       trigger_setvalueName: "Tetapkan nilai soalan",
       trigger_copyvalueName: "Salin nilai soalan",
@@ -195,9 +216,14 @@ export var msStrings = {
       question_visibilityText: "Jadikan soalan {0} boleh dilihat", //{0} question name
       question_enableText: "Jadikan soalan {0} didayakan", //{0} question name
       question_requireText: "Jadikan soalan {0} diperlukan", //{0} question name
+      question_resetValueText: "Tetapkan semula nilai untuk soalan: {0}",
+      question_setValueText: "Berikan nilai: {1} kepada soalan: {0}",
       column_visibilityText: "menjadikan {0} lajur soalan {1} kelihatan", //{0} column name, {1} question name
       column_enableText: "menjadikan lajur {0} soalan {1} mendayakan", //{0} column name, {1} question name
       column_requireText: "menjadikan lajur {0} soalan {1} diperlukan", //{0} column name, {1} question name
+      column_resetValueText: "Set semula nilai sel untuk lajur: {0}",
+      column_setValueText: "Peruntukkan nilai sel: {1} kepada lajur: {0}",
+      setValueExpressionPlaceholder: " Ungkapan yang hasilnya akan diberikan kepada soalan sasaran.",
       trigger_completeText: "Tinjauan dilengkapkan",
       trigger_setvalueText: "Tetapkan kepada soalan: {0} nilai {1}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "nilai soalan yang jelas: {0}", //{0} question name
@@ -221,9 +247,7 @@ export var msStrings = {
       uncompletedRule_title: "Peraturan logik tidak lengkap",
       uncompletedRule_text: "Anda belum menyelesaikan beberapa peraturan logik. Jika anda meninggalkan tab sekarang, perubahan akan hilang. Adakah anda masih mahu meninggalkan tab tanpa melengkapkan perubahan?",
       uncompletedRule_apply: "Ya",
-      uncompletedRule_cancel: "Tidak, saya mahu melengkapkan peraturan",
-      // expressionSetup: "",
-      // actionsSetup: ""
+      uncompletedRule_cancel: "Tidak, saya mahu melengkapkan peraturan"
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ export var msStrings = {
     fastEntry: "Entri Pantas",
     fastEntryNonUniqueError: "Nilai '{0}' tidak unik",
     fastEntryChoicesCountError: "Sila hadkan bilangan item dari {0} hingga {1}",
+    fastEntryChoicesMinCountError: "Sila masukkan sekurang-kurangnya {0} item",
     fastEntryPlaceholder: "Anda boleh mengesetkan data dalam format berikut:\nvalue1|text\nnilai2",
     formEntry: "Entri Borang",
     testService: "Uji perkhidmatan",
@@ -327,6 +352,8 @@ export var msStrings = {
     choicesOrder: "Pilih susunan pilihan",
     visible: "Boleh dilihat?",
     isRequired: "Diperlukan?",
+    markRequired: "Tandakan mengikut keperluan",
+    removeRequiredMark: "Mengalih keluar tanda yang diperlukan",
     isAllRowRequired: "Perlukan jawapan untuk semua baris",
     requiredErrorText: "Teks ralat diperlukan",
     startWithNewLine: "Mulakan dengan baris baharu?",
@@ -408,7 +435,12 @@ export var msStrings = {
       imageHeight: "Ketinggian imej (dalam nilai diterima CSS)",
       imageWidth: "Lebar imej (dalam nilai diterima CSS)"
     },
+    // survey templates
+    survey: {
+      title: "Tajuk"
+    },
     page: {
+      title: "Tajuk",
       maxTimeToFinish: "Had masa untuk menyelesaikan halaman (dalam beberapa saat)"
     },
     question: {
@@ -639,6 +671,18 @@ export var msStrings = {
     columnsVisibleIf: "Lajur kelihatan jika",
     rowsVisibleIf: "Baris boleh dilihat jika",
     otherPlaceholder: "Ruang letak komen",
+    signaturepad: {
+      showPlaceholder: "Menunjukkan ruang letak",
+      placeholder: "Teks ruang letak",
+      signatureWidth: "Lebar kawasan tandatangan",
+      signatureHeight: "Ketinggian kawasan tandatangan",
+      signatureAutoScaleEnabled: "Menskalakan kawasan tandatangan secara automatik",
+      penMinWidth: "Lebar pen minimum",
+      penMaxWidth: "Lebar pen maksimum"
+    },
+    filePlaceholder: "Teks ruang letak fail",
+    photoPlaceholder: "Teks ruang letak foto",
+    fileOrPhotoPlaceholder: "Teks ruang letak fail atau foto",
     rateType: "Jenis kadar"
   },
   // Property values
@@ -681,6 +725,7 @@ export var msStrings = {
     both: "kedua-duanya",
     left: "baki",
     right: "Kanan",
+    leftRight: "Kiri dan kanan",
     color: "Warna",
     date: "Tarikh",
     datetime: "masa tarikh",
@@ -876,7 +921,10 @@ export var msStrings = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "Jika lajur yang ditentukan mengandungi nilai yang sama, tinjauan akan membuang ralat \"Nilai kunci bukan unik\"."
+    keyName: "Jika lajur yang ditentukan mengandungi nilai yang sama, tinjauan akan membuang ralat \"Nilai kunci bukan unik\".",
+    filePlaceholder: "Digunakan apabila \"Jenis sumber\" ialah \"Fail tempatan\" atau apabila kamera tidak tersedia",
+    photoPlaceholder: "Digunakan apabila \"Jenis sumber\" ialah \"Kamera\".",
+    fileOrPhotoPlaceholder: "Digunakan apabila \"Jenis sumber\" ialah \"Fail atau kamera tempatan\"."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ export var msStrings = {
     showLabel: "Tunjukkan label",
     value: "Nilai",
     tabAlign: "Penjajaran tab",
+    sourceType: "Jenis sumber",
+    fitToContainer: "Muat ke bekas",
+    setValueExpression: "Mengesetkan ungkapan nilai",
     description: "perihalan",
     logoFit: "Muat logo",
     pages: "halaman",
@@ -910,6 +961,8 @@ export var msStrings = {
     descriptionLocation: "Lokasi perihalan",
     defaultValueExpression: "Ekspresi nilai lalai",
     requiredIf: "Diperlukan jika",
+    resetValueIf: "Mengeset semula nilai jika",
+    setValueIf: "Setkan nilai jika",
     validators: "Pengesah",
     bindings: "ikatan",
     renderAs: "Render sebagai",
@@ -986,6 +1039,9 @@ export var msStrings = {
     "--base-unit": "Unit asas",
     groupGeneral: "Umum",
     groupAdvanced: "Lanjutan",
+    groupHeader: "Pengepala",
+    groupBackground: "Latar belakang",
+    groupAppearance: "Penampilan",
     themeName: "Tema",
     themeMode: "Penampilan soalan",
     themeModePanels: "Lalai",
@@ -996,11 +1052,16 @@ export var msStrings = {
     primaryDefaultColor: "Lalai",
     primaryDarkColor: "Hover",
     primaryLightColor: "Dipilih",
+    coverTitleForecolor: "Warna tajuk",
+    coverDescriptionForecolor: "Penerangan forecolor",
+    coverOverlapEnabled: "Bertindih",
     backgroundDimColor: "Warna latar belakang",
     backgroundImage: "Imej latar belakang",
     backgroundImageFitAuto: "Auto",
     backgroundImageFitCover: "Perlindungan",
     backgroundImageFitContain: "Mengandungi",
+    backgroundImageFitFill: "Regangan",
+    backgroundImageFitTile: "Jubin",
     backgroundOpacity: "Kelegapan",
     backgroundImageAttachmentFixed: "Tetap",
     backgroundImageAttachmentScroll: "Tatal",
@@ -1033,6 +1094,7 @@ export var msStrings = {
     scale: "Skala",
     cornerRadius: "Jejari penjuru",
     surveyTitle: "Fon tajuk tinjauan",
+    surveyDescription: "Fon perihalan tinjauan",
     pageTitle: "Fon tajuk halaman",
     pageDescription: "Fon perihalan halaman",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ export var msStrings = {
     boxShadowInner: "Dalaman",
     questionShadow: "Kesan bayang",
     editorShadow: "Kesan bayang unsur input",
+    headerView: "Lihat",
+    headerViewBasic: "Asas",
+    headerViewAdvanced: "Lanjutan",
+    coverInheritWidthFrom: "Lebar kawasan kandungan",
+    coverInheritWidthFromSurvey: "Sama seperti tinjauan",
+    coverInheritWidthFromContainer: "Muat ke bekas",
+    coverTextAreaWidth: "Lebar teks",
+    coverBackgroundColorSwitch: "Warna latar belakang",
+    coverBackgroundColorNone: "Tiada",
+    coverBackgroundColorAccentColor: "Warna aksen",
+    coverBackgroundColorCustom: "Tersuai",
+    horizontalAlignmentLeft: "Kiri",
+    horizontalAlignmentCenter: "Pusat",
+    horizontalAlignmentRight: "Kanan",
+    verticalAlignmentTop: "Atas",
+    verticalAlignmentMiddle: "Tengah",
+    verticalAlignmentBottom: "Bawah",
+    logoPosition: "Kedudukan logo",
+    coverTitlePosition: "Kedudukan tajuk",
+    coverDescriptionPosition: "Kedudukan perihalan",
     names: {
       default: "Lalai",
       sharp: "Tajam",
@@ -1132,8 +1214,6 @@ editorLocalization.locales["ms"] = msStrings;
 // lg.uncompletedRule_text: "You have not completed some of the logical rules. If you leave the tab now, the changes will be lost. Do you still want to leave the tab without completing the changes?" => "Anda belum menyelesaikan beberapa peraturan logik. Jika anda meninggalkan tab sekarang, perubahan akan hilang. Adakah anda masih mahu meninggalkan tab tanpa melengkapkan perubahan?"
 // lg.uncompletedRule_apply: "Yes" => "Ya"
 // lg.uncompletedRule_cancel: "No, I want to complete the rules" => "Tidak, saya mahu melengkapkan peraturan"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.clear: "Clear" => "Jelas"
 // pe.set: "Set" => "Set"
 // pe.change: "Change" => "Menukar"
@@ -1509,8 +1589,6 @@ editorLocalization.locales["ms"] = msStrings;
 // colors.tulip: "Tulip" => "Tulip"
 // colors.brown: "Brown" => "Brown"
 // colors.green: "Green" => "Hijau"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // names.sharp: "Sharp" => "Tajam"
 // names.borderless: "Borderless" => "Tanpa sempadan"
 // names.flat: "Flat" => "Rata"
@@ -1520,14 +1598,94 @@ editorLocalization.locales["ms"] = msStrings;
 // names.threedimensional: "3D" => ".3D"
 // ed.translationDeleteLanguage: "Are you certain you wish to delete all strings for this language?" => "Adakah anda pasti ingin memadam semua rentetan untuk bahasa ini?"
 // ed.themeResetButton: "Reset theme settings to default" => "Mengeset semula seting tema kepada lalai"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // theme.placeholderColor: "Placeholder color" => "Warna ruang letak"
 // ed.themeSettings: "Theme Settings" => "Seting Tema"
 // ed.themeSettingsTooltip: "Open theme settings" => "Buka seting tema"
-// lg.expressionSetup: "" => ""
-// lg.actionsSetup: "" => ""
 // pe.resetToDefaultCaption: "Reset" => "Set semula"
 // pv.file: "Local files" => "Fail tempatan"
 // pv.camera: "Camera" => "Kamera"
 // pv.file-camera: "Local files or camera" => "Fail atau kamera tempatan"
+// ed.translateUsigAI: "Auto-translate All" => "Terjemahkan Secara automatik Semua"
+// ed.translationDialogTitle: "Untranslated strings" => "Rentetan tidak diterjemahkan"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "Sila masukkan sekurang-kurangnya {0} item"
+// lg.question_resetValueName: "Reset question value" => "Mengeset semula nilai soalan"
+// lg.column_resetValue: "Reset column value" => "Mengeset semula nilai lajur"
+// pe.markRequired: "Mark as required" => "Tandakan mengikut keperluan"
+// pe.removeRequiredMark: "Remove the required mark" => "Mengalih keluar tanda yang diperlukan"
+// p.resetValueIf: "Reset value if" => "Mengeset semula nilai jika"
+// lg.question_setValueName: "Set question value" => "Mengesetkan nilai soalan"
+// lg.column_resetValueName: "Reset column value" => "Mengeset semula nilai lajur"
+// lg.column_setValueName: "Set column value" => "Mengesetkan nilai lajur"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " Ungkapan yang hasilnya akan diberikan kepada soalan sasaran."
+// survey.title: "Title" => "Tajuk"
+// page.title: "Title" => "Tajuk"
+// p.setValueIf: "Set value if" => "Setkan nilai jika"
+// theme.groupHeader: "Header" => "Pengepala"
+// theme.coverTitleForecolor: "Title forecolor" => "Warna tajuk"
+// theme.coverOverlapEnabled: "Overlap" => "Bertindih"
+// theme.backgroundImageFitFill: "Stretch" => "Regangan"
+// theme.backgroundImageFitTile: "Tile" => "Jubin"
+// theme.headerView: "View" => "Lihat"
+// theme.headerViewBasic: "Basic" => "Asas"
+// theme.headerViewAdvanced: "Advanced" => "Lanjutan"
+// theme.coverInheritWidthFrom: "Content area width" => "Lebar kawasan kandungan"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "Sama seperti tinjauan"
+// theme.coverInheritWidthFromPage: "Fit to page" => "Muat ke halaman"
+// theme.coverTextAreaWidth: "Text width" => "Lebar teks"
+// theme.coverBackgroundColorSwitch: "Background color" => "Warna latar belakang"
+// theme.coverBackgroundColorNone: "None" => "Tiada"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "Warna aksen"
+// theme.coverBackgroundColorCustom: "Custom" => "Tersuai"
+// theme.horizontalAlignmentLeft: "Left" => "Kiri"
+// theme.horizontalAlignmentCenter: "Center" => "Pusat"
+// theme.horizontalAlignmentRight: "Right" => "Kanan"
+// theme.verticalAlignmentTop: "Top" => "Atas"
+// theme.verticalAlignmentMiddle: "Middle" => "Tengah"
+// theme.verticalAlignmentBottom: "Bottom" => "Bawah"
+// lg.question_resetValueText: "reset value for question: {0}" => "Tetapkan semula nilai untuk soalan: {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "Berikan nilai: {1} kepada soalan: {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "Set semula nilai sel untuk lajur: {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "Peruntukkan nilai sel: {1} kepada lajur: {0}"
+// ed.surveyJsonExportButton: "Export" => "Eksport"
+// ed.surveyJsonImportButton: "Import" => "Import"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "Salin ke papan keratan"
+// pe.filePlaceholder: "File placeholder text" => "Teks ruang letak fail"
+// pe.photoPlaceholder: "Photo placeholder text" => "Teks ruang letak foto"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "Teks ruang letak fail atau foto"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "Digunakan apabila \"Jenis sumber\" ialah \"Fail tempatan\" atau apabila kamera tidak tersedia"
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "Digunakan apabila \"Jenis sumber\" ialah \"Kamera\"."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "Digunakan apabila \"Jenis sumber\" ialah \"Fail atau kamera tempatan\"."
+// theme.groupBackground: "Background" => "Latar belakang"
+// theme.groupAppearance: "Appearance" => "Penampilan"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Penerangan forecolor"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "Adakah anda benar-benar mahu menetapkan semula tema? Semua penyesuaian anda akan hilang."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "Ya, tetapkan semula tema"
+// theme.groupBackground: "Background" => "Latar belakang"
+// theme.groupAppearance: "Appearance" => "Penampilan"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Penerangan forecolor"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "Muat ke bekas"
+// signaturepad.showPlaceholder: "Show the placeholder" => "Menunjukkan ruang letak"
+// signaturepad.placeholder: "Placeholder text" => "Teks ruang letak"
+// theme.surveyDescription: "Survey description font" => "Fon perihalan tinjauan"
+// ed.prevFocus: "Focus previous" => "Fokus sebelum ini"
+// ed.nextFocus: "Focus next" => "Fokus seterusnya"
+// ed.saveTheme: "Save Theme" => "Simpan Tema"
+// ed.saveThemeTooltip: "Save Theme" => "Simpan Tema"
+// lg.page_requireName: "Make page required" => "Buat halaman diperlukan"
+// lg.panel_requireName: "Make page required" => "Buat halaman diperlukan"
+// signaturepad.signatureWidth: "Signature area width" => "Lebar kawasan tandatangan"
+// signaturepad.signatureHeight: "Signature area height" => "Ketinggian kawasan tandatangan"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "Menskalakan kawasan tandatangan secara automatik"
+// signaturepad.penMinWidth: "Minimum pen width" => "Lebar pen minimum"
+// signaturepad.penMaxWidth: "Maximum pen width" => "Lebar pen maksimum"
+// theme.logoPosition: "Logo position" => "Kedudukan logo"
+// theme.coverTitlePosition: "Title position" => "Kedudukan tajuk"
+// theme.coverDescriptionPosition: "Description position" => "Kedudukan perihalan"
+// ed.propertyGridNoResultsFound: "No results found" => "Tiada keputusan ditemui"
+// pv.leftRight: "Left and right" => "Kiri dan kanan"
+// p.sourceType: "Source type" => "Jenis sumber"
+// p.fitToContainer: "Fit to container" => "Muat ke bekas"
+// p.setValueExpression: "Set value expression" => "Mengesetkan ungkapan nilai"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "Pilihan dimuatkan dari perkhidmatan web."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "Pergi ke seting"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "Pratonton pilihan pilihan yang dimuatkan"

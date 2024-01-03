@@ -56,6 +56,8 @@ var italianTranslation = {
     hidePanel: "Nascondi Pannello",
     prevSelected: "Seleziona precedente",
     nextSelected: "Seleziona seguente",
+    prevFocus: "Focus precedente",
+    nextFocus: "Focus successivo",
     surveyTypeName: "Sondaggio",
     pageTypeName: "Pagina",
     panelTypeName: "Pannello",
@@ -84,6 +86,8 @@ var italianTranslation = {
     translation: "Traduzione",
     saveSurvey: "Salva sondaggio",
     saveSurveyTooltip: "Salva sondaggio",
+    saveTheme: "Salva tema",
+    saveThemeTooltip: "Salva tema",
     designer: "Progetta il sondaggio",
     jsonEditor: "Modifica JSON",
     jsonHideErrors: "Nascondi gli errori",
@@ -106,6 +110,7 @@ var italianTranslation = {
     toolbox: "Toolbox",
     "property-grid": "Proprietà",
     propertyGridFilteredTextPlaceholder: "Digita per cercare...",
+    propertyGridNoResultsFound: "Nessun risultato trovato",
     toolboxGeneralCategory: "Generale",
     toolboxChoiceCategory: "Domande a scelta",
     toolboxTextCategory: "Domande sull'input di testo",
@@ -136,17 +141,27 @@ var italianTranslation = {
     translationNoStrings: "Nessuna stringa da tradurre. Cambia il filtro.",
     translationExportToSCVButton: "Esporta in CSV",
     translationImportFromSCVButton: "Importa da CSV",
+    translateUsigAI: "Traduzione automatica di tutto",
+    translationDialogTitle: "Stringhe non tradotte",
     translationMergeLocaleWithDefault: "Unisci {0} con il predefinito",
     translationPlaceHolder: "Traduzione...",
     themeExportButton: "Esportazione",
     themeImportButton: "Importazione",
+    surveyJsonExportButton: "Esportazione",
+    surveyJsonImportButton: "Importazione",
+    surveyJsonCopyButton: "Copia negli Appunti",
     themeResetButton: "Ripristina le impostazioni del tema predefinite",
+    themeResetConfirmation: "Vuoi davvero resettare il tema? Tutte le tue personalizzazioni andranno perse.",
+    themeResetConfirmationOk: "Sì, reimposta il tema",
     bold: "Grassetto",
     italic: "Corsivo",
     underline: "Sottolineato",
     addNewQuestion: "Aggiungi domanda",
     selectPage: "Seleziona la pagina...",
     carryForwardChoicesCopied: "Le scelte vengono copiate da",
+    choicesLoadedFromWebText: "Le scelte vengono caricate da un servizio Web.",
+    choicesLoadedFromWebLinkText: "Vai alle impostazioni",
+    choicesLoadedFromWebPreviewTitle: "Anteprima delle opzioni di scelta caricate",
     htmlPlaceHolder: "Il contenuto HTML sarà qui.",
     panelPlaceHolder: "Trascina una domanda dalla toolbox qui.",
     surveyPlaceHolder: "Il sondaggio è vuoto. Trascina un elemento dalla toolbox o clicca sul tasto sottostante.",
@@ -161,14 +176,20 @@ var italianTranslation = {
       empty_tab: "Crea una regola per personalizzare il percorso del sondaggio.",
       page_visibilityName: "Mostra (nascondi) pagina",
       page_enableName: "Abilita (disabilita) pagina",
+      page_requireName: "Rendi la pagina obbligatoria",
       panel_visibilityName: "Mostra (nascondi) pannello",
       panel_enableName: "Abilita (disabilita) pannello",
+      panel_requireName: "Rendi la pagina obbligatoria",
       question_visibilityName: "Mostra (nascondi) domanda",
       question_enableName: "Abilita (disabilita) domanda",
       question_requireName: "Rendi la domanda obbligatoria",
+      question_resetValueName: "Reimpostare il valore della domanda",
+      question_setValueName: "Impostare il valore della domanda",
       column_visibilityName: "Mostra (nascondi) colonna",
       column_enableName: "Abilita (disabilita) colonna",
       column_requireName: "Rendi la colonna obbligatoria",
+      column_resetValueName: "Reimposta valore colonna",
+      column_setValueName: "Impostare il valore della colonna",
       trigger_completeName: "Completa sondaggio",
       trigger_setvalueName: "Imposta la risposta",
       trigger_copyvalueName: "Copia la risposta",
@@ -195,9 +216,14 @@ var italianTranslation = {
       question_visibilityText: "rendi la domanda {0} visibile", //{0} question name
       question_enableText: "rendi la domanda {0} abilitata", //{0} question name
       question_requireText: "rendi la domanda {0} obbligatoria", //{0} question name
+      question_resetValueText: "Valore di ripristino per la domanda: {0}",
+      question_setValueText: "Assegna valore: {1} alla domanda: {0}",
       column_visibilityText: "rendi la colonna {0} della domanda {1} visibile", //{0} column name, {1} question name
       column_enableText: "rendi la colonna {0} della domanda {1} abilitata", //{0} column name, {1} question name
       column_requireText: "rendi la colonna {0} della domanda {1} obbligatoria", //{0} column name, {1} question name
+      column_resetValueText: "Reimposta il valore della cella per la colonna: {0}",
+      column_setValueText: "Assegna valore cella: {1} alla colonna: {0}",
+      setValueExpressionPlaceholder: " Espressione il cui risultato verrà assegnato alla domanda di destinazione.",
       trigger_completeText: "il sondaggio viene completato",
       trigger_setvalueText: "imposta nella domanda: {0} valore {1}", //{0} question name, {1} setValue
       trigger_setvalueEmptyText: "Valore chiaro della domanda: {0}", //{0} question name
@@ -221,9 +247,7 @@ var italianTranslation = {
       uncompletedRule_title: "Le regole logiche sono incomplete",
       uncompletedRule_text: "Alcune regole logiche non sono state completate. Se lasci la scheda ora, le modifiche andranno perse. Vuoi comunque uscire dalla scheda senza completare le modifiche?",
       uncompletedRule_apply: "Sì",
-      uncompletedRule_cancel: "No, voglio completare le regole",
-      expressionSetup: "Impostazione espressione",
-      actionsSetup: "Impostazione azioni"
+      uncompletedRule_cancel: "No, voglio completare le regole"
     }
   },
   // Property Editors
@@ -263,6 +287,7 @@ var italianTranslation = {
     fastEntry: "Inserimento manuale",
     fastEntryNonUniqueError: "Il valore '{0}' non è univoco",
     fastEntryChoicesCountError: "Limita il numero di opzioni da {0} a {1}",
+    fastEntryChoicesMinCountError: "Inserisci almeno {0} elementi",
     fastEntryPlaceholder: "È possibile impostare i dati nel seguente formato:\nvalore1|testo\nvalore2",
     formEntry: "Inserimento dati",
     testService: "Prova il servizio",
@@ -327,6 +352,8 @@ var italianTranslation = {
     choicesOrder: "Ordinamento delle scelte",
     visible: "Visibile",
     isRequired: "Obbligatoria",
+    markRequired: "Contrassegna come richiesto",
+    removeRequiredMark: "Rimuovere il segno richiesto",
     isAllRowRequired: "Richiedi risposta per tutte le righe",
     requiredErrorText: "\"Obbligatoria\" messaggio di errore",
     startWithNewLine: "Visualizza la domanda su una nuova riga",
@@ -408,7 +435,12 @@ var italianTranslation = {
       imageHeight: "Altezza immagine (in valori accettati da CSS)",
       imageWidth: "Larghezza immagine (in valori accettati da CSS)"
     },
+    // survey templates
+    survey: {
+      title: "Titolo"
+    },
     page: {
+      title: "Titolo",
       maxTimeToFinish: "Tempo massimo per terminare la pagina (in secondi)"
     },
     question: {
@@ -639,6 +671,18 @@ var italianTranslation = {
     columnsVisibleIf: "Colonne visibili se",
     rowsVisibleIf: "Righe visibili se",
     otherPlaceholder: "Testo segnaposto area commenti",
+    signaturepad: {
+      showPlaceholder: "Visualizzare il segnaposto",
+      placeholder: "Testo segnaposto",
+      signatureWidth: "Larghezza dell'area della firma",
+      signatureHeight: "Altezza dell'area della firma",
+      signatureAutoScaleEnabled: "Ridimensionamento automatico dell'area della firma",
+      penMinWidth: "Larghezza minima della penna",
+      penMaxWidth: "Larghezza massima della penna"
+    },
+    filePlaceholder: "Testo segnaposto del file",
+    photoPlaceholder: "Testo segnaposto foto",
+    fileOrPhotoPlaceholder: "Testo segnaposto per file o foto",
     rateType: "Tipo di tariffa"
   },
   // Property values
@@ -681,6 +725,7 @@ var italianTranslation = {
     both: "Entrambe",
     left: "Sinistra",
     right: "Destra",
+    leftRight: "Destra e sinistra",
     color: "Colore",
     date: "dattero",
     datetime: "datetime",
@@ -876,7 +921,10 @@ var italianTranslation = {
     choicesbyurl: {
       valueName: " "
     },
-    keyName: "Se la colonna specificata contiene valori identici, il sondaggio produce l'errore \"Valore chiave non univoco\"."
+    keyName: "Se la colonna specificata contiene valori identici, il sondaggio produce l'errore \"Valore chiave non univoco\".",
+    filePlaceholder: "Si applica quando \"Tipo di origine\" è \"File locali\" o quando la fotocamera non è disponibile",
+    photoPlaceholder: "Si applica quando \"Tipo di sorgente\" è \"Fotocamera\".",
+    fileOrPhotoPlaceholder: "Si applica quando \"Tipo di origine\" è \"File locali o fotocamera\"."
   },
   // Properties
   p: {
@@ -888,6 +936,9 @@ var italianTranslation = {
     showLabel: "Mostra le didascalie delle immagini",
     value: "Valore",
     tabAlign: "Allineamento delle tabulazioni",
+    sourceType: "Tipo di origine",
+    fitToContainer: "Adatto al contenitore",
+    setValueExpression: "Espressione del valore impostato",
     description: "Descrizione",
     logoFit: "Adattamento del logo",
     pages: "Pagine",
@@ -910,6 +961,8 @@ var italianTranslation = {
     descriptionLocation: "Posizione della descrizione",
     defaultValueExpression: "Espressione valore predefinito",
     requiredIf: "Obbligatoria Se",
+    resetValueIf: "Reimposta valore se",
+    setValueIf: "Imposta valore se",
     validators: "Validatori",
     bindings: "Collegamenti",
     renderAs: "Esegui il rendering come",
@@ -986,6 +1039,9 @@ var italianTranslation = {
     "--base-unit": "Unità base",
     groupGeneral: "Generale",
     groupAdvanced: "Avanzato",
+    groupHeader: "Intestazione",
+    groupBackground: "Sfondo",
+    groupAppearance: "Apparenza",
     themeName: "Tema",
     themeMode: "Aspetto della domanda",
     themeModePanels: "Default",
@@ -996,11 +1052,16 @@ var italianTranslation = {
     primaryDefaultColor: "Default",
     primaryDarkColor: "Fluttuare",
     primaryLightColor: "Selezionato",
+    coverTitleForecolor: "Precolore del titolo",
+    coverDescriptionForecolor: "Descrizione forecolor",
+    coverOverlapEnabled: "Sovrapposizione",
     backgroundDimColor: "Colore di sfondo",
     backgroundImage: "Immagine di sfondo",
     backgroundImageFitAuto: "Automatico",
     backgroundImageFitCover: "Coprire",
     backgroundImageFitContain: "Contenere",
+    backgroundImageFitFill: "Stendere",
+    backgroundImageFitTile: "Tegola",
     backgroundOpacity: "Opacità",
     backgroundImageAttachmentFixed: "Fissato",
     backgroundImageAttachmentScroll: "Scorrere",
@@ -1033,6 +1094,7 @@ var italianTranslation = {
     scale: "Scala",
     cornerRadius: "Raggio d'angolo",
     surveyTitle: "Carattere del titolo del sondaggio",
+    surveyDescription: "Carattere della descrizione dell'indagine",
     pageTitle: "Carattere del titolo della pagina",
     pageDescription: "Carattere della descrizione della pagina",
     boxShadowX: "X",
@@ -1045,6 +1107,26 @@ var italianTranslation = {
     boxShadowInner: "Interno",
     questionShadow: "Effetti ombra",
     editorShadow: "Effetti di ombreggiatura dell'elemento di input",
+    headerView: "Vista",
+    headerViewBasic: "Basico",
+    headerViewAdvanced: "Avanzato",
+    coverInheritWidthFrom: "Larghezza dell'area di contenuto",
+    coverInheritWidthFromSurvey: "Come il sondaggio",
+    coverInheritWidthFromContainer: "Adatto al contenitore",
+    coverTextAreaWidth: "Larghezza del testo",
+    coverBackgroundColorSwitch: "Colore di sfondo",
+    coverBackgroundColorNone: "Nessuno",
+    coverBackgroundColorAccentColor: "Colore principale",
+    coverBackgroundColorCustom: "Costume",
+    horizontalAlignmentLeft: "A sinistra",
+    horizontalAlignmentCenter: "Centro",
+    horizontalAlignmentRight: "A destra",
+    verticalAlignmentTop: "In alto",
+    verticalAlignmentMiddle: "Mezzo",
+    verticalAlignmentBottom: "Fondoschiena",
+    logoPosition: "Posizione del logo",
+    coverTitlePosition: "Posizione del titolo",
+    coverDescriptionPosition: "Descrizione posizione",
     names: {
       default: "Default",
       sharp: "Affilato",
@@ -1327,3 +1409,88 @@ editorLocalization.locales["it"] = italianTranslation;
 // pv.file: "Local files" => "File locali"
 // pv.camera: "Camera" => "Macchina fotografica"
 // pv.file-camera: "Local files or camera" => "File locali o fotocamera"
+// ed.translateUsigAI: "Auto-translate All" => "Traduzione automatica di tutto"
+// ed.translationDialogTitle: "Untranslated strings" => "Stringhe non tradotte"
+// pe.fastEntryChoicesMinCountError: "Please enter at least {0} items" => "Inserisci almeno {0} elementi"
+// lg.question_resetValueName: "Reset question value" => "Reimpostare il valore della domanda"
+// lg.column_resetValue: "Reset column value" => "Reimposta valore colonna"
+// pe.markRequired: "Mark as required" => "Contrassegna come richiesto"
+// pe.removeRequiredMark: "Remove the required mark" => "Rimuovere il segno richiesto"
+// p.resetValueIf: "Reset value if" => "Reimposta valore se"
+// lg.question_setValueName: "Set question value" => "Impostare il valore della domanda"
+// lg.column_resetValueName: "Reset column value" => "Reimposta valore colonna"
+// lg.column_setValueName: "Set column value" => "Impostare il valore della colonna"
+// lg.setValueExpressionPlaceholder: " An expression whose result will be assigned to the target question." => " Espressione il cui risultato verrà assegnato alla domanda di destinazione."
+// survey.title: "Title" => "Titolo"
+// page.title: "Title" => "Titolo"
+// p.setValueIf: "Set value if" => "Imposta valore se"
+// theme.groupHeader: "Header" => "Intestazione"
+// theme.coverTitleForecolor: "Title forecolor" => "Precolore del titolo"
+// theme.coverOverlapEnabled: "Overlap" => "Sovrapposizione"
+// theme.backgroundImageFitFill: "Stretch" => "Stendere"
+// theme.backgroundImageFitTile: "Tile" => "Tegola"
+// theme.headerView: "View" => "Vista"
+// theme.headerViewBasic: "Basic" => "Basico"
+// theme.headerViewAdvanced: "Advanced" => "Avanzato"
+// theme.coverInheritWidthFrom: "Content area width" => "Larghezza dell'area di contenuto"
+// theme.coverInheritWidthFromSurvey: "Same as survey" => "Come il sondaggio"
+// theme.coverInheritWidthFromPage: "Fit to page" => "Adatta alla pagina"
+// theme.coverTextAreaWidth: "Text width" => "Larghezza del testo"
+// theme.coverBackgroundColorSwitch: "Background color" => "Colore di sfondo"
+// theme.coverBackgroundColorNone: "None" => "Nessuno"
+// theme.coverBackgroundColorAccentColor: "Accent color" => "Colore principale"
+// theme.coverBackgroundColorCustom: "Custom" => "Costume"
+// theme.horizontalAlignmentLeft: "Left" => "A sinistra"
+// theme.horizontalAlignmentCenter: "Center" => "Centro"
+// theme.horizontalAlignmentRight: "Right" => "A destra"
+// theme.verticalAlignmentTop: "Top" => "In alto"
+// theme.verticalAlignmentMiddle: "Middle" => "Mezzo"
+// theme.verticalAlignmentBottom: "Bottom" => "Fondoschiena"
+// theme.logoPosition: "Logo Position" => "Posizione del logo"
+// theme.coverTitlePosition: "Title Position" => "Posizione del titolo"
+// lg.question_resetValueText: "reset value for question: {0}" => "Valore di ripristino per la domanda: {0}"
+// lg.question_setValueText: "assign value: {1} to question: {0}" => "Assegna valore: {1} alla domanda: {0}"
+// lg.column_resetValueText: "reset cell value for column: {0}" => "Reimposta il valore della cella per la colonna: {0}"
+// lg.column_setValueText: "assign cell value: {1} to column: {0}" => "Assegna valore cella: {1} alla colonna: {0}"
+// ed.surveyJsonExportButton: "Export" => "Esportazione"
+// ed.surveyJsonImportButton: "Import" => "Importazione"
+// ed.surveyJsonCopyButton: "Copy to clipboard" => "Copia negli Appunti"
+// pe.filePlaceholder: "File placeholder text" => "Testo segnaposto del file"
+// pe.photoPlaceholder: "Photo placeholder text" => "Testo segnaposto foto"
+// pe.fileOrPhotoPlaceholder: "File or photo placeholder text" => "Testo segnaposto per file o foto"
+// pehelp.filePlaceholder: "Applies when \"Source type\" is \"Local files\" or when camera is unavailable" => "Si applica quando \"Tipo di origine\" è \"File locali\" o quando la fotocamera non è disponibile"
+// pehelp.photoPlaceholder: "Applies when \"Source type\" is \"Camera\"." => "Si applica quando \"Tipo di sorgente\" è \"Fotocamera\"."
+// pehelp.fileOrPhotoPlaceholder: "Applies when \"Source type\" is \"Local files or camera\"." => "Si applica quando \"Tipo di origine\" è \"File locali o fotocamera\"."
+// theme.groupBackground: "Background" => "Sfondo"
+// theme.groupAppearance: "Appearance" => "Apparenza"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Descrizione forecolor"
+// ed.themeResetConfirmation: "Do you really want to reset the theme? All your customizations will be lost." => "Vuoi davvero resettare il tema? Tutte le tue personalizzazioni andranno perse."
+// ed.themeResetConfirmationOk: "Yes, reset the theme" => "Sì, reimposta il tema"
+// theme.groupBackground: "Background" => "Sfondo"
+// theme.groupAppearance: "Appearance" => "Apparenza"
+// theme.coverDescriptionForecolor: "Description forecolor" => "Descrizione forecolor"
+// theme.coverInheritWidthFromContainer: "Fit to container" => "Adatto al contenitore"
+// signaturepad.showPlaceholder: "Show the placeholder" => "Visualizzare il segnaposto"
+// signaturepad.placeholder: "Placeholder text" => "Testo segnaposto"
+// theme.surveyDescription: "Survey description font" => "Carattere della descrizione dell'indagine"
+
+// ed.prevFocus: "Focus previous" => "Focus precedente"
+// ed.nextFocus: "Focus next" => "Focus successivo"
+// ed.saveTheme: "Save Theme" => "Salva tema"
+// ed.saveThemeTooltip: "Save Theme" => "Salva tema"
+// lg.page_requireName: "Make page required" => "Rendi la pagina obbligatoria"
+// lg.panel_requireName: "Make page required" => "Rendi la pagina obbligatoria"
+// signaturepad.signatureWidth: "Signature area width" => "Larghezza dell'area della firma"
+// signaturepad.signatureHeight: "Signature area height" => "Altezza dell'area della firma"
+// signaturepad.signatureAutoScaleEnabled: "Auto-scale the signature area" => "Ridimensionamento automatico dell'area della firma"
+// signaturepad.penMinWidth: "Minimum pen width" => "Larghezza minima della penna"
+// signaturepad.penMaxWidth: "Maximum pen width" => "Larghezza massima della penna"
+// theme.coverDescriptionPosition: "Description position" => "Descrizione posizione"
+// ed.propertyGridNoResultsFound: "No results found" => "Nessun risultato trovato"
+// pv.leftRight: "Left and right" => "Destra e sinistra"
+// p.sourceType: "Source type" => "Tipo di origine"
+// p.fitToContainer: "Fit to container" => "Adatto al contenitore"
+// p.setValueExpression: "Set value expression" => "Espressione del valore impostato"
+// ed.choicesLoadedFromWebText: "Choices are loaded from a web service." => "Le scelte vengono caricate da un servizio Web."
+// ed.choicesLoadedFromWebLinkText: "Go to settings" => "Vai alle impostazioni"
+// ed.choicesLoadedFromWebPreviewTitle: "Preview of loaded choice options" => "Anteprima delle opzioni di scelta caricate"

@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.123](https://github.com/surveyjs/survey-creator/compare/v1.9.122...v1.9.123) (2023-12-27)
+
+
+### Bug Fixes
+
+* change german translation of "header" ([#5013](https://github.com/surveyjs/survey-creator/issues/5013)) ([a004c08](https://github.com/surveyjs/survey-creator/commit/a004c08f3a576450023f163a8d902e469afb2bf1))
+
+### [1.9.122](https://github.com/surveyjs/survey-creator/compare/v1.9.121...v1.9.122) (2023-12-20)
+
+### [1.9.121](https://github.com/surveyjs/survey-creator/compare/v1.9.120...v1.9.121) (2023-12-12)
+
+### [1.9.120](https://github.com/surveyjs/survey-creator/compare/v1.9.119...v1.9.120) (2023-12-05)
+
+### [1.9.119](https://github.com/surveyjs/survey-creator/compare/v1.9.118...v1.9.119) (2023-11-28)
+
+### [1.9.118](https://github.com/surveyjs/survey-creator/compare/v1.9.117...v1.9.118) (2023-11-21)
+
+### [1.9.117](https://github.com/surveyjs/survey-creator/compare/v1.9.116...v1.9.117) (2023-11-14)
+
+### [1.9.116](https://github.com/surveyjs/survey-creator/compare/v1.9.115...v1.9.116) (2023-11-07)
+
+### [1.9.115](https://github.com/surveyjs/survey-creator/compare/v1.9.114...v1.9.115) (2023-11-01)
+
+### [1.9.114](https://github.com/surveyjs/survey-creator/compare/v1.9.113...v1.9.114) (2023-10-25)
+
+### [1.9.113](https://github.com/surveyjs/survey-creator/compare/v1.9.112...v1.9.113) (2023-10-17)
+
+### [1.9.112](https://github.com/surveyjs/survey-creator/compare/v1.9.111...v1.9.112) (2023-10-10)
+
+### [1.9.111](https://github.com/surveyjs/survey-creator/compare/v1.9.110...v1.9.111) (2023-10-04)
+
 ### [1.9.110](https://github.com/surveyjs/survey-creator/compare/v1.9.109...v1.9.110) (2023-09-26)
 
 ### [1.9.109](https://github.com/surveyjs/survey-creator/compare/v1.9.108...v1.9.109) (2023-09-19)
